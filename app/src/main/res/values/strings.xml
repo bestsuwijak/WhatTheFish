@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WhatTheFish</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="intro1_text">COPYRIGHT @2019 MADI LAB, Faculty of Informatics, Burapha University. ALL RIGHTS RESERVED</string>
+    <string name="wtf_text">What\'s The Fish?</string>
+</resources>
