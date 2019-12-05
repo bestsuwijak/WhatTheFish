@@ -26,5 +26,14 @@
         android:id="@+id/intro3"
         android:name="buu.informatics.s59160141.whatthefish.Intro3"
         android:label="Intro3"
-        tools:layout="@layout/fragment_intro3"/>
+        tools:layout="@layout/fragment_intro3">
+        <action
+            android:id="@+id/action_intro3_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="buu.informatics.s59160141.whatthefish.MainFragment"
+        android:label="mainFragment"
+        tools:layout="@layout/fragment_main"/>
 </navigation>
