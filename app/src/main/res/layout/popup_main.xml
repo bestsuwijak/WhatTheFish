@@ -26,24 +26,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/size80dp"
-        android:layout_marginTop="@dimen/size10dp"
-        android:layout_marginEnd="@dimen/size80dp"
-        android:layout_marginBottom="@dimen/size20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonClose">
-
-        <ImageView
-            android:id="@+id/image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:color/darker_gray" />
-    </androidx.viewpager.widget.ViewPager>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

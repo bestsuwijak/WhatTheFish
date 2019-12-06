@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.popup_main.view.*
  */
 class MainFragment : Fragment() {
 
-    internal lateinit var viewPager: ViewPager
     lateinit var binding: FragmentMainBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,14 +40,10 @@ class MainFragment : Fragment() {
     }
 
     private fun showPopup() {
-//        viewPager = LayoutInflater.from(context).inflate(R.layout.popup_main, null).viewPager
-//        val adapter = context?.let { ViewPagerMain(it) }
-//        viewPager.adapter = adapter
-
         val mDialogView = LayoutInflater.from(context).inflate(R.layout.popup_main, null)
         val mBuilder = AlertDialog.Builder(context).setView(mDialogView)
         val mAlertDialog = mBuilder.show()
-        mDialogView.buttonClose.setOnClickListener(){
+        mDialogView.buttonClose.setOnClickListener{
             mAlertDialog.dismiss()
         }
     }
