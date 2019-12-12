@@ -10,7 +10,7 @@ import android.util.Log
 
 
 class YellowFish (var image: Bitmap, val fishType: Int) {
-    var borny = 0
+    var speed = 0f
     var x = 0f
     var y = 0f
     var w: Int = 0
@@ -18,6 +18,7 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
     var t: Int = 0
     var pw: Int = 0
     var ph: Int = 0
+
 
 //    val left = 100f
 //    val top = 300f
@@ -31,6 +32,8 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
     init {
         w = image.width
         h = image.height
+
+        speed = ranSpeed()
 
         x = (200..1000).random().toFloat() * (-1)
         y = randomBorn().toFloat()
@@ -57,7 +60,7 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
     }
 
     private fun randomBorn(): Int {
-        return (150..450).random()
+        return (100..660).random()
     }
 
     /**
@@ -85,12 +88,13 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
             x = (200..5000).random().toFloat() * (-1)
             t = 0
             y = randomBorn().toFloat()
+            speed = ranSpeed()
         }
 
         if (t == 1){
-            x += 5
+            x += (7..10).random()
         }else{
-            x += 1
+            x += speed
         }
 //        x += 1
 //        y += 0
@@ -101,5 +105,10 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
         if (abs(touchedX - this.x) < 201 && abs(touchedY - this.y) < 101){
             this.t = 1
         }
+    }
+
+    fun ranSpeed(): Float{
+        val s = listOf(0.39,0.52,0.74,0.3,0.5,0.7,1.13,1.18,1.14,1.2,1.35,1.38,1.4,1.52,1.57,2.05,2.03,2.09,3.07,3.1,5.0)
+        return s.random().toFloat()
     }
 }
