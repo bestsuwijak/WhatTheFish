@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:layout_marginStart="@dimen/size30dp"
     android:layout_marginLeft="@dimen/size50dp"
     android:layout_marginTop="@dimen/size50dp"
-    android:layout_marginRight="@dimen/size50dp"
+    android:layout_marginEnd="@dimen/size30dp"
     android:layout_marginBottom="@dimen/size50dp"
     android:background="@android:color/background_light"
     tools:context=".MainFragment">
@@ -25,5 +26,13 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="442dp"
+        android:layout_height="239dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonClose" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

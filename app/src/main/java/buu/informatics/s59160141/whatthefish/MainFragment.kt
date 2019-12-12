@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import buu.informatics.s59160141.whatthefish.databinding.FragmentMainBinding
 import kotlinx.android.synthetic.*
@@ -21,6 +23,7 @@ import kotlinx.android.synthetic.main.popup_main.view.*
  */
 class MainFragment : Fragment() {
 
+    internal lateinit var viewPager: ViewPager
     lateinit var binding: FragmentMainBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,3 +52,5 @@ class MainFragment : Fragment() {
     }
 
 }
+
+
