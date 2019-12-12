@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/backgroundsea"
+        android:background="@drawable/background"
         tools:context=".MainFragment">
 
         <Button
@@ -31,7 +31,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.85" />
 
         <Button
             android:id="@+id/buttonDetect"
@@ -48,7 +48,7 @@
             android:layout_width="@dimen/size40dp"
             android:layout_height="@dimen/size40dp"
             android:layout_marginRight="@dimen/size80dp"
-            android:background="@drawable/collect"
+            android:background="@drawable/fishdex"
             app:layout_constraintBaseline_toBaselineOf="@+id/buttonQrcode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/buttonQrcode" />
@@ -61,7 +61,7 @@
             android:layout_marginRight="@dimen/size50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/information" />
+            app:srcCompat="@drawable/i" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </layout>
