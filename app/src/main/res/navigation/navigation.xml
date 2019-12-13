@@ -6,7 +6,7 @@
     app:startDestination="@id/intro1">
     <fragment
         android:id="@+id/intro1"
-        android:name="buu.informatics.s59160141.whatthefish.Intro1"
+        android:name="buu.informatics.s59160141.whatthefish.Intro.Intro1"
         android:label="fragment_intro1"
         tools:layout="@layout/fragment_intro1" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/intro2"
-        android:name="buu.informatics.s59160141.whatthefish.Intro2"
+        android:name="buu.informatics.s59160141.whatthefish.Intro.Intro2"
         android:label="fragment_intro2"
         tools:layout="@layout/fragment_intro2" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/intro3"
-        android:name="buu.informatics.s59160141.whatthefish.Intro3"
+        android:name="buu.informatics.s59160141.whatthefish.Intro.Intro3"
         android:label="Intro3"
         tools:layout="@layout/fragment_intro3">
         <action
@@ -35,5 +35,18 @@
         android:id="@+id/mainFragment"
         android:name="buu.informatics.s59160141.whatthefish.MainFragment"
         android:label="mainFragment"
-        tools:layout="@layout/fragment_main"/>
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="buu.informatics.s59160141.whatthefish.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

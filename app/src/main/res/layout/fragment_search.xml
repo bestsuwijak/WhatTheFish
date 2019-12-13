@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SearchFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/searchbackground">
+
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="509dp"
+            android:layout_height="47dp"
+            android:background="@android:color/background_light"
+            android:ems="10"
+            android:hint="@string/search_input"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/size40dp"
+            android:textSize="@dimen/font16sp"
+            app:layout_constraintEnd_toStartOf="@+id/buttonCancel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@android:string/cancel"
+            android:textColor="@android:color/background_light"
+            android:textSize="@dimen/font18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/search_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/search_input" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/showResult"
+            android:layout_width="730dp"
+            android:layout_height="315dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shoeCountSearch" />
+
+        <TextView
+            android:id="@+id/shoeCountSearch"
+            android:layout_width="82dp"
+            android:layout_height="27dp"
+            android:text="พบ...ตัว"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/background_light"
+            android:textSize="@dimen/font18sp"
+            app:layout_constraintEnd_toEndOf="@+id/buttonCancel"
+            app:layout_constraintTop_toBottomOf="@+id/search_input" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="32dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="7dp"
+            android:src="@drawable/search"
+            app:layout_constraintBottom_toBottomOf="@+id/search_input"
+            app:layout_constraintStart_toStartOf="@+id/search_input"
+            app:layout_constraintTop_toTopOf="@+id/search_input" />
+
+        <ImageView
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@android:drawable/ic_menu_revert"
+            app:layout_constraintEnd_toStartOf="@+id/search_input"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -6,4 +6,5 @@
     <string name="intro1_text">COPYRIGHT @2019 MADI LAB, Faculty of Informatics, Burapha University. ALL RIGHTS RESERVED</string>
     <string name="wtf_text">What\'s The Fish?</string>
     <string name="close_text">ปิด</string>
+    <string name="search_input">ค้นหาด้วยชื่อ ไทย, อังกฤษ, วิทยาศาสตร์</string>
 </resources>

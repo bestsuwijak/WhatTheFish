@@ -39,6 +39,10 @@ class MainFragment : Fragment() {
             showPopup()
         }
 
+        binding.buttonSearch.setOnClickListener{
+            findNavController().navigate(R.id.action_mainFragment_to_searchFragment)
+        }
+
         return binding.root
     }
 

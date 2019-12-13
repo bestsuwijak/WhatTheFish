@@ -1,0 +1,48 @@
+package buu.informatics.s59160141.whatthefish
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import buu.informatics.s59160141.whatthefish.R
+
+class ViewPageAdapter(private val context: Context) :PagerAdapter(){
+    private var layoutInflater:LayoutInflater? = null
+    private val images = arrayOf(
+        R.drawable.popupmain1,
+        R.drawable.popupmain2
+        ,
+        R.drawable.popupmain3,
+        R.drawable.popupmain4
+    )
+
+    override fun isViewFromObject(view: View, `object`: Any): Boolean {
+        return view === `object`
+    }
+
+    override fun getCount(): Int {
+        return images.size
+    }
+
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = layoutInflater!!.inflate(R.layout.slider_main, null)
+        val image = view.findViewById<View>(R.id.image_view) as ImageView
+        image.setImageResource(images[position])
+        val vp = container as ViewPager
+        vp.addView(view, 0)
+        return view
+    }
+
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        val vp = container as ViewPager
+        val v = `object` as View
+        vp.removeView(v)
+
+
+    }
+
+}

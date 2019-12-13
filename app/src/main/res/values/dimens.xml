@@ -12,4 +12,6 @@
     <dimen name="size25dp">25dp</dimen>
     <dimen name="size10dp">10dp</dimen>
     <dimen name="size100dp">100dp</dimen>
+    <dimen name="font18sp">18sp</dimen>
+    <dimen name="font16sp">16sp</dimen>
 </resources>

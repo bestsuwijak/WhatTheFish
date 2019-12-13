@@ -1,4 +1,4 @@
-package buu.informatics.s59160141.whatthefish
+package buu.informatics.s59160141.whatthefish.Intro
 
 
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import buu.informatics.s59160141.whatthefish.R
 
 
 /**

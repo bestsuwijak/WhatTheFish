@@ -7,5 +7,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/loadingbackground"
-        tools:context=".Intro3"/>
+        tools:context=".Intro.Intro3"/>
 </layout>
