@@ -1,12 +1,10 @@
-package buu.informatics.s59160141.whatthefish
+package buu.informatics.s59160141.whatthefish.Other
 
 import android.content.res.Resources
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import kotlin.math.abs
 import android.graphics.RectF
-import android.util.Log
 
 
 class YellowFish (var image: Bitmap, val fishType: Int) {

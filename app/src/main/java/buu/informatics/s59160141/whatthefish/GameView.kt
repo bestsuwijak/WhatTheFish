@@ -7,6 +7,10 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import buu.informatics.s59160141.whatthefish.Other.Background
+import buu.informatics.s59160141.whatthefish.Other.GameThread
+import buu.informatics.s59160141.whatthefish.Other.YellowFish
+import buu.informatics.s59160141.whatthefish.Other.YellowFishR2L
 
 class GameView (context: Context, attributes: AttributeSet) : SurfaceView(context, attributes), SurfaceHolder.Callback {
     private val thread: GameThread
@@ -37,29 +41,144 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
         holder.addCallback(this)
 
         // instantiate the game thread
-        thread = GameThread(holder, this)
+        thread =
+            GameThread(
+                holder,
+                this
+            )
     }
 
 
     override fun surfaceCreated(surfaceHolder: SurfaceHolder) {
         // game objects
 
-        background = Background(BitmapFactory.decodeResource(resources, R.drawable.bgresize))
-        yellowFish1 = YellowFish(BitmapFactory.decodeResource(resources, R.drawable.f1),1)
-        yellowFish2 = YellowFish(BitmapFactory.decodeResource(resources, R.drawable.f1),1)
-        yellowFish3 = YellowFish(BitmapFactory.decodeResource(resources, R.drawable.f1),1)
-        yellowFish4 = YellowFishR2L(BitmapFactory.decodeResource(resources, R.drawable.f1_revert),1)
-        demo1 = YellowFish(BitmapFactory.decodeResource(resources, R.drawable.f15),15)
-        demo2 = YellowFish(BitmapFactory.decodeResource(resources, R.drawable.f15),15)
-        demo3 = YellowFishR2L(BitmapFactory.decodeResource(resources, R.drawable.f15_revert),15)
-        demo4 = YellowFishR2L(BitmapFactory.decodeResource(resources, R.drawable.f15_revert),15)
-        demo5 = YellowFishR2L(BitmapFactory.decodeResource(resources, R.drawable.f15_revert),15)
-        bigFish1 = YellowFish(BitmapFactory.decodeResource(resources, R.drawable.f20),20)
-        bigFish2 = YellowFishR2L(BitmapFactory.decodeResource(resources, R.drawable.f20_revert),20)
-        blueFish1 = YellowFish(BitmapFactory.decodeResource(resources, R.drawable.f5),5)
-        blueFish2 = YellowFish(BitmapFactory.decodeResource(resources, R.drawable.f5),5)
-        blueFish3 = YellowFishR2L(BitmapFactory.decodeResource(resources, R.drawable.f5_revert),5)
-        blueFish4 = YellowFishR2L(BitmapFactory.decodeResource(resources, R.drawable.f5_revert),5)
+        background =
+            Background(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.bgresize
+                )
+            )
+        yellowFish1 =
+            YellowFish(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f1
+                ),
+                1
+            )
+        yellowFish2 =
+            YellowFish(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f1
+                ),
+                1
+            )
+        yellowFish3 =
+            YellowFish(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f1
+                ),
+                1
+            )
+        yellowFish4 =
+            YellowFishR2L(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f1_revert
+                ),
+                1
+            )
+        demo1 =
+            YellowFish(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f15
+                ),
+                15
+            )
+        demo2 =
+            YellowFish(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f15
+                ),
+                15
+            )
+        demo3 =
+            YellowFishR2L(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f15_revert
+                ),
+                15
+            )
+        demo4 =
+            YellowFishR2L(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f15_revert
+                ),
+                15
+            )
+        demo5 =
+            YellowFishR2L(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f15_revert
+                ),
+                15
+            )
+        bigFish1 =
+            YellowFish(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f20
+                ),
+                20
+            )
+        bigFish2 =
+            YellowFishR2L(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f20_revert
+                ),
+                20
+            )
+        blueFish1 =
+            YellowFish(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f5
+                ),
+                5
+            )
+        blueFish2 =
+            YellowFish(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f5
+                ),
+                5
+            )
+        blueFish3 =
+            YellowFishR2L(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f5_revert
+                ),
+                5
+            )
+        blueFish4 =
+            YellowFishR2L(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.f5_revert
+                ),
+                5
+            )
 
         // start the game thread
         thread.setRunning(true)

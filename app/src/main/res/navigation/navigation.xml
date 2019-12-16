@@ -33,20 +33,67 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="buu.informatics.s59160141.whatthefish.MainFragment"
+        android:name="buu.informatics.s59160141.whatthefish.Main.MainFragment"
         android:label="mainFragment"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_QRCodeFragment"
+            app:destination="@id/QRCodeFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_detecFragment"
+            app:destination="@id/detecFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_fishDexFragment"
+            app:destination="@id/fishDexFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="buu.informatics.s59160141.whatthefish.SearchFragment"
+        android:name="buu.informatics.s59160141.whatthefish.Search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchDetail"
+            app:destination="@id/searchDetail" />
     </fragment>
+    <fragment
+        android:id="@+id/QRCodeFragment"
+        android:name="buu.informatics.s59160141.whatthefish.QRCode.QRCodeFragment"
+        android:label="fragment_qrcode"
+        tools:layout="@layout/fragment_qrcode" >
+        <action
+            android:id="@+id/action_QRCodeFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_QRCodeFragment_to_searchDetail"
+            app:destination="@id/searchDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/detecFragment"
+        android:name="buu.informatics.s59160141.whatthefish.Detec.DetecFragment"
+        android:label="fragment_detec"
+        tools:layout="@layout/fragment_detec" >
+        <action
+            android:id="@+id/action_detecFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fishDexFragment"
+        android:name="buu.informatics.s59160141.whatthefish.FishDex.FishDexFragment"
+        android:label="fragment_fish_dex"
+        tools:layout="@layout/fragment_fish_dex" >
+        <action
+            android:id="@+id/action_fishDexFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchDetail"
+        android:name="buu.informatics.s59160141.whatthefish.SearchDetail"
+        android:label="fragment_search_detail"
+        tools:layout="@layout/fragment_search_detail" />
 </navigation>

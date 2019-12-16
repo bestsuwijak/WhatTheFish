@@ -3,6 +3,7 @@ package buu.informatics.s59160141.whatthefish
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import buu.informatics.s59160141.whatthefish.R
 
 class MainActivity : AppCompatActivity() {
 

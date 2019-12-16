@@ -1,10 +1,9 @@
-package buu.informatics.s59160141.whatthefish
+package buu.informatics.s59160141.whatthefish.Other
 
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.RectF
-import android.util.Log
 
 class Background (private val image: Bitmap){
     private var x = 0f
@@ -42,8 +41,8 @@ class Background (private val image: Bitmap){
      * update properties for the game object
      * when the player touches the screen, position the player bitmap there
      */
-    fun update(touch_x: Int, touch_y: Int) {
+//    fun update(touch_x: Int, touch_y: Int) {
 //        x = touch_x - w / 2
 //        y = touch_y - h / 2
-    }
+//    }
 }
