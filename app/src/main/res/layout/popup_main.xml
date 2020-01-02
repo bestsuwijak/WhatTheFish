@@ -11,7 +11,7 @@
     android:layout_marginEnd="@dimen/size30dp"
     android:layout_marginBottom="@dimen/size50dp"
     android:background="@android:color/background_light"
-    tools:context=".Main.MainFragment">
+    tools:context=".main.MainFragment">
 
     <Button
         android:id="@+id/buttonClose"

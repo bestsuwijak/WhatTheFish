@@ -1,4 +1,4 @@
-package buu.informatics.s59160141.whatthefish.Main
+package buu.informatics.s59160141.whatthefish.main
 
 
 import android.app.AlertDialog

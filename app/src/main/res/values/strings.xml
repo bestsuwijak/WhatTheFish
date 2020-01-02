@@ -7,4 +7,7 @@
     <string name="wtf_text">What\'s The Fish?</string>
     <string name="close_text">ปิด</string>
     <string name="search_input">ค้นหาด้วยชื่อ ไทย, อังกฤษ, วิทยาศาสตร์</string>
+    <string name="id">ID</string>
+    <string name="view_profile">View Profile</string>
+    <string name="username">Username</string>
 </resources>

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        tools:context=".Main.MainFragment">
+        tools:context=".main.MainFragment">
 
         <buu.informatics.s59160141.whatthefish.GameView
             android:id="@+id/gameView"
