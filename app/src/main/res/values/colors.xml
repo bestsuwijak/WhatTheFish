@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="introBackground">#043E7B</color>
+
+    //color for user list item
+    <color name="black">#99000000</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="white">#FFFFFF</color>
+
 </resources>

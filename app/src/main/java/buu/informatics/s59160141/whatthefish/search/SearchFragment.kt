@@ -41,6 +41,7 @@ class SearchFragment : Fragment(), MainView {
         binding.listUsers.layoutManager = LinearLayoutManager(this.context)
         binding.listUsers.itemAnimator = DefaultItemAnimator()
 
+
         binding.searchUsers.setOnQueryTextListener(object: android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {
                 presenter.searchUser(text)
