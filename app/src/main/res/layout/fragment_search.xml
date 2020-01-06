@@ -10,65 +10,77 @@
         android:layout_height="match_parent"
         android:background="@drawable/searchbackground">
 
-        <SearchView
-            android:id="@+id/searchUsers"
-            android:layout_width="509dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/background_light"
-            android:ems="10"
-            android:hint="@string/search_input"
-            android:inputType="textPersonName"
-            android:paddingStart="@dimen/size40dp"
-            android:textSize="@dimen/font16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/buttonCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="@dimen/size20dp"
             android:text="@android:string/cancel"
-            android:textColor="@android:color/background_light"
+            android:textColor="@color/gray"
             android:textSize="@dimen/font18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/searchUsers"
+            app:layout_constraintBaseline_toBaselineOf="@+id/searchUsers"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/searchUsers" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/searchUsers" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listUsers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/size10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchUsers" />
+            app:layout_constraintTop_toBottomOf="@+id/shoeCountSearch" />
 
         <TextView
             android:id="@+id/shoeCountSearch"
             android:layout_width="82dp"
             android:layout_height="27dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginTop="10dp"
             android:text="พบ...ตัว"
             android:textAlignment="textEnd"
             android:textColor="@android:color/background_light"
             android:textSize="@dimen/font18sp"
-            app:layout_constraintBottom_toTopOf="@+id/listUsers"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/buttonCancel"
-            app:layout_constraintStart_toStartOf="@+id/buttonCancel"
-            app:layout_constraintTop_toBottomOf="@+id/searchUsers" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonCancel" />
 
         <ImageView
             android:id="@+id/buttonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:src="@android:drawable/ic_menu_revert"
-            app:layout_constraintBottom_toBottomOf="@+id/searchUsers"
+            android:layout_width="@dimen/size25dp"
+            android:layout_height="@dimen/size25dp"
+            android:layout_marginStart="@dimen/size20dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/backbutton"
+            app:layout_constraintEnd_toStartOf="@+id/searchUsers"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/searchUsers" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/searchUsers"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size30dp"
+            android:layout_marginStart="@dimen/size20dp"
+            android:layout_marginEnd="@dimen/size20dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/search_input"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/size30dp"
+            app:layout_constraintEnd_toStartOf="@+id/buttonCancel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/size20dp"
+            android:layout_height="@dimen/size20dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/search2"
+            app:layout_constraintBottom_toBottomOf="@+id/searchUsers"
+            app:layout_constraintStart_toStartOf="@+id/searchUsers"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

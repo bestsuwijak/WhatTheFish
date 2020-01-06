@@ -1,11 +1,14 @@
 package buu.informatics.s59160141.whatthefish.search
 
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -24,6 +27,7 @@ class SearchFragment : Fragment(), MainView {
     val presenter: MainPresenter = MainPresenter(this)
 
     lateinit var binding: FragmentSearchBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,17 +45,27 @@ class SearchFragment : Fragment(), MainView {
         binding.listUsers.layoutManager = LinearLayoutManager(this.context)
         binding.listUsers.itemAnimator = DefaultItemAnimator()
 
+        binding.searchUsers.setOnEditorActionListener { _, actionId, event ->
+            if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE) { //do what you want on the press of 'done'
 
-        binding.searchUsers.setOnQueryTextListener(object: android.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(text: String?): Boolean {
-                presenter.searchUser(text)
-                return false
+                if(searchUsers.text.toString() == ""){
+                    buttonCancel.setTextColor(Color.GRAY)
+                    listUsers.adapter = null
+                }else{
+                    buttonCancel.setTextColor(Color.WHITE)
+                    presenter.searchUser(searchUsers.text.toString())
+                }
             }
+            false
+        }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
+        binding.buttonCancel.setOnClickListener{
+            if (buttonCancel.currentTextColor == Color.WHITE){
+                searchUsers.text.clear()
+                listUsers.adapter = null
+                buttonCancel.setTextColor(Color.GRAY)
             }
-        })
+        }
 
         return binding.root
     }
