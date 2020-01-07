@@ -28,13 +28,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size10dp"
+            android:paddingBottom="@dimen/size75dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/shoeCountSearch" />
+            app:layout_constraintTop_toBottomOf="@+id/showCountSearch"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/shoeCountSearch"
+            android:id="@+id/showCountSearch"
             android:layout_width="82dp"
             android:layout_height="27dp"
             android:layout_marginTop="10dp"
@@ -50,7 +53,7 @@
             android:id="@+id/buttonBack"
             android:layout_width="@dimen/size25dp"
             android:layout_height="@dimen/size25dp"
-            android:layout_marginStart="@dimen/size20dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/backbutton"
             app:layout_constraintEnd_toStartOf="@+id/searchUsers"
@@ -61,7 +64,7 @@
             android:id="@+id/searchUsers"
             android:layout_width="0dp"
             android:layout_height="@dimen/size30dp"
-            android:layout_marginStart="@dimen/size20dp"
+            android:layout_marginStart="30dp"
             android:layout_marginEnd="@dimen/size20dp"
             android:background="@color/white"
             android:ems="10"

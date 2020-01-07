@@ -18,8 +18,8 @@
 
         <Button
             android:id="@+id/buttonQrcode"
-            android:layout_width="@dimen/size40dp"
-            android:layout_height="@dimen/size40dp"
+            android:layout_width="@dimen/size50dp"
+            android:layout_height="@dimen/size50dp"
             android:background="@drawable/qrcode"
             app:layout_constraintBaseline_toBaselineOf="@+id/buttonDetect"
             app:layout_constraintEnd_toStartOf="@+id/buttonCollect"
@@ -28,8 +28,8 @@
 
         <Button
             android:id="@+id/buttonSearch"
-            android:layout_width="@dimen/size40dp"
-            android:layout_height="@dimen/size40dp"
+            android:layout_width="@dimen/size50dp"
+            android:layout_height="@dimen/size50dp"
             android:layout_marginLeft="@dimen/size80dp"
             android:background="@drawable/search"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,8 +41,8 @@
 
         <Button
             android:id="@+id/buttonDetect"
-            android:layout_width="@dimen/size40dp"
-            android:layout_height="@dimen/size40dp"
+            android:layout_width="@dimen/size50dp"
+            android:layout_height="@dimen/size50dp"
             android:background="@drawable/camera"
             app:layout_constraintBaseline_toBaselineOf="@+id/buttonSearch"
             app:layout_constraintEnd_toStartOf="@+id/buttonQrcode"
@@ -51,8 +51,8 @@
 
         <Button
             android:id="@+id/buttonCollect"
-            android:layout_width="@dimen/size40dp"
-            android:layout_height="@dimen/size40dp"
+            android:layout_width="@dimen/size50dp"
+            android:layout_height="@dimen/size50dp"
             android:layout_marginRight="@dimen/size80dp"
             android:background="@drawable/fishdex"
             app:layout_constraintBaseline_toBaselineOf="@+id/buttonQrcode"

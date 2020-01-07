@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/QRCodeFragment"
-        android:name="buu.informatics.s59160141.whatthefish.QRCode.QRCodeFragment"
+        android:name="buu.informatics.s59160141.whatthefish.qrcode.QRCodeFragment"
         android:label="fragment_qrcode"
         tools:layout="@layout/fragment_qrcode" >
         <action
@@ -75,7 +75,7 @@
     </fragment>
     <fragment
         android:id="@+id/detecFragment"
-        android:name="buu.informatics.s59160141.whatthefish.Detec.DetecFragment"
+        android:name="buu.informatics.s59160141.whatthefish.detec.DetecFragment"
         android:label="fragment_detec"
         tools:layout="@layout/fragment_detec" >
         <action
@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/fishDexFragment"
-        android:name="buu.informatics.s59160141.whatthefish.FishDex.FishDexFragment"
+        android:name="buu.informatics.s59160141.whatthefish.fishdex.FishDexFragment"
         android:label="fragment_fish_dex"
         tools:layout="@layout/fragment_fish_dex" >
         <action

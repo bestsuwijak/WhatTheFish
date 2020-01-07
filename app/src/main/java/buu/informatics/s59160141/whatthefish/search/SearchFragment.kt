@@ -46,24 +46,27 @@ class SearchFragment : Fragment(), MainView {
         binding.listUsers.itemAnimator = DefaultItemAnimator()
 
         binding.searchUsers.setOnEditorActionListener { _, actionId, event ->
-            if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE) { //do what you want on the press of 'done'
+            if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE
+                || actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_GO) { //do what you want on the press of 'done'
 
                 if(searchUsers.text.toString() == ""){
-                    buttonCancel.setTextColor(Color.GRAY)
-                    listUsers.adapter = null
+                    buttonCancel.setTextColor(Color.GRAY)//กดไม่ได้
+                    listUsers.adapter = null//clear listView
+                    showCountSearch.visibility = View.INVISIBLE//ซ่อน search count
                 }else{
-                    buttonCancel.setTextColor(Color.WHITE)
-                    presenter.searchUser(searchUsers.text.toString())
+                    buttonCancel.setTextColor(Color.WHITE)//กดได้
+                    presenter.searchUser(searchUsers.text.toString())//นำไปค้นหา
                 }
             }
             false
         }
 
         binding.buttonCancel.setOnClickListener{
-            if (buttonCancel.currentTextColor == Color.WHITE){
-                searchUsers.text.clear()
-                listUsers.adapter = null
-                buttonCancel.setTextColor(Color.GRAY)
+            if (buttonCancel.currentTextColor == Color.WHITE){//สีขาวกดได้
+                searchUsers.text.clear()//ช่องค้นหาว่า
+                listUsers.adapter = null//clear listView
+                showCountSearch.visibility = View.INVISIBLE//ซ่อน search count
+                buttonCancel.setTextColor(Color.GRAY)//cancel สีเทา
             }
         }
 
@@ -72,5 +75,8 @@ class SearchFragment : Fragment(), MainView {
 
     override fun setAdapterData(items: List<User>) {
         listUsers.adapter = GithubUserAdapter(this, items)
+
+        showCountSearch.visibility = View.VISIBLE
+        showCountSearch.text = "พบ " +items.size +" ตัว"
     }
 }

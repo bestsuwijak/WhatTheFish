@@ -1,4 +1,4 @@
-package buu.informatics.s59160141.whatthefish.Detec
+package buu.informatics.s59160141.whatthefish.detec
 
 
 import android.os.Bundle

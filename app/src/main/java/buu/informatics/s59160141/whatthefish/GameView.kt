@@ -7,10 +7,10 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import buu.informatics.s59160141.whatthefish.Other.Background
-import buu.informatics.s59160141.whatthefish.Other.GameThread
-import buu.informatics.s59160141.whatthefish.Other.YellowFish
-import buu.informatics.s59160141.whatthefish.Other.YellowFishR2L
+import buu.informatics.s59160141.whatthefish.other.Background
+import buu.informatics.s59160141.whatthefish.other.GameThread
+import buu.informatics.s59160141.whatthefish.other.YellowFish
+import buu.informatics.s59160141.whatthefish.other.YellowFishR2L
 
 class GameView (context: Context, attributes: AttributeSet) : SurfaceView(context, attributes), SurfaceHolder.Callback {
     private val thread: GameThread
