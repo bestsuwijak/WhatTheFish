@@ -2,6 +2,7 @@ package buu.informatics.s59160141.whatthefish.main
 
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,8 +11,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
+import buu.informatics.s59160141.whatthefish.MainActivity
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.databinding.FragmentMainBinding
+import buu.informatics.s59160141.whatthefish.qrcode.QRActivity
 import kotlinx.android.synthetic.main.popup_main.view.*
 
 /**
@@ -42,7 +45,13 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.action_mainFragment_to_detecFragment)
         }
         binding.buttonQrcode.setOnClickListener{
-            findNavController().navigate(R.id.action_mainFragment_to_QRCodeFragment)
+//            findNavController().navigate(R.id.action_mainFragment_to_QRCodeFragment)
+//            findNavController().navigate(R.id.action_mainFragment_to_QRActivity)
+
+            val i = Intent(context, QRActivity::class.java)
+            startActivityForResult(i, 1)
+//            val v:MainActivity = MainActivity()
+//            v.startScan()
         }
         binding.buttonCollect.setOnClickListener{
             findNavController().navigate(R.id.action_mainFragment_to_fishDexFragment)
