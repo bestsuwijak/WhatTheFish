@@ -182,7 +182,9 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
 
         // start the game thread
         thread.setRunning(true)
-        thread.start()
+        if (!thread.isAlive()) {
+            thread.start()
+        }
     }
 
     override fun surfaceChanged(surfaceHolder: SurfaceHolder, i: Int, i1: Int, i2: Int) {
@@ -193,8 +195,8 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
         var retry = true
         while (retry) {
             try {
-                thread.setRunning(false)
-                thread.join()
+//                thread.setRunning(false)
+//                thread.join()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
