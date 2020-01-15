@@ -13,7 +13,7 @@ import buu.informatics.s59160141.whatthefish.other.YellowFish
 import buu.informatics.s59160141.whatthefish.other.YellowFishR2L
 
 class GameView (context: Context, attributes: AttributeSet) : SurfaceView(context, attributes), SurfaceHolder.Callback {
-    private val thread: GameThread
+    private lateinit var thread: GameThread
     private var yellowFish1: YellowFish? = null
     private var yellowFish2: YellowFish? = null
     private var yellowFish3: YellowFish? = null
@@ -50,8 +50,16 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
 
 
     override fun surfaceCreated(surfaceHolder: SurfaceHolder) {
-        // game objects
+        // add callback
+        holder.addCallback(this)
+        // instantiate the game thread
+        thread =
+            GameThread(
+                holder,
+                this
+            )
 
+        // game objects
         background =
             Background(
                 BitmapFactory.decodeResource(
@@ -195,8 +203,8 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
         var retry = true
         while (retry) {
             try {
-//                thread.setRunning(false)
-//                thread.join()
+                thread.setRunning(false)
+                thread.join()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
