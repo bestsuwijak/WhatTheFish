@@ -23,7 +23,27 @@
         android:id="@+id/txtResult"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="@drawable/qrcodebackground2"/>
+        android:background="@drawable/qrcodebackground2"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/buttonBack_qr"
+        android:layout_width="@dimen/size50dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_marginStart="@dimen/size40dp"
+        android:layout_marginTop="@dimen/size20dp"
+        android:src="@drawable/backbutton2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/buttonInformation_qr"
+        android:layout_width="@dimen/size25dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_marginTop="@dimen/size20dp"
+        android:layout_marginEnd="@dimen/size40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/i" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

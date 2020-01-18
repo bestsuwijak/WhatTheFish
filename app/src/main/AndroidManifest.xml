@@ -13,12 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".main.MainViewPager"
+            android:screenOrientation="landscape">
+
+        </activity>
         <activity
             android:name=".qrcode.QRActivity"
             android:screenOrientation="landscape">
 
-        </activity>
-        <!-- <activity android:name=".PopupMain"></activity> -->
+        </activity> <!-- <activity android:name=".PopupMain"></activity> -->
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">

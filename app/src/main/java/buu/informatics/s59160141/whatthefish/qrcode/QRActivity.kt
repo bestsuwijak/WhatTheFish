@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import buu.informatics.s59160141.whatthefish.R
 import com.google.zxing.Result
+import kotlinx.android.synthetic.main.activity_qr.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 
@@ -30,6 +31,13 @@ class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_qr)
+
+        buttonBack_qr.setOnClickListener{
+            finish()
+        }
+        buttonInformation_qr.setOnClickListener{
+
+        }
 
         scannerView = findViewById(R.id.scanner)
         txtResult = findViewById(R.id.txtResult)

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import buu.informatics.s59160141.whatthefish.MainActivity
 import buu.informatics.s59160141.whatthefish.R
+import buu.informatics.s59160141.whatthefish.ViewPageAdapter
 import buu.informatics.s59160141.whatthefish.databinding.FragmentMainBinding
 import buu.informatics.s59160141.whatthefish.qrcode.QRActivity
 import kotlinx.android.synthetic.main.popup_main.view.*
@@ -35,7 +36,15 @@ class MainFragment : Fragment() {
         )
 
         binding.buttonInformation.setOnClickListener{
-            showPopup()
+//            showPopup()
+            val images:ArrayList<Int> = arrayListOf(
+                R.drawable.popupmain1,
+                R.drawable.popupmain2,
+                R.drawable.popupmain3,
+                R.drawable.popupmain4)
+            val i = Intent(context, MainViewPager::class.java)
+            i.putExtra("images", images)
+            startActivityForResult(i, 2)
         }
 
         binding.buttonSearch.setOnClickListener{
@@ -61,12 +70,19 @@ class MainFragment : Fragment() {
     }
 
     private fun showPopup() {
-        val mDialogView = LayoutInflater.from(context).inflate(R.layout.popup_main, null)
-        val mBuilder = AlertDialog.Builder(context).setView(mDialogView)
-        val mAlertDialog = mBuilder.show()
-        mDialogView.buttonClose.setOnClickListener{
-            mAlertDialog.dismiss()
-        }
+//        val v = layoutInflater.inflate(R.layout.activity_main_view_pager, null)
+//        viewPager = v.findViewById<View>(R.id.viewPager) as ViewPager
+//        val adapter = ViewPageAdapter(v.context)
+//        viewPager.adapter = adapter
+//
+//        val mDialogView = LayoutInflater.from(context).inflate(R.layout.activity_main_view_pager, null)
+//        val mBuilder = AlertDialog.Builder(context).setView(mDialogView)
+//        val mAlertDialog = mBuilder.show()
+//
+//        mDialogView.buttonClose.setOnClickListener{
+//            mAlertDialog.dismiss()
+//        }
+//
     }
 
 }

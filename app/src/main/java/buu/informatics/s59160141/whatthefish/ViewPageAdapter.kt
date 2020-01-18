@@ -9,15 +9,9 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import buu.informatics.s59160141.whatthefish.R
 
-class ViewPageAdapter(private val context: Context) :PagerAdapter(){
+class ViewPageAdapter(private val context: Context, image:ArrayList<Int>) :PagerAdapter(){
     private var layoutInflater:LayoutInflater? = null
-    private val images = arrayOf(
-        R.drawable.popupmain1,
-        R.drawable.popupmain2
-        ,
-        R.drawable.popupmain3,
-        R.drawable.popupmain4
-    )
+    private val images = image
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view === `object`
