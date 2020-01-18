@@ -57,9 +57,6 @@
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_searchDetail"
-            app:destination="@id/searchDetail" />
     </fragment>
     <fragment
         android:id="@+id/QRCodeFragment"
@@ -69,9 +66,6 @@
         <action
             android:id="@+id/action_QRCodeFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_QRCodeFragment_to_searchDetail"
-            app:destination="@id/searchDetail" />
     </fragment>
     <fragment
         android:id="@+id/detecFragment"
@@ -91,9 +85,4 @@
             android:id="@+id/action_fishDexFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/searchDetail"
-        android:name="buu.informatics.s59160141.whatthefish.SearchDetail"
-        android:label="fragment_search_detail"
-        tools:layout="@layout/fragment_search_detail" />
 </navigation>

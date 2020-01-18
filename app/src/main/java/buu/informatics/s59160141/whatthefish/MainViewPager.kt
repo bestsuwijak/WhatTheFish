@@ -1,4 +1,4 @@
-package buu.informatics.s59160141.whatthefish.main
+package buu.informatics.s59160141.whatthefish
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,11 +24,6 @@ class MainViewPager() : AppCompatActivity() {
         )
         setContentView(R.layout.activity_main_view_pager)
 
-//        val images = arrayOf(
-//            R.drawable.popupmain1,
-//            R.drawable.popupmain2,
-//            R.drawable.popupmain3,
-//            R.drawable.popupmain4)
         val images: ArrayList<Int> = intent.getIntegerArrayListExtra("images")
 
         Log.i("popup", "inMainViewPager")

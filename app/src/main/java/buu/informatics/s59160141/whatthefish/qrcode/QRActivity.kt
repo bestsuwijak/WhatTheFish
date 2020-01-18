@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import buu.informatics.s59160141.whatthefish.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import com.google.zxing.Result
 import kotlinx.android.synthetic.main.activity_qr.*
@@ -36,7 +37,11 @@ class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             finish()
         }
         buttonInformation_qr.setOnClickListener{
-
+            val images:ArrayList<Int> = arrayListOf(
+                R.drawable.popup_qr)
+            val i = Intent(this, MainViewPager::class.java)
+            i.putExtra("images", images)
+            startActivityForResult(i, 3)
         }
 
         scannerView = findViewById(R.id.scanner)
@@ -85,6 +90,8 @@ class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         setResult(Activity.RESULT_OK, returnIntent)
         finish()
 
+//        val i = Intent(context, QRActivity::class.java)
+//        startActivityForResult(i, 1)
 
     }
 
