@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.GithubUserAdapter
 import buu.informatics.s59160141.whatthefish.databinding.FragmentSearchBinding
-import buu.informatics.s59160141.whatthefish.models.Fishs
+import buu.informatics.s59160141.whatthefish.models.Fish
 import kotlinx.android.synthetic.main.fragment_search.*
 
 /**
@@ -73,7 +73,7 @@ class SearchFragment : Fragment(), MainView {
         return binding.root
     }
 
-    override fun setAdapterData(items: List<Fishs>) {
+    override fun setAdapterData(items: List<Fish>) {
 //        Log.i("test123", "in setAdap searchFragment Aleart!!")
         listUsers.adapter = GithubUserAdapter(this, items)
 

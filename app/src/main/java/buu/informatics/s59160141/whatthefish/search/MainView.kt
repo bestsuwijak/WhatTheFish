@@ -1,7 +1,7 @@
 package buu.informatics.s59160141.whatthefish.search
 
-import buu.informatics.s59160141.whatthefish.models.Fishs
+import buu.informatics.s59160141.whatthefish.models.Fish
 
 interface MainView {
-    fun setAdapterData(items: List<Fishs>)
+    fun setAdapterData(items: List<Fish>)
 }

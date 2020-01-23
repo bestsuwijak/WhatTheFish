@@ -8,12 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.R
-import buu.informatics.s59160141.whatthefish.models.Fishs
+import buu.informatics.s59160141.whatthefish.models.Fish
 import buu.informatics.s59160141.whatthefish.search.SearchFragment
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.user_list_item.view.*
 
-class GithubUserAdapter(private val context: SearchFragment, private val fishs: List<Fishs>): RecyclerView.Adapter<GithubUserAdapter.ViewHolder>() {
+class GithubUserAdapter(private val context: SearchFragment, private val fish: List<Fish>): RecyclerView.Adapter<GithubUserAdapter.ViewHolder>() {
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubUserAdapter.ViewHolder {
@@ -25,25 +25,33 @@ class GithubUserAdapter(private val context: SearchFragment, private val fishs: 
     }
 
     override fun getItemCount(): Int {
-        return fishs.size
+        return fish.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var th_name = ""
         var eng_name = ""
-        for (i in 0 until fishs[position].thNames.size){
-            th_name += "${fishs[position].thNames[i]}, "
+        for (i in 0 until fish[position].thNames.size){
+            if (i == (fish[position].thNames.size - 1)){
+                th_name += fish[position].thNames[i]
+            }else{
+                th_name += "${fish[position].thNames[i]}, "
+            }
         }
-        for (i in 0 until fishs[position].engNames.size){
-            eng_name += "${fishs[position].engNames[i]}, "
+        for (i in 0 until fish[position].engNames.size){
+            if (i == (fish[position].engNames.size - 1)){
+                eng_name += fish[position].engNames[i]
+            }else{
+                eng_name += "${fish[position].engNames[i]}, "
+            }
         }
         holder.textThNames.text = th_name
         holder.textEngNames.text = eng_name
-        holder.textScienceName.text = fishs[position].scienceName
+        holder.textScienceName.text = fish[position].scienceName
         holder.avatar.setOnClickListener {
 
         }
-        Glide.with(context).load("http://10.0.2.2${fishs[position].icon}").into(holder.avatar)
+        Glide.with(context).load("http://10.0.2.2${fish[position].icon.name}").into(holder.avatar)
     }
 
     class ViewHolder(itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {

@@ -1,15 +1,12 @@
 package buu.informatics.s59160141.whatthefish.search
 
 import android.util.Log
-import buu.informatics.s59160141.whatthefish.models.Fishs
+import buu.informatics.s59160141.whatthefish.models.Fish
 import buu.informatics.s59160141.whatthefish.services.FishsApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainPresenter(private val view: MainView) {
 
@@ -21,7 +18,7 @@ class MainPresenter(private val view: MainView) {
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-    lateinit var fishList: List<Fishs>
+    lateinit var fishList: List<Fish>
 
     fun searchUser(q: String?) {
         coroutineScope.launch {
