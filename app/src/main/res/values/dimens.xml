@@ -12,8 +12,10 @@
     <dimen name="size25dp">25dp</dimen>
     <dimen name="size10dp">10dp</dimen>
     <dimen name="size100dp">100dp</dimen>
+    <dimen name="font20sp">20sp</dimen>
     <dimen name="font18sp">18sp</dimen>
     <dimen name="font16sp">16sp</dimen>
     <dimen name="size70dp">70dp</dimen>
     <dimen name="size75dp">75dp</dimen>
+    <dimen name="size450dp">450dp</dimen>
 </resources>

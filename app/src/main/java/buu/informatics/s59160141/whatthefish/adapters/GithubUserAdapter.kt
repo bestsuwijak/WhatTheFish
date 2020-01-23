@@ -1,22 +1,19 @@
 package buu.informatics.s59160141.whatthefish.adapters
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.R
-import buu.informatics.s59160141.whatthefish.models.User
+import buu.informatics.s59160141.whatthefish.models.Fishs
 import buu.informatics.s59160141.whatthefish.search.SearchFragment
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.user_list_item.view.*
 
-class GithubUserAdapter(private val context: SearchFragment, private val users: List<User>): RecyclerView.Adapter<GithubUserAdapter.ViewHolder>() {
+class GithubUserAdapter(private val context: SearchFragment, private val fishs: List<Fishs>): RecyclerView.Adapter<GithubUserAdapter.ViewHolder>() {
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubUserAdapter.ViewHolder {
@@ -28,25 +25,33 @@ class GithubUserAdapter(private val context: SearchFragment, private val users: 
     }
 
     override fun getItemCount(): Int {
-        return users.size
+        return fishs.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textId.text = users[position].id.toString()
-        holder.textUsername.text = users[position].login
-        holder.buttonViewProfile.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(users[position].url))
-            context.startActivity(browserIntent)
+        var th_name = ""
+        var eng_name = ""
+        for (i in 0 until fishs[position].thNames.size){
+            th_name += "${fishs[position].thNames[i]}, "
         }
-        Glide.with(context).load(users[position].avatar_url).into(holder.avatar)
+        for (i in 0 until fishs[position].engNames.size){
+            eng_name += "${fishs[position].engNames[i]}, "
+        }
+        holder.textThNames.text = th_name
+        holder.textEngNames.text = eng_name
+        holder.textScienceName.text = fishs[position].scienceName
+        holder.avatar.setOnClickListener {
+
+        }
+        Glide.with(context).load("http://10.0.2.2${fishs[position].icon}").into(holder.avatar)
     }
 
     class ViewHolder(itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {
 
-        val textId: TextView = itemLayoutView.textId
-        val textUsername: TextView = itemLayoutView.textUsername
-        val avatar: ImageView = itemLayoutView.avatar
-        val buttonViewProfile: Button = itemLayoutView.buttonViewProfile
+        val textThNames: TextView = itemLayoutView.textThNames
+        val textEngNames: TextView = itemLayoutView.textEngNames
+        val textScienceName: TextView = itemLayoutView.textScienceName
+        val avatar: ImageView = itemLayoutView.iconFish
 
     }
 }
