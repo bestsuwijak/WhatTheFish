@@ -24,7 +24,7 @@ class MainViewPager() : AppCompatActivity() {
         )
         setContentView(R.layout.activity_main_view_pager)
 
-        val images: ArrayList<Int> = intent.getIntegerArrayListExtra("images")
+        val images: List<Int> = intent.getIntegerArrayListExtra("images")
 
         Log.i("popup", "inMainViewPager")
 

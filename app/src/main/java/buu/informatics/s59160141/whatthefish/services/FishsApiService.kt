@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 private var retrofit: Retrofit = Retrofit.Builder()
-    .baseUrl("http://thefishdev.buu.in.th/")
+    .baseUrl("http://10.0.2.2/")
     .addConverterFactory(GsonConverterFactory.create())
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .build()

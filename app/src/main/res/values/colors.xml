@@ -7,8 +7,9 @@
 
     //color for user list item
     <color name="black">#99000000</color>
-    <color name="yellow">#FFFF00</color>
+    <color name="yellow">#FFDD00</color>
     <color name="white">#FFFFFF</color>
     <color name="gray">#A5A5A5</color>
+    <color name="graybackground">#E2313030</color>
 
 </resources>

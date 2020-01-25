@@ -9,7 +9,7 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import buu.informatics.s59160141.whatthefish.R
 
-class ViewPageAdapter(private val context: Context, image:ArrayList<Int>) :PagerAdapter(){
+class ViewPageAdapter(private val context: Context, image:List<Int>) :PagerAdapter(){
     private var layoutInflater:LayoutInflater? = null
     private val images = image
 

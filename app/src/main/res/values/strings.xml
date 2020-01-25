@@ -10,4 +10,10 @@
     <string name="id">ID</string>
     <string name="view_profile">View Profile</string>
     <string name="username">Username</string>
+    <string name="thName">ชื่อภาษาไทย</string>
+    <string name="engName">ชื่อภาษาอังกฤษ</string>
+    <string name="sciName">ชื่อวิทยาศาสตร์</string>
+    <string name="appearance">ลักษณะ</string>
+    <string name="habitat">แหล่งที่อยู่</string>
+    <string name="dissemination">การแพร่กระจาย</string>
 </resources>

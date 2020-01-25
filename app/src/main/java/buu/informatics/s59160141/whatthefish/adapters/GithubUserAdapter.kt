@@ -1,6 +1,7 @@
 package buu.informatics.s59160141.whatthefish.adapters
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import buu.informatics.s59160141.whatthefish.Detail
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.models.Fish
 import buu.informatics.s59160141.whatthefish.search.SearchFragment
@@ -50,8 +52,10 @@ class GithubUserAdapter(private val context: SearchFragment, private val fish: L
         holder.textThNames.text = th_name
         holder.textEngNames.text = eng_name
         holder.textScienceName.text = fish[position].scienceName
-        holder.itemID.setOnClickListener {
+        holder.itemID.setOnClickListener {                                                                      //go to detail
             Log.i("test123", "Navigate Here. ${fish[position].scienceName}")
+//            val v:SearchFragment = SearchFragment()
+//            v.showDetail(fish[position])
         }
         Glide.with(context).load("http://thefishdev.buu.in.th${fish[position].icon.name}").into(holder.avatar)
     }

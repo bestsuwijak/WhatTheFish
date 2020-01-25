@@ -2,14 +2,17 @@ package buu.informatics.s59160141.whatthefish.main
 
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
+import buu.informatics.s59160141.whatthefish.Detail
 import buu.informatics.s59160141.whatthefish.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.databinding.FragmentMainBinding
@@ -60,6 +63,14 @@ class MainFragment : Fragment() {
             val i = Intent(context, QRActivity::class.java)
             startActivityForResult(i, 1)
 
+            //----------------------------------------------------------ยืมทำ search detail
+//            val images:ArrayList<Int> = arrayListOf(
+//                R.drawable.popupmain1, R.drawable.popupmain2,
+//                R.drawable.popupmain3, R.drawable.popupmain4)
+//            val i = Intent(context, Detail::class.java)
+//            i.putExtra("images", images)
+//            startActivityForResult(i, 1)
+            //----------------------------------------------------------
         }
 
         binding.buttonCollect.setOnClickListener{
