@@ -1,8 +1,6 @@
 package buu.informatics.s59160141.whatthefish.search
 
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
@@ -15,7 +13,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import buu.informatics.s59160141.whatthefish.Detail
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.GithubUserAdapter
 import buu.informatics.s59160141.whatthefish.databinding.FragmentSearchBinding
@@ -84,13 +81,4 @@ class SearchFragment : Fragment(), MainView {
         showCountSearch.text = "พบ " +items.size +" ตัว"
     }
 
-    fun showDetail(fish:Fish){
-
-        val images:ArrayList<Int> = arrayListOf(
-                R.drawable.popupmain1, R.drawable.popupmain2,
-                R.drawable.popupmain3, R.drawable.popupmain4)
-        val i = Intent(context, Detail::class.java)
-        i.putExtra("images", images)
-        startActivityForResult(i, 4)
-    }
 }

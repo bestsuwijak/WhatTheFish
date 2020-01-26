@@ -53,9 +53,28 @@ class GithubUserAdapter(private val context: SearchFragment, private val fish: L
         holder.textEngNames.text = eng_name
         holder.textScienceName.text = fish[position].scienceName
         holder.itemID.setOnClickListener {                                                                      //go to detail
-            Log.i("test123", "Navigate Here. ${fish[position].scienceName}")
-//            val v:SearchFragment = SearchFragment()
-//            v.showDetail(fish[position])
+//            Log.i("test123", "Navigate Here. ${fish[position].scienceName}")
+
+            val thName = fish[position].thNames as ArrayList
+            val engName = fish[position].engNames as ArrayList
+            val sciName = fish[position].scienceName
+            val appearance = fish[position].appearance
+            val habitat = fish[position].habitat
+            val dissemination = fish[position].dissemination
+
+            val images:ArrayList<Int> = arrayListOf(
+                R.drawable.popupmain1, R.drawable.popupmain2,
+                R.drawable.popupmain3, R.drawable.popupmain4)
+
+            val i = Intent(context.requireContext(), Detail::class.java)
+            i.putExtra("images", images)
+            i.putExtra("thName", thName)
+            i.putExtra("engName", engName)
+            i.putExtra("sciName", sciName)
+            i.putExtra("appearance", appearance)
+            i.putExtra("habitat", habitat)
+            i.putExtra("dissemination", dissemination)
+            context.startActivityForResult(i, 4)
         }
         Glide.with(context).load("http://thefishdev.buu.in.th${fish[position].icon.name}").into(holder.avatar)
     }
