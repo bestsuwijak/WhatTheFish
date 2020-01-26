@@ -19,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
+            android:maxLines="1"
+            android:singleLine="true"
             android:text="@string/id"
             android:textColor="@color/yellow"
             android:textSize="@dimen/font20sp" />
@@ -29,6 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size10dp"
             android:fontFamily="@font/roboto"
+            android:maxLines="1"
+            android:singleLine="true"
             android:text="@string/username"
             android:textColor="@color/white"
             android:textSize="@dimen/font20sp" />
