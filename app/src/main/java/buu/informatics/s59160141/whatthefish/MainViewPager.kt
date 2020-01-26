@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import androidx.core.app.DialogCompat
 import androidx.viewpager.widget.ViewPager
-import buu.informatics.s59160141.whatthefish.R
-import buu.informatics.s59160141.whatthefish.ViewPageAdapter
+import buu.informatics.s59160141.whatthefish.adapters.ViewPageAdapter
 import kotlinx.android.synthetic.main.activity_main_view_pager.*
-import java.util.ArrayList
 
 class MainViewPager() : AppCompatActivity() {
 
@@ -30,7 +27,11 @@ class MainViewPager() : AppCompatActivity() {
 
 //        val v = layoutInflater.inflate(R.layout.activity_main_view_pager, null)
         viewPager = findViewById<View>(R.id.viewPager) as ViewPager
-        val adapter = ViewPageAdapter(this,images)
+        val adapter =
+            ViewPageAdapter(
+                this,
+                images
+            )
         viewPager.adapter = adapter
 
         buttonClose.setOnClickListener{

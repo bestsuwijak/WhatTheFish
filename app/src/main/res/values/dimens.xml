@@ -18,4 +18,6 @@
     <dimen name="size75dp">75dp</dimen>
     <dimen name="size450dp">450dp</dimen>
     <dimen name="font20sp">20sp</dimen>
+    <dimen name="size300dp">300dp</dimen>
+    <dimen name="size5dp">5dp</dimen>
 </resources>

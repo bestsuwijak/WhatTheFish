@@ -62,9 +62,12 @@ class GithubUserAdapter(private val context: SearchFragment, private val fish: L
             val habitat = fish[position].habitat
             val dissemination = fish[position].dissemination
 
-            val images:ArrayList<Int> = arrayListOf(
-                R.drawable.popupmain1, R.drawable.popupmain2,
-                R.drawable.popupmain3, R.drawable.popupmain4)
+            var images: ArrayList<String> = ArrayList()
+            if(fish[position].images.size != 0){
+                for (i in 0 until fish[position].images.size -1) {
+                    images.add(fish[position].images[i].name)
+                }
+            }
 
             val i = Intent(context.requireContext(), Detail::class.java)
             i.putExtra("images", images)
@@ -80,7 +83,6 @@ class GithubUserAdapter(private val context: SearchFragment, private val fish: L
     }
 
     class ViewHolder(itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {
-
         val textThNames: TextView = itemLayoutView.textThNames
         val textEngNames: TextView = itemLayoutView.textEngNames
         val textScienceName: TextView = itemLayoutView.textScienceName
