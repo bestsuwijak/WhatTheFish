@@ -11,7 +11,7 @@
         android:id="@+id/buttonInformation_detail"
         android:layout_width="@dimen/size25dp"
         android:layout_height="@dimen/size25dp"
-        android:layout_marginEnd="@dimen/size20dp"
+        android:layout_marginEnd="@dimen/size30dp"
         app:layout_constraintEnd_toStartOf="@+id/ar_qr2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/i" />
@@ -23,7 +23,7 @@
         android:layout_marginEnd="@dimen/size40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/i" />
+        app:srcCompat="@drawable/ar" />
 
     <ImageView
         android:id="@+id/buttonBack_detail"

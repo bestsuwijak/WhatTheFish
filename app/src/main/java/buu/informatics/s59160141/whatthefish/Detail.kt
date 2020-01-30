@@ -1,5 +1,6 @@
 package buu.informatics.s59160141.whatthefish
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.WindowManager
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import buu.informatics.s59160141.whatthefish.adapters.DetailViewPageAdapter
+import kotlinx.android.synthetic.main.activity_detail.*
 
 class Detail : AppCompatActivity() {
 
@@ -20,6 +22,17 @@ class Detail : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_detail)
+
+        buttonBack_detail.setOnClickListener{
+            finish()
+        }
+        buttonInformation_detail.setOnClickListener{
+            val images:ArrayList<Int> = arrayListOf(
+                R.drawable.popup_qr)
+            val i = Intent(this, MainViewPager::class.java)
+            i.putExtra("images", images)
+            startActivityForResult(i, 5)
+        }
 
         //FindById
         val name = findViewById<TextView>(R.id.name_text)

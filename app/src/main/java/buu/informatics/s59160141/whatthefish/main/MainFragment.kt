@@ -93,7 +93,6 @@ class MainFragment : Fragment() {
 //        mDialogView.buttonClose.setOnClickListener{
 //            mAlertDialog.dismiss()
 //        }
-//
     }
 
 }
