@@ -3,6 +3,7 @@ package buu.informatics.s59160141.whatthefish.search
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,14 +16,25 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.GithubUserAdapter
+import buu.informatics.s59160141.whatthefish.database.getDatabase
 import buu.informatics.s59160141.whatthefish.databinding.FragmentSearchBinding
 import buu.informatics.s59160141.whatthefish.models.Fish
+import buu.informatics.s59160141.whatthefish.repository.FishesRepository
 import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
  */
 class SearchFragment : Fragment(), MainView {
+
+    private val fishesRepository = FishesRepository(getDatabase(this.context!!))
+    val fishesList = fishesRepository.fishes
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     val presenter: MainPresenter = MainPresenter(this)
 
@@ -55,7 +67,17 @@ class SearchFragment : Fragment(), MainView {
                     showCountSearch.visibility = View.INVISIBLE//ซ่อน search count
                 }else{
                     buttonCancel.setTextColor(Color.WHITE)//กดได้
-                    presenter.searchUser(searchUsers.text.toString())//นำไปค้นหา
+//                    presenter.searchUser(searchUsers.text.toString())
+                    // นำไปค้นหา
+                    coroutineScope.launch {
+                        try {
+                            val fishesList = fishesRepository.search(searchUsers.text.toString())
+//                Log.i("test123", "result: ${userList[0].engName[0]}")
+                            setAdapterData(fishesList)
+                        } catch (e: Exception) {
+                            Log.i("", "fail: ${e.message}")
+                        }
+                    }
                 }
             }
             false
