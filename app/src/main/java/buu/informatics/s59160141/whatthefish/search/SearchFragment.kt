@@ -11,9 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import buu.informatics.s59160141.whatthefish.Intro.Intro3ViewModel
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.GithubUserAdapter
 import buu.informatics.s59160141.whatthefish.database.getDatabase
@@ -31,10 +34,13 @@ import kotlinx.coroutines.launch
  */
 class SearchFragment : Fragment(), MainView {
 
-    private val fishesRepository = FishesRepository(getDatabase(this.context!!))
-    val fishesList = fishesRepository.fishes
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val searchFragmentViewModel: SearchFragmentViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onActivityCreated()"
+        }
+        ViewModelProviders.of(this, SearchFragmentViewModel.Factory(activity.application, this))
+            .get(SearchFragmentViewModel::class.java)
+    }
 
     val presenter: MainPresenter = MainPresenter(this)
 
@@ -55,7 +61,7 @@ class SearchFragment : Fragment(), MainView {
         }
 
         binding.listUsers.layoutManager = LinearLayoutManager(this.context)
-        binding.listUsers.itemAnimator = DefaultItemAnimator()
+        binding.listUsers.itemAnimator = DefaultItemAnimator() as RecyclerView.ItemAnimator?
 
         binding.searchUsers.setOnEditorActionListener { _, actionId, event ->
             if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE
@@ -69,15 +75,8 @@ class SearchFragment : Fragment(), MainView {
                     buttonCancel.setTextColor(Color.WHITE)//กดได้
 //                    presenter.searchUser(searchUsers.text.toString())
                     // นำไปค้นหา
-                    coroutineScope.launch {
-                        try {
-                            val fishesList = fishesRepository.search(searchUsers.text.toString())
-//                Log.i("test123", "result: ${userList[0].engName[0]}")
-                            setAdapterData(fishesList)
-                        } catch (e: Exception) {
-                            Log.i("", "fail: ${e.message}")
-                        }
-                    }
+                    searchFragmentViewModel.multiSearch(searchUsers.text.toString())
+//                    setAdapterData(searchFragmentViewModel.multiSearch(searchUsers.text.toString()))
                 }
             }
             false

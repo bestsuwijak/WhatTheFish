@@ -1,6 +1,7 @@
 package buu.informatics.s59160141.whatthefish.Intro
 
 
+import android.app.Application
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -9,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.database.getDatabase
@@ -26,28 +29,14 @@ import java.io.IOException
  */
 class Intro3 : Fragment() {
 
-    private val fishesRepository = FishesRepository(getDatabase())
-    val playlist = fishesRepository.fishes
-    private val viewModelJob = SupervisorJob()
-    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-    init {
-        refreshDataFromRepository()
-    }
-
-    private fun refreshDataFromRepository() {
-        viewModelScope.launch {
-            try {
-                if (playlist.isEmpty())
-                    fishesRepository.resetFishes()
-                Timber.d("insert database completed")
-
-            } catch (networkError: IOException) {
-                // Show a Toast error message and hide the progress bar.
-                Timber.d(networkError.toString())
-            }
+    private val viewModel: Intro3ViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onActivityCreated()"
         }
+        ViewModelProviders.of(this, Intro3ViewModel.Factory(activity.application))
+            .get(Intro3ViewModel::class.java)
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,6 +58,7 @@ class Intro3 : Fragment() {
             }
 
             override fun onFinish() { // Finish
+                viewModel.refreshDataFromRepository()
                 findNavController().navigate(R.id.action_intro3_to_mainFragment)
             }
         }.start()

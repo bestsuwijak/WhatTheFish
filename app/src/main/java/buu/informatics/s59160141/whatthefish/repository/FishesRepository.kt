@@ -1,5 +1,6 @@
 package buu.informatics.s59160141.whatthefish.repository
 
+import android.util.Log
 import android.view.animation.Transformation
 import androidx.lifecycle.Transformations
 import buu.informatics.s59160141.whatthefish.database.*
@@ -15,9 +16,34 @@ class FishesRepository(private val database: FishesDatabase) {
 
     val fishes: List<Fish> = database.fishDao.getFishes().asModelFish()
 
-    fun search(s: String): List<Fish> {
-        val fishesSearch: List<Fish> = database.fishDao.multiFind("%${s}%").asModelFish()
-        return fishesSearch
+    fun searchMulti(query: String): List<Fish> {
+//                                                                                        Log.i("testdatabase", "search is start")
+        val inputData = database.fishDao.multiFind("%${query}%").asModelFish()
+//                                                                                        Log.i("testdatabase", "search is getdata")
+        if (inputData.isNotEmpty()){
+//                                                                                    Log.i("testdatabase", "search is input not empty")
+        var outputData: ArrayList<Fish> = arrayListOf(inputData[0])
+        for (i in 0 until (inputData.size)){
+//                                                                                    Log.i("testdatabase", "search is begin loop")
+            val row = outputData.find {it.number.startsWith(inputData[i].number)}
+//                                                                                    Log.i("testdatabase", "search is after val row")
+            if (row == null){
+//                                                                                        Log.i("testdatabase", "search is added")
+                outputData.add(inputData[i])
+            }else{
+//                                                                                        Log.i("testdatabase", "search is row not null")
+            }
+        }
+//                                                                                    Log.i("testdatabase", "search is fished add return")
+            return outputData as List<Fish>
+        }
+//                                                                                Log.i("testdatabase", "search is null")
+        return database.fishDao.multiFind("%${query}%").asModelFish()
+    }
+
+    fun searchNumber(query: String): List<Fish> {
+        return database.fishDao.numberFind(query).asModelFish()
+
     }
 
 
@@ -30,6 +56,8 @@ class FishesRepository(private val database: FishesDatabase) {
             var countEn = 0
             var countTe = 0
             var countIm = 0
+
+//            Log.i("testdatabase", getFishsDeferred[0].toString())
 
             for (i in 0 until (getFishsDeferred.size)) {
                 database.fishDao.insertDatabaseFishes(

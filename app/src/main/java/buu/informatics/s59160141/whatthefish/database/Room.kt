@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import buu.informatics.s59160141.whatthefish.Intro.Intro3
 
 @Dao
 interface FishDao {
@@ -14,7 +13,11 @@ interface FishDao {
 
 
     @Transaction
-    @Query("select * from database_fishes INNER JOIN eng_names ON engNameOwnerId = databaseFishId WHERE eng_name = :search")
+    @Query("select * from database_fishes WHERE number LIKE :search")
+    fun numberFind(search: String): List<DatabaseAll>
+
+    @Transaction
+    @Query("SELECT * FROM database_fishes INNER JOIN eng_names ON databaseFishId = engNameOwnerId INNER JOIN th_names ON databaseFishId = thNameOwnerId WHERE eng_name LIKE :search OR scienceName LIKE :search OR th_name LIKE :search")
     fun multiFind(search: String): List<DatabaseAll>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -46,7 +49,7 @@ fun getDatabase(context: Context): FishesDatabase {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 FishesDatabase::class.java,
-                "fishes").build()
+                "fishes").allowMainThreadQueries().build()
         }
     }
     return INSTANCE
