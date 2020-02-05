@@ -48,7 +48,7 @@ class GameThread (private val surfaceHolder: SurfaceHolder, private val gameView
             waitTime = targetTime - timeMillis
 
             try {
-                Thread.sleep(waitTime)
+//                Thread.sleep(waitTime)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

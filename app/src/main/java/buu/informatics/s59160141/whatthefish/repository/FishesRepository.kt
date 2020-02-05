@@ -41,8 +41,8 @@ class FishesRepository(private val database: FishesDatabase) {
         return database.fishDao.multiFind("%${query}%").asModelFish()
     }
 
-    fun searchNumber(query: String): List<Fish> {
-        return database.fishDao.numberFind(query).asModelFish()
+    fun searchNumber(query: String): Fish {
+        return database.fishDao.numberFind(query).asModelFish()[0]
 
     }
 
