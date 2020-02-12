@@ -16,6 +16,7 @@ import buu.informatics.s59160141.whatthefish.Detail
 import buu.informatics.s59160141.whatthefish.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.databinding.FragmentMainBinding
+import buu.informatics.s59160141.whatthefish.fishdex.FishDex1Activity
 import buu.informatics.s59160141.whatthefish.qrcode.QRActivity
 
 /**
@@ -54,27 +55,16 @@ class MainFragment : Fragment() {
         }
 
         binding.buttonQrcode.setOnClickListener{
-//            findNavController().navigate(R.id.action_mainFragment_to_QRCodeFragment)
-//            findNavController().navigate(R.id.action_mainFragment_to_QRActivity)
-
 //            val v:MainActivity = MainActivity()
 //            v.startScan()
-
             val i = Intent(context, QRActivity::class.java)
             startActivityForResult(i, 1)
-
-            //----------------------------------------------------------ยืมทำ search detail
-//            val images:ArrayList<Int> = arrayListOf(
-//                R.drawable.popupmain1, R.drawable.popupmain2,
-//                R.drawable.popupmain3, R.drawable.popupmain4)
-//            val i = Intent(context, Detail::class.java)
-//            i.putExtra("images", images)
-//            startActivityForResult(i, 1)
-            //----------------------------------------------------------
         }
 
         binding.buttonCollect.setOnClickListener{
-            findNavController().navigate(R.id.action_mainFragment_to_fishDexFragment)
+//            findNavController().navigate(R.id.action_mainFragment_to_fishDexFragment)
+            val i = Intent(context, FishDex1Activity::class.java)
+            startActivityForResult(i, 6)
         }
 
         return binding.root

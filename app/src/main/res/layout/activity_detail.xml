@@ -42,6 +42,7 @@
         android:text="TextView"
         android:textColor="@color/white"
         android:textSize="@dimen/font20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/buttonInformation_detail"
         app:layout_constraintStart_toEndOf="@+id/buttonBack_detail"
         app:layout_constraintTop_toTopOf="parent" />

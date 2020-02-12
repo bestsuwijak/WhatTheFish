@@ -20,4 +20,7 @@
     <dimen name="font20sp">20sp</dimen>
     <dimen name="size300dp">300dp</dimen>
     <dimen name="size5dp">5dp</dimen>
+    <dimen name="font22sp">22sp</dimen>
+    <dimen name="size290dp">290dp</dimen>
+    <dimen name="size350dp">350dp</dimen>
 </resources>

@@ -69,7 +69,7 @@ class GithubUserAdapter(private val context: SearchFragment, private val fish: L
                 }
             }
 
-            val i = Intent(context.requireContext(), Detail::class.java)
+            val i = Intent(context.requireContext(), Detail::class.java)        //Go!!!
             i.putExtra("images", images)
             i.putExtra("thName", thName)
             i.putExtra("engName", engName)
