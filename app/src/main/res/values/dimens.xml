@@ -23,4 +23,7 @@
     <dimen name="font22sp">22sp</dimen>
     <dimen name="size290dp">290dp</dimen>
     <dimen name="size350dp">350dp</dimen>
+    <dimen name="size125dp">125dp</dimen>
+    <dimen name="size110dp">110dp</dimen>
+    <dimen name="size60dp">60dp</dimen>
 </resources>

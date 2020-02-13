@@ -1,9 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fishdex.Fishdex2Activity">
+    android:background="@drawable/backgroundfishdex"
+    tools:context=".fishdex.FishDex1Activity">
+
+    <ImageView
+        android:id="@+id/buttonBack_fishdex2"
+        android:layout_width="@dimen/size50dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_marginStart="@dimen/size40dp"
+        android:src="@drawable/backbutton2"
+        app:layout_constraintEnd_toStartOf="@+id/nameBuraphaAquarium_fishdex2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nameBuraphaAquarium_fishdex2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/fishdex_label"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/buttonMap_fishdex2"
+        android:layout_width="@dimen/size25dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nameBuraphaAquarium_fishdex2"
+        app:layout_constraintEnd_toStartOf="@+id/ar_qr2"
+        app:layout_constraintStart_toEndOf="@+id/nameBuraphaAquarium_fishdex2"
+        app:layout_constraintTop_toTopOf="@+id/nameBuraphaAquarium_fishdex2"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/i" />
+
+    <ImageView
+        android:id="@+id/buttonInformation_fishdex2"
+        android:layout_width="@dimen/size25dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nameBuraphaAquarium_fishdex2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nameBuraphaAquarium_fishdex2"
+        app:srcCompat="@drawable/i" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="comming soon"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/nameBuraphaAquarium_fishdex2"
+        app:layout_constraintStart_toStartOf="@+id/nameBuraphaAquarium_fishdex2"
+        app:layout_constraintTop_toBottomOf="@+id/nameBuraphaAquarium_fishdex2" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/size60dp"
+        android:layout_height="@dimen/size60dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonInformation_fishdex2"
+        app:layout_constraintVertical_bias="0.77"
+        app:srcCompat="@drawable/i" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="255dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gridFish"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="5"
+            tools:itemCount="15"
+            tools:listitem="@layout/grid_view_item" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

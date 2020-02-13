@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/itemID"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size110dp"
+        android:background="@color/gray"
+        android:layout_marginStart="@dimen/size10dp"
+        android:layout_marginEnd="@dimen/size10dp"
+        android:layout_marginTop="@dimen/size20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/shadowIconFish"
+            android:layout_marginStart="@dimen/size10dp"
+            android:layout_marginEnd="@dimen/size10dp"
+            android:layout_marginTop="@dimen/size10dp"
+            android:layout_marginBottom="@dimen/size10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+    </LinearLayout>
+
+</LinearLayout>
