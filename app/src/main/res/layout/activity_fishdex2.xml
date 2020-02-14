@@ -5,7 +5,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundfishdex"
+    android:background="@drawable/aquarium_black"
     tools:context=".fishdex.FishDex1Activity">
 
     <ImageView
