@@ -10,7 +10,6 @@
         android:id="@+id/itemLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size110dp"
-        android:background="@drawable/gray_shape"
         android:layout_marginStart="@dimen/size10dp"
         android:layout_marginEnd="@dimen/size10dp"
         android:layout_marginTop="@dimen/size20dp"

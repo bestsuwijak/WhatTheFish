@@ -11,7 +11,6 @@ interface FishDao {
     @Query("select * from database_fishes")
     fun getFishes(): List<DatabaseAll>
 
-
     @Transaction
     @Query("select * from database_fishes WHERE number LIKE :search")
     fun numberFind(search: String): List<DatabaseAll>
@@ -19,6 +18,10 @@ interface FishDao {
     @Transaction
     @Query("SELECT * FROM database_fishes INNER JOIN eng_names ON databaseFishId = engNameOwnerId INNER JOIN th_names ON databaseFishId = thNameOwnerId WHERE eng_name LIKE :search OR scienceName LIKE :search OR th_name LIKE :search")
     fun multiFind(search: String): List<DatabaseAll>
+
+    @Transaction
+    @Query("UPDATE database_fishes SET foundFish = 1 WHERE number LIKE :number")
+    fun updateFoundFish(number: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDatabaseFishes( fish: DatabaseFishes)

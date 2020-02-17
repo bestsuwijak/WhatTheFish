@@ -26,8 +26,9 @@ class QRViewModel(application: Application) : AndroidViewModel(application) {
 
     fun searchQR(query: String): Fish {
 
-        return fishesRepository.searchNumber(query)
+        fishesRepository.updateFoundFish(query)
 
+        return fishesRepository.searchNumber(query)
     }
 
 

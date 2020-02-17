@@ -27,9 +27,10 @@ data class DatabaseFishes(
     @Embedded var model: DatabaseModel,
     @Embedded var icon: DatabaseIcon,
     var number: String,
-    var status: Int
+    var status: Int,
+    var foundFish: Boolean = false
 
-    )
+)
 
 @Entity(tableName = "th_names")
 data class DatabaseThNames(
@@ -61,12 +62,12 @@ data class DatabaseImages(
     var sizeImage: Double
 )
 
-data class DatabaseModel (
+data class DatabaseModel(
     val nameModel: String,
     val sizeModel: Double
 )
 
-data class DatabaseIcon (
+data class DatabaseIcon(
     val nameIcon: String,
     val sizeIcon: Double
 )
@@ -87,14 +88,15 @@ fun List<DatabaseAll>.asModelFish(): List<Fish> {
             model = it.databaseFish.model.asToModel(),
             icon = it.databaseFish.icon.asToIcon(),
             number = it.databaseFish.number,
-            status = it.databaseFish.status
+            status = it.databaseFish.status,
+            foundFish = it.databaseFish.foundFish
         )
     }
 }
 
 fun List<DatabaseThNames>.asListThNameToString(): List<String> {
     return map {
-       it.thName
+        it.thName
     }
 }
 
@@ -123,7 +125,7 @@ fun List<DatabaseImages>.asListImage(): List<Image> {
 }
 
 fun DatabaseModel.asToModel(): Model {
-    return Model(nameModel,sizeModel)
+    return Model(nameModel, sizeModel)
 }
 
 fun DatabaseIcon.asToIcon(): Icon {

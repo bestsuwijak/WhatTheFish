@@ -43,7 +43,11 @@ class FishesRepository(private val database: FishesDatabase) {
 
     fun searchNumber(query: String): Fish {
         return database.fishDao.numberFind(query).asModelFish()[0]
+    }
 
+    fun updateFoundFish(query: String){
+        database.fishDao.updateFoundFish(query)
+        Log.i("updateFoundFish", "update foundFish competed")
     }
 
 
