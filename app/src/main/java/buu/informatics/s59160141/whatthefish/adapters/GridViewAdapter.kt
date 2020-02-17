@@ -53,6 +53,8 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
                 .load("http://thefishdev.buu.in.th${fish[position].icon.name}")
                 .into(holder.imageGridRelative)
         }else{
+            holder.itemSmallRelative.visibility = View.GONE
+            holder.itemSmallLinear.visibility = View.VISIBLE
             holder.itemSmallLinear.setBackgroundResource(R.drawable.gray_shape)
             Glide.with(this.context)
                 .load("http://thefishdev.buu.in.th${fish[position].images.last().name}")
@@ -62,6 +64,7 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
             if (!fish[position].foundFish) {
                 viewModelScope.launch {
                     val animation = AnimationUtils.loadAnimation(context, R.anim.slide_down)
+
                     if (it.shadowIconFish.visibility == View.VISIBLE) {
                         it.shadowIconFish.visibility = View.GONE
                         it.startAnimation(animation)
