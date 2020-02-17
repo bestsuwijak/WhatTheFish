@@ -26,4 +26,5 @@
     <dimen name="size125dp">125dp</dimen>
     <dimen name="size110dp">110dp</dimen>
     <dimen name="size60dp">60dp</dimen>
+    <dimen name="font13sp">13sp</dimen>
 </resources>

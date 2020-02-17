@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/itemID"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -11,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size110dp"
         android:layout_marginStart="@dimen/size10dp"
-        android:layout_marginEnd="@dimen/size10dp"
         android:layout_marginTop="@dimen/size20dp"
+        android:layout_marginEnd="@dimen/size10dp"
         android:orientation="vertical">
 
 
@@ -20,25 +21,73 @@
             android:id="@+id/nameFish"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textStyle="bold"
             android:layout_marginStart="@dimen/size10dp"
             android:layout_marginEnd="@dimen/size10dp"
-            android:textSize="@dimen/font16sp"
+            android:gravity="center"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:visibility="gone"/>
+            android:textSize="@dimen/font16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/shadowIconFish"
-            android:layout_marginStart="@dimen/size10dp"
-            android:layout_marginEnd="@dimen/size10dp"
-            android:layout_marginTop="@dimen/size10dp"
-            android:layout_marginBottom="@dimen/size10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size10dp"
+            android:layout_marginTop="@dimen/size10dp"
+            android:layout_marginEnd="@dimen/size10dp"
+            android:layout_marginBottom="@dimen/size10dp"
             app:srcCompat="@mipmap/ic_launcher" />
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/itemRelative"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size110dp"
+        android:layout_marginStart="@dimen/size10dp"
+        android:layout_marginTop="@dimen/size20dp"
+        android:layout_marginEnd="@dimen/size10dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iconFishRelative"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size10dp"
+            android:layout_marginTop="@dimen/size10dp"
+            android:layout_marginEnd="@dimen/size10dp"
+            android:layout_marginBottom="@dimen/size10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            app:srcCompat="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:id="@+id/dateFoundFish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font13sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="17 กุทภาพันธ์ 2563" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font13sp"
+            android:layout_alignRight="@+id/dateFoundFish"
+            android:layout_above="@+id/dateFoundFish"
+            android:text="21.00"
+            />
+
+
+
+    </RelativeLayout>
 
 </LinearLayout>

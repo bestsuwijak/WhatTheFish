@@ -6,13 +6,11 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.Detail
 import buu.informatics.s59160141.whatthefish.R
@@ -21,7 +19,6 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.grid_view_item.view.*
 import kotlinx.coroutines.*
 import java.util.*
-import kotlin.concurrent.schedule
 
 class GridViewAdapter(private val context: Context, private val fish: List<Fish>) :
     RecyclerView.Adapter<GridViewAdapter.ViewHolder>() {
@@ -48,16 +45,18 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
     @SuppressLint("SetTextI18n", "ResourceAsColor")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.nameFish.text = "${fish[position].thNames[0]}\n${fish[position].engNames[0]}"
+        holder.nameFishLinear.text = "${fish[position].thNames[0]}\n${fish[position].engNames[0]}"
         if (fish[position].foundFish) {
+            holder.itemSmallLinear.visibility = View.GONE
+            holder.itemSmallRelative.visibility = View.VISIBLE
             Glide.with(this.context)
                 .load("http://thefishdev.buu.in.th${fish[position].icon.name}")
-                .into(holder.imageGrid)
+                .into(holder.imageGridRelative)
         }else{
-            holder.itemSmall.setBackgroundResource(R.drawable.gray_shape)
+            holder.itemSmallLinear.setBackgroundResource(R.drawable.gray_shape)
             Glide.with(this.context)
                 .load("http://thefishdev.buu.in.th${fish[position].images.last().name}")
-                .into(holder.imageGrid)
+                .into(holder.imageGridLinear)
         }
         holder.itemID.setOnClickListener {
             if (!fish[position].foundFish) {
@@ -106,9 +105,15 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
     }
 
     class ViewHolder(itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {
-        val imageGrid: ImageView = itemLayoutView.shadowIconFish
         val itemID: LinearLayout = itemLayoutView.itemID
-        val itemSmall: LinearLayout = itemLayoutView.itemLayout
-        val nameFish: TextView = itemLayoutView.nameFish
+
+        //linear layout
+        val itemSmallLinear: LinearLayout = itemLayoutView.itemLayout
+        val imageGridLinear: ImageView = itemLayoutView.shadowIconFish
+        val nameFishLinear: TextView = itemLayoutView.nameFish
+
+        //relative layout
+        val itemSmallRelative: RelativeLayout = itemLayoutView.itemRelative
+        val imageGridRelative: ImageView = itemLayoutView.iconFishRelative
     }
 }
