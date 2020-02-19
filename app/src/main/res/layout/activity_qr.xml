@@ -1,49 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".qrcode.QRActivity">
 
-    <me.dm7.barcodescanner.zxing.ZXingScannerView
-        android:id="@+id/scanner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/size20dp"
-        android:layout_marginTop="@dimen/size20dp"
-        android:layout_marginEnd="@dimen/size20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></me.dm7.barcodescanner.zxing.ZXingScannerView>
-
-    <TextView
-        android:id="@+id/txtResult"
+    <RelativeLayout
+        android:id="@+id/newFindingLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/qrcodebackground2"
-        android:gravity="center" />
+        android:background="@color/blue"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/buttonBack_qr"
-        android:layout_width="@dimen/size50dp"
-        android:layout_height="@dimen/size25dp"
-        android:layout_marginStart="@dimen/size40dp"
-        android:layout_marginTop="@dimen/size20dp"
-        android:src="@drawable/backbutton2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/restartAnim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="restart"
+            android:textSize="25sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            />
 
-    <ImageView
-        android:id="@+id/buttonInformation_qr"
-        android:layout_width="@dimen/size25dp"
-        android:layout_height="@dimen/size25dp"
-        android:layout_marginTop="@dimen/size20dp"
-        android:layout_marginEnd="@dimen/size40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/i" />
+        <ImageView
+            android:id="@+id/imageBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/white" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/effect_slide"
+            android:src="@drawable/effect_slide_new_finding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/fishPic"
+            android:layout_width="@dimen/size300dp"
+            android:layout_height="@dimen/size100dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/scanQRLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <me.dm7.barcodescanner.zxing.ZXingScannerView
+            android:id="@+id/scanner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/size20dp"
+            android:layout_marginTop="@dimen/size20dp"
+            android:layout_marginEnd="@dimen/size20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></me.dm7.barcodescanner.zxing.ZXingScannerView>
+
+        <TextView
+            android:id="@+id/txtResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/qrcodebackground2"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/buttonBack_qr"
+            android:layout_width="@dimen/size50dp"
+            android:layout_height="@dimen/size25dp"
+            android:layout_marginStart="@dimen/size40dp"
+            android:layout_marginTop="@dimen/size20dp"
+            android:src="@drawable/backbutton2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/buttonInformation_qr"
+            android:layout_width="@dimen/size25dp"
+            android:layout_height="@dimen/size25dp"
+            android:layout_marginTop="@dimen/size20dp"
+            android:layout_marginEnd="@dimen/size40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/i" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

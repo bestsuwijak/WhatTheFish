@@ -62,9 +62,8 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
         }
         holder.itemID.setOnClickListener {
             if (!fish[position].foundFish) {
+                val animation = AnimationUtils.loadAnimation(context, R.anim.reverse_back_to_font)
                 viewModelScope.launch {
-                    val animation = AnimationUtils.loadAnimation(context, R.anim.slide_down)
-
                     if (it.shadowIconFish.visibility == View.VISIBLE) {
                         it.shadowIconFish.visibility = View.GONE
                         it.startAnimation(animation)
