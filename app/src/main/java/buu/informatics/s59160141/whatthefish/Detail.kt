@@ -5,14 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import buu.informatics.s59160141.whatthefish.adapters.DetailViewPageAdapter
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_qr.*
+import kotlinx.coroutines.*
 
 class Detail : AppCompatActivity() {
 
 
+    private val viewModelJob = SupervisorJob()
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +57,8 @@ class Detail : AppCompatActivity() {
         val app: String = intent.getStringExtra("appearance")
         val hab: String = intent.getStringExtra("habitat")
         val dis: String = intent.getStringExtra("dissemination")
+        val foun: Boolean = intent.getBooleanExtra("foundNewFish", false)
+        val icon: String = intent.getStringExtra("icon")
 
         //ViewPager
         viewPager = findViewById<View>(R.id.viewPager_detail) as ViewPager
@@ -82,6 +90,53 @@ class Detail : AppCompatActivity() {
         habitat.text = hab
         dissemination.text = dis
 
-
+        if (foun){
+            newFish(th_name[0], icon, images.last())
+        }
+    }
+    fun newFish(nameth: String, icon: String, shadow: String) {
+        detailLayout.visibility = View.GONE
+        newFindingLayout.visibility = View.VISIBLE
+        val fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        val slide = AnimationUtils.loadAnimation(this, R.anim.slide_bot_to_top)
+        val landingFish = AnimationUtils.loadAnimation(this, R.anim.zoom_out_and_fade_in)
+        val zoomIn = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
+        imageBackground.visibility = View.GONE
+        fadeIn.duration = 1000L
+        fadeOut.duration = 250L
+        Glide.with(this)
+            .load("http://thefishdev.buu.in.th${shadow}")
+            .into(fishPic)
+        viewModelScope.launch {
+            delay(2000)
+            imageBackground.visibility = View.VISIBLE
+            imageBackground.startAnimation(fadeIn)
+            delay(1000)
+            imageBackground.startAnimation(fadeOut)
+            delay(250)
+            imageBackground.visibility = View.GONE
+            effect_slide.visibility = View.VISIBLE
+            effect_slide.startAnimation(slide)
+            fishPic.startAnimation(landingFish)
+            fishPic.visibility = View.VISIBLE
+            delay(2000)
+            Glide.with(this@Detail)
+                .load("http://thefishdev.buu.in.th${icon}")
+                .into(fishPic)
+            textNameFish.text = "พบ ${nameth} แล้ว!!"
+            cycleEffect.visibility = View.VISIBLE
+            textNameFish.visibility = View.VISIBLE
+            cycleEffect.startAnimation(zoomIn)
+            delay(1000)
+            cycleEffect.visibility = View.GONE
+            delay(2000)
+            effect_slide.visibility = View.GONE
+            delay(500)
+            fishPic.visibility = View.GONE
+            textNameFish.visibility = View.GONE
+            newFindingLayout.visibility = View.GONE
+            detailLayout.visibility = View.VISIBLE
+        }
     }
 }

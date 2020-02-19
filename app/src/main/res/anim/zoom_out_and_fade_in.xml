@@ -3,13 +3,13 @@
     android:fillAfter="true" >
 
     <alpha
-        android:duration="3000"
+        android:duration="2000"
         android:fromAlpha="0.0"
         android:interpolator="@android:anim/accelerate_interpolator"
         android:toAlpha="1.0" />
 
     <scale
-        android:duration="3000"
+        android:duration="2000"
         android:fromXScale="8.0"
         android:fromYScale="8.0"
         android:pivotX="50%"
