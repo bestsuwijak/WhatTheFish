@@ -5,13 +5,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.ar.sceneform.plugin'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "buu.informatics.s59160141.whatthefish"
-        minSdkVersion 19
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -22,6 +23,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     dataBinding {
         enabled = true
@@ -72,4 +77,17 @@ dependencies {
     def room_version = "2.1.0-beta01"
     implementation "androidx.room:room-runtime:2.2.3"
     kapt "androidx.room:room-compiler:$room_version"
+
+    //AR and Sceneform
+    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.13.0'
+    implementation "com.google.ar.sceneform:animation:1.13.0"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+
+
+sceneform.asset('sampledata/reF74.fbx',
+        'default',
+        'sampledata/reF74.sfa',
+        'src/main/assets/reF74')

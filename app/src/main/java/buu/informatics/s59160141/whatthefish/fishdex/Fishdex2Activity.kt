@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.GridViewAdapter
+import buu.informatics.s59160141.whatthefish.ar.ARActivity
 import buu.informatics.s59160141.whatthefish.databinding.ActivityFishdex2Binding
 import buu.informatics.s59160141.whatthefish.models.*
 import kotlinx.android.synthetic.main.activity_fishdex2.*
@@ -39,6 +40,10 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
 
         buttonBack_fishdex2.setOnClickListener{
             finish()
+        }
+        imageView4.setOnClickListener{
+            val i = Intent(this, ARActivity::class.java)
+            startActivityForResult(i, 8)
         }
     }
 
