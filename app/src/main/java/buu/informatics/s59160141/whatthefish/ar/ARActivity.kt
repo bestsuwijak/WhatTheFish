@@ -3,8 +3,10 @@ package buu.informatics.s59160141.whatthefish.ar
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.MotionEvent
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.fragment.findNavController
 import buu.informatics.s59160141.whatthefish.R
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
@@ -40,7 +42,8 @@ class ARActivity : AppCompatActivity() {
             placeObject(arFragment, anchor, model)
         }
 
-        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
+        countDown()
+//        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
     }
 
     private fun animateModel(name: String) {
@@ -52,7 +55,7 @@ class ARActivity : AppCompatActivity() {
         renderable?.let { modelRenderable ->
             val data = modelRenderable.getAnimationData(name)
             animator = ModelAnimator(data, modelRenderable)
-            animator?.start()
+                animator?.start()
         }
     }
 
@@ -84,5 +87,18 @@ class ARActivity : AppCompatActivity() {
         node.setParent(anchorNode)
 
         fragment.arSceneView.scene.addChild(anchorNode)
+    }
+
+    fun countDown(){
+        object : CountDownTimer(30000, 100) {
+            override fun onTick(millisUntilFinished: Long) { // Tick
+                if (animator == null || !animator!!.isRunning) {
+                    animateModel("Armature|ArmatureAction")
+                }
+            }
+            override fun onFinish() { // Finish
+                countDown()
+            }
+        }.start()
     }
 }
