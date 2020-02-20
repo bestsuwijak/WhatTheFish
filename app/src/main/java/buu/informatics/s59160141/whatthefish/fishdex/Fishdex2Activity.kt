@@ -1,5 +1,6 @@
 package buu.informatics.s59160141.whatthefish.fishdex
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
@@ -36,6 +37,9 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
         binding.gridFish.itemAnimator = DefaultItemAnimator() as RecyclerView.ItemAnimator?
         viewModel.getFishes()
 
+        buttonBack_fishdex2.setOnClickListener{
+            finish()
+        }
     }
 
     override fun setAdapterDataGrid(items: List<Fish>) {
