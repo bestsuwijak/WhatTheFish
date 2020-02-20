@@ -77,6 +77,9 @@ class GithubUserAdapter(private val context: SearchFragment, private val fish: L
             i.putExtra("appearance", appearance)
             i.putExtra("habitat", habitat)
             i.putExtra("dissemination", dissemination)
+            i.putExtra("foundNewFish", fish[position].foundFish)
+            i.putExtra("icon", fish[position].icon.name)
+            i.putExtra("form", "searchfrag")
             context.startActivityForResult(i, 4)
         }
         Glide.with(context).load("http://thefishdev.buu.in.th${fish[position].icon.name}").into(holder.avatar)
