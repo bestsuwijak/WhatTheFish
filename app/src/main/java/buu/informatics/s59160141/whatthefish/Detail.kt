@@ -50,7 +50,10 @@ class Detail : AppCompatActivity() {
         val dissemination = findViewById<TextView>(R.id.dissemination_text)
 
         //Get value
-        val images: ArrayList<String> = intent.getStringArrayListExtra("images")
+        var images: ArrayList<String> = intent.getStringArrayListExtra("images")
+        //drop last image (shadow image)
+        val imageshadow: String = images.last()
+        images.removeAt(images.lastIndex)
         val th_name: ArrayList<String> = intent.getStringArrayListExtra("thName")
         val eng_name: ArrayList<String> = intent.getStringArrayListExtra("engName")
         val sci_name: String = intent.getStringExtra("sciName")
@@ -59,6 +62,8 @@ class Detail : AppCompatActivity() {
         val dis: String = intent.getStringExtra("dissemination")
         val foun: Boolean = intent.getBooleanExtra("foundNewFish", false)
         val icon: String = intent.getStringExtra("icon")
+        val form: String = intent.getStringExtra("form")
+
 
         //ViewPager
         viewPager = findViewById<View>(R.id.viewPager_detail) as ViewPager
@@ -90,8 +95,8 @@ class Detail : AppCompatActivity() {
         habitat.text = hab
         dissemination.text = dis
 
-        if (foun){
-            newFish(th_name[0], icon, images.last())
+        if (foun && form == "qr"){
+            newFish(th_name[0], icon, imageshadow)
         }
     }
     fun newFish(nameth: String, icon: String, shadow: String) {
@@ -132,7 +137,7 @@ class Detail : AppCompatActivity() {
             cycleEffect.visibility = View.GONE
             delay(2000)
             effect_slide.visibility = View.GONE
-            delay(500)
+            delay(1500)
             fishPic.visibility = View.GONE
             textNameFish.visibility = View.GONE
             newFindingLayout.visibility = View.GONE

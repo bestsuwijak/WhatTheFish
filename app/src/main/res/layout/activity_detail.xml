@@ -21,7 +21,7 @@
 
         <ImageView
             android:id="@+id/effect_slide"
-            android:src="@drawable/effect_slide_new_finding"
+            android:background="@drawable/effect_slide_new_finding"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
@@ -38,8 +38,9 @@
         <TextView
             android:id="@+id/textNameFish"
             android:textColor="@color/white"
-            android:textSize="@dimen/font20sp"
+            android:textSize="@dimen/font38sp"
             android:textStyle="bold"
+            android:layout_marginTop="@dimen/size30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

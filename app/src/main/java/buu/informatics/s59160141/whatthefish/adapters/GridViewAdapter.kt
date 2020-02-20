@@ -64,6 +64,7 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
             if (!fish[position].foundFish) {
                 val animation = AnimationUtils.loadAnimation(context, R.anim.reverse_back_to_font)
                 viewModelScope.launch {
+                    //swap
                     if (it.shadowIconFish.visibility == View.VISIBLE) {
                         it.shadowIconFish.visibility = View.GONE
                         it.startAnimation(animation)
@@ -78,6 +79,7 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
                         it.shadowIconFish.visibility = View.VISIBLE
                     }
                 }
+                //go to detail ac
             }else{
                 val thName = fish[position].thNames as ArrayList
                 val engName = fish[position].engNames as ArrayList
@@ -101,6 +103,9 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
                 i.putExtra("appearance", appearance)
                 i.putExtra("habitat", habitat)
                 i.putExtra("dissemination", dissemination)
+                i.putExtra("foundNewFish", true)
+                i.putExtra("icon", fish[position].icon.name)
+                i.putExtra("form", "fishdex")
                 context.startActivity(i)
             }
         }

@@ -137,6 +137,7 @@ class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             i.putExtra("dissemination", dissemination)
             i.putExtra("foundNewFish", foundNewFish)
             i.putExtra("icon", fish.icon.name)
+            i.putExtra("form", "qr")
             this.startActivityForResult(i, 7)
         }
 
