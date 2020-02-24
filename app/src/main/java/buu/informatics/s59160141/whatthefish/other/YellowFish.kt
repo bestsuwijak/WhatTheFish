@@ -42,7 +42,7 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
                 ph = screenHeight / 6
             }
             5 -> {
-                pw = screenWidth / 5
+                pw = screenWidth / 6
                 ph = screenHeight / 6
             }
             15 -> {
@@ -100,7 +100,9 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
     }
 
     fun checkOnClickListener(touchedX: Int, touchedY: Int){
-        if (abs(touchedX - this.x) < 201 && abs(touchedY - this.y) < 101){
+        val x = touchedX+20 - this.x
+        val y = touchedY+10 - this.y
+        if (x < pw-20 && y < ph-10 && x >= 0 && y >= 0){
             this.t = 1
         }
     }
