@@ -18,6 +18,7 @@ data class Fish(
     @SerializedName("icon") val icon: Icon,
     @SerializedName("number") val number: String,
     @SerializedName("status") var status: Int,
-    @SerializedName("foundFish") var foundFish: Boolean
-
+    @SerializedName("foundFish") var foundFish: Boolean,
+    @SerializedName("stringDateFound") var stringDateFound: String,
+    @SerializedName("stringTimeFound") var stringTimeFound: String
 )

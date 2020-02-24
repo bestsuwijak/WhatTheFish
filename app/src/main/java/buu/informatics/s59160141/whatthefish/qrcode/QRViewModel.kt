@@ -28,8 +28,8 @@ class QRViewModel(application: Application) : AndroidViewModel(application) {
         return fishesRepository.searchNumber(query)
     }
 
-    fun updateFoundFish(query: String){
-        fishesRepository.updateFoundFish(query)
+    fun updateFoundFish(query: String, dateFound: String, timeFound: String){
+        fishesRepository.updateFoundFish(query, dateFound, timeFound)
     }
 
 

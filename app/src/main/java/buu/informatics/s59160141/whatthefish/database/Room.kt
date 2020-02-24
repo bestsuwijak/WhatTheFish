@@ -20,8 +20,8 @@ interface FishDao {
     fun multiFind(search: String): List<DatabaseAll>
 
     @Transaction
-    @Query("UPDATE database_fishes SET foundFish = 1 WHERE number LIKE :number")
-    fun updateFoundFish(number: String)
+    @Query("UPDATE database_fishes SET foundFish = 1, stringDateFound = :dateFound, stringTimeFound = :timeFound WHERE number LIKE :number")
+    fun updateFoundFish(number: String, dateFound: String, timeFound: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDatabaseFishes( fish: DatabaseFishes)

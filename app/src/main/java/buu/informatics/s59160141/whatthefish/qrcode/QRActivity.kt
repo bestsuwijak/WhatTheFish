@@ -22,6 +22,8 @@ import com.google.zxing.Result
 import kotlinx.android.synthetic.main.activity_qr.*
 import kotlinx.coroutines.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
@@ -116,7 +118,37 @@ class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             val dissemination = fish.dissemination
             var foundNewFish = false
             if (!fish.foundFish) {
-                qRViewModel.updateFoundFish(result)
+                val current = LocalDateTime.now()
+
+                val formatterYear = DateTimeFormatter.ofPattern("yyyy")
+                val formatterMonth = DateTimeFormatter.ofPattern("MM")
+                val formatterDay = DateTimeFormatter.ofPattern("dd")
+                val formatterTime = DateTimeFormatter.ofPattern("HH:mm")
+
+                var years = current.format(formatterYear).toInt()
+                var month = current.format(formatterMonth).toString()
+                var day = current.format(formatterDay).toString()
+                var time = current.format(formatterTime).toString()
+
+                years += 543
+                var montTh = when(month) {
+                    "01" -> "มกราคม"
+                    "02" -> "กุมภาพันธ์"
+                    "03" -> "มีนาคม"
+                    "04" -> "เมษายน"
+                    "05" -> "พฤษภาคม"
+                    "06" -> "มิถุนายน"
+                    "07" -> "กรกฎาคม"
+                    "08" -> "สิงหาคม"
+                    "09" -> "กันยายน"
+                    "10" -> "ตุลาคม"
+                    "11" -> "พฤศจิกายน"
+                    "12" -> "ธันวาคม"
+                    else -> "ไม่มี"
+                }
+
+                val stringDate = "$day $montTh $years"
+                qRViewModel.updateFoundFish(result, stringDate, time)
                 foundNewFish = true
             }
 

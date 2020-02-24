@@ -18,6 +18,7 @@ import buu.informatics.s59160141.whatthefish.models.Fish
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.grid_view_item.view.*
 import kotlinx.coroutines.*
+import org.w3c.dom.Text
 import java.util.*
 
 class GridViewAdapter(private val context: Context, private val fish: List<Fish>) :
@@ -52,6 +53,8 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
             Glide.with(this.context)
                 .load("http://thefishdev.buu.in.th${fish[position].icon.name}")
                 .into(holder.imageGridRelative)
+            holder.dateFoundFish.text = fish[position].stringDateFound
+            holder.timeFoundFish.text = fish[position].stringTimeFound
         }else{
             holder.itemSmallRelative.visibility = View.GONE
             holder.itemSmallLinear.visibility = View.VISIBLE
@@ -122,5 +125,7 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
         //relative layout
         val itemSmallRelative: RelativeLayout = itemLayoutView.itemRelative
         val imageGridRelative: ImageView = itemLayoutView.iconFishRelative
+        val dateFoundFish: TextView = itemLayoutView.dateFoundFish
+        val timeFoundFish: TextView = itemLayoutView.timeFoundFish
     }
 }

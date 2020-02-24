@@ -15,6 +15,8 @@ import buu.informatics.s59160141.whatthefish.ar.ARActivity
 import buu.informatics.s59160141.whatthefish.databinding.ActivityFishdex2Binding
 import buu.informatics.s59160141.whatthefish.models.*
 import kotlinx.android.synthetic.main.activity_fishdex2.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class Fishdex2Activity : AppCompatActivity(), fishDexView {
 

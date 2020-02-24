@@ -28,7 +28,9 @@ data class DatabaseFishes(
     @Embedded var icon: DatabaseIcon,
     var number: String,
     var status: Int,
-    var foundFish: Boolean = false
+    var foundFish: Boolean = false,
+    var stringDateFound: String = "",
+    var stringTimeFound: String = " "
 
 )
 
@@ -89,7 +91,9 @@ fun List<DatabaseAll>.asModelFish(): List<Fish> {
             icon = it.databaseFish.icon.asToIcon(),
             number = it.databaseFish.number,
             status = it.databaseFish.status,
-            foundFish = it.databaseFish.foundFish
+            foundFish = it.databaseFish.foundFish,
+            stringDateFound = it.databaseFish.stringDateFound,
+            stringTimeFound = it.databaseFish.stringTimeFound
         )
     }
 }
