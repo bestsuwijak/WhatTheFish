@@ -1,8 +1,13 @@
 package buu.informatics.s59160141.whatthefish.fishdex
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -51,5 +56,16 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
 
     override fun setAdapterDataGrid(items: List<Fish>) {
         gridFish.adapter = GridViewAdapter(this, items)
+
+        //set text count found fish
+        val countFoundFish = items.count { it.foundFish }
+        val sizeFish = items.size
+        val spannable = SpannableStringBuilder("พบ  ตัว ทั้งหมด ${sizeFish} ตัว")
+        spannable.setSpan(
+            ForegroundColorSpan(Color.YELLOW),
+            0, 7, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+
+        spannable.insert(3, countFoundFish.toString())
+        countFoundFishTextView.text = spannable
     }
 }
