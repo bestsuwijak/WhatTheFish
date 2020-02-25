@@ -87,7 +87,13 @@ dependencies {
 }
 
 
-sceneform.asset('sampledata/reF74.fbx',
+
+sceneform.asset('sampledata/f75/f75.fbx',
         'default',
-        'sampledata/reF74.sfa',
-        'src/main/assets/reF74')
+        'sampledata/f75/f75.sfa',
+        'src/main/assets/f75')
+
+sceneform.asset('sampledata/f74/f74.fbx',
+        'default',
+        'sampledata/f74/f74.sfa',
+        'src/main/assets/f74')

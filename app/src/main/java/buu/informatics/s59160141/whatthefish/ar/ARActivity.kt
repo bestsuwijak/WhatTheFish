@@ -32,7 +32,7 @@ class ARActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ar)
 
         arFragment = sceneform_fragment as ArFragment
-        model = Uri.parse("reF74.sfb")
+        model = Uri.parse("f74.sfb")
 
         arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
