@@ -1,12 +1,11 @@
 package buu.informatics.s59160141.whatthefish.ar
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.MotionEvent
 import androidx.appcompat.app.AlertDialog
-import androidx.navigation.fragment.findNavController
+import androidx.appcompat.app.AppCompatActivity
 import buu.informatics.s59160141.whatthefish.R
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
@@ -14,11 +13,14 @@ import com.google.ar.core.Plane
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.SkeletonNode
 import com.google.ar.sceneform.animation.ModelAnimator
+import com.google.ar.sceneform.math.Quaternion
+import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_ar.*
+
 
 class ARActivity : AppCompatActivity() {
 
@@ -26,6 +28,7 @@ class ARActivity : AppCompatActivity() {
     private lateinit var model: Uri
     private var renderable: ModelRenderable? = null
     private var animator: ModelAnimator? = null
+    var check = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,7 @@ class ARActivity : AppCompatActivity() {
             val anchor = hitResult.createAnchor()
             placeObject(arFragment, anchor, model)
         }
+
 
         countDown()
 //        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
@@ -60,33 +64,40 @@ class ARActivity : AppCompatActivity() {
     }
 
     private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
-        ModelRenderable.builder()
-            .setSource(fragment.context, model)
-            .build()
-            .thenAccept {
-                renderable = it
-                addToScene(fragment, anchor, it)
-            }
-            .exceptionally {
-                val builder = AlertDialog.Builder(this)
-                builder.setMessage(it.message).setTitle("Error")
-                val dialog = builder.create()
-                dialog.show()
-                return@exceptionally null
-            }
+        if(check) {
+            ModelRenderable.builder()
+                .setSource(fragment.context, model)
+                .build()
+                .thenAccept {
+                    renderable = it
+                    addToScene(fragment, anchor, it)
+                }
+                .exceptionally {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setMessage(it.message).setTitle("Error")
+                    val dialog = builder.create()
+                    dialog.show()
+                    return@exceptionally null
+                }
+            check = false
+        }
     }
 
     private fun addToScene(fragment: ArFragment, anchor: Anchor, renderable: Renderable) {
+
         val anchorNode = AnchorNode(anchor)
 
         val skeletonNode = SkeletonNode()
         skeletonNode.renderable = renderable
 
         val node = TransformableNode(fragment.transformationSystem)
+        node.localRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
+//        node.localPosition = Vector3(0f,10f,0f)                                                          //floating
         node.addChild(skeletonNode)
         node.setParent(anchorNode)
 
         fragment.arSceneView.scene.addChild(anchorNode)
+
     }
 
     fun countDown(){

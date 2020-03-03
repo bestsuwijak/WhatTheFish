@@ -61,7 +61,7 @@
     file: 'sampledata/f75/f75.fbx',
     name: 'f75',
     recenter: 'root',
-    scale: 0.105,
+    scale: 0.08,
   },
   samplers: [
     {

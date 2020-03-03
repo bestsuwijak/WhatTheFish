@@ -61,7 +61,7 @@
     file: 'sampledata/f74/f74.fbx',
     name: 'f74',
     recenter: 'root',
-    scale: 0.105,
+    scale: 0.08,
   },
   samplers: [
     {
