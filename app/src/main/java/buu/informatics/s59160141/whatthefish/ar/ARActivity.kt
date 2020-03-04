@@ -3,6 +3,7 @@ package buu.informatics.s59160141.whatthefish.ar
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.MotionEvent
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +19,9 @@ import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
+import com.google.ar.sceneform.ux.FootprintSelectionVisualizer
 import com.google.ar.sceneform.ux.TransformableNode
+import com.google.ar.sceneform.ux.TransformationSystem
 import kotlinx.android.synthetic.main.activity_ar.*
 
 
@@ -86,13 +89,17 @@ class ARActivity : AppCompatActivity() {
     private fun addToScene(fragment: ArFragment, anchor: Anchor, renderable: Renderable) {
 
         val anchorNode = AnchorNode(anchor)
-
         val skeletonNode = SkeletonNode()
         skeletonNode.renderable = renderable
 
         val node = TransformableNode(fragment.transformationSystem)
         node.localRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
-//        node.localPosition = Vector3(0f,10f,0f)                                                          //floating
+
+        //floating
+        Log.i("testnode",node.localPosition.toString())
+        node.localPosition = Vector3(0f,0.17f,0f)
+        Log.i("testnode",node.localPosition.toString())
+
         node.addChild(skeletonNode)
         node.setParent(anchorNode)
 
