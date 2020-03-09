@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ar.ARActivity"
+            android:name=".ar.ARDetail"
             android:screenOrientation="landscape"/>
         <activity
             android:name=".fishdex.Fishdex2Activity"

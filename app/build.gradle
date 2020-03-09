@@ -97,3 +97,116 @@ sceneform.asset('sampledata/f74/f74.fbx',
         'default',
         'sampledata/f74/f74.sfa',
         'src/main/assets/f74')
+
+
+sceneform.asset('sampledata/f1/f1.fbx',
+        'default',
+        'sampledata/f1/f1.sfa',
+        'src/main/assets/f1')
+
+sceneform.asset('sampledata/f3/f3.fbx',
+        'default',
+        'sampledata/f3/f3.sfa',
+        'src/main/assets/f3')
+
+sceneform.asset('sampledata/f7/f7.fbx',
+        'default',
+        'sampledata/f7/f7.sfa',
+        'src/main/assets/f7')
+
+
+sceneform.asset('sampledata/f8/f8.fbx',
+        'default',
+        'sampledata/f8/f8.sfa',
+        'src/main/assets/f8')
+
+sceneform.asset('sampledata/f12/f12.fbx',
+        'default',
+        'sampledata/f12/f12.sfa',
+        'src/main/assets/f12')
+
+sceneform.asset('sampledata/f28/f28.fbx',
+        'default',
+        'sampledata/f28/f28.sfa',
+        'src/main/assets/f28')
+
+sceneform.asset('sampledata/f52/f52.fbx',
+        'default',
+        'sampledata/f52/f52.sfa',
+        'src/main/assets/f52')
+
+sceneform.asset('sampledata/f53/f53.fbx',
+        'default',
+        'sampledata/f53/f53.sfa',
+        'src/main/assets/f53')
+
+sceneform.asset('sampledata/f56/f56.fbx',
+        'default',
+        'sampledata/f56/f56.sfa',
+        'src/main/assets/f56')
+
+sceneform.asset('sampledata/f57/f57.fbx',
+        'default',
+        'sampledata/f57/f57.sfa',
+        'src/main/assets/f57')
+
+sceneform.asset('sampledata/f58/f58.fbx',
+        'default',
+        'sampledata/f58/f58.sfa',
+        'src/main/assets/f58')
+
+sceneform.asset('sampledata/f59/f59.fbx',
+        'default',
+        'sampledata/f59/f59.sfa',
+        'src/main/assets/f59')
+
+sceneform.asset('sampledata/f60/f60.fbx',
+        'default',
+        'sampledata/f60/f60.sfa',
+        'src/main/assets/f60')
+
+sceneform.asset('sampledata/f64/f64.fbx',
+        'default',
+        'sampledata/f64/f64.sfa',
+        'src/main/assets/f64')
+
+sceneform.asset('sampledata/f65/f65.fbx',
+        'default',
+        'sampledata/f65/f65.sfa',
+        'src/main/assets/f65')
+
+
+sceneform.asset('sampledata/f106/f106.fbx',
+        'default',
+        'sampledata/f106/f106.sfa',
+        'src/main/assets/f106')
+
+sceneform.asset('sampledata/f117/f117.fbx',
+        'default',
+        'sampledata/f117/f117.sfa',
+        'src/main/assets/f117')
+
+sceneform.asset('sampledata/f128/f128.fbx',
+        'default',
+        'sampledata/f128/f128.sfa',
+        'src/main/assets/f128')
+
+sceneform.asset('sampledata/f131/f131.fbx',
+        'default',
+        'sampledata/f131/f131.sfa',
+        'src/main/assets/f131')
+
+sceneform.asset('sampledata/f145/f145.fbx',
+        'default',
+        'sampledata/f145/f145.sfa',
+        'src/main/assets/f145')
+
+sceneform.asset('sampledata/f148/f148.fbx',
+        'default',
+        'sampledata/f148/f148.sfa',
+        'src/main/assets/f148')
+
+sceneform.asset('sampledata/f149/f149.fbx',
+        'default',
+        'sampledata/f149/f149.sfa',
+        'src/main/assets/f149')

@@ -9,9 +9,9 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import buu.informatics.s59160141.whatthefish.adapters.DetailViewPageAdapter
+import buu.informatics.s59160141.whatthefish.ar.ARDetail
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.activity_qr.*
 import kotlinx.coroutines.*
 
 class Detail : AppCompatActivity() {
@@ -20,6 +20,7 @@ class Detail : AppCompatActivity() {
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     lateinit var viewPager: ViewPager
+    lateinit var number: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +33,19 @@ class Detail : AppCompatActivity() {
         buttonBack_detail.setOnClickListener{
             finish()
         }
+
         buttonInformation_detail.setOnClickListener{
             val images:ArrayList<Int> = arrayListOf(
                 R.drawable.popup_qr)
             val i = Intent(this, MainViewPager::class.java)
             i.putExtra("images", images)
             startActivityForResult(i, 5)
+        }
+
+        ar_qr2.setOnClickListener{
+            val i = Intent(this, ARDetail::class.java)
+            i.putExtra("number", number)
+            startActivityForResult(i, 8)
         }
 
         //FindById
@@ -63,6 +71,8 @@ class Detail : AppCompatActivity() {
         val foun: Boolean = intent.getBooleanExtra("foundNewFish", false)
         val icon: String = intent.getStringExtra("icon")
         val form: String = intent.getStringExtra("form")
+        number = intent.getStringExtra("number").toLowerCase()
+
 
 
         //ViewPager

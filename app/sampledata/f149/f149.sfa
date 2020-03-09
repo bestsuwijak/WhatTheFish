@@ -1,0 +1,74 @@
+{
+  animations: [
+    {
+      clips: [
+        {
+          name: 'Armature.001|Armature.001Action',
+        },
+      ],
+      path: 'sampledata/f149/f149.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Material.001',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'F149',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/f149/f149.fbx',
+    name: 'f149',
+    recenter: 'root',
+    scale: 0.06,
+  },
+  samplers: [
+    {
+      file: 'D:\\59160141\\3D model edit\\model\\F149.png',
+      name: 'F149',
+      pipeline_name: 'D:\\59160141\\3D model edit\\model\\F149.png',
+    },
+  ],
+  version: '0.54:2',
+}
