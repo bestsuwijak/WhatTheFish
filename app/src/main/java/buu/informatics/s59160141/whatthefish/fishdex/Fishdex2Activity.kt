@@ -1,5 +1,6 @@
 package buu.informatics.s59160141.whatthefish.fishdex
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.GridViewAdapter
+import buu.informatics.s59160141.whatthefish.ar.ARRealWorld
 import buu.informatics.s59160141.whatthefish.databinding.ActivityFishdex2Binding
 import buu.informatics.s59160141.whatthefish.models.*
 import kotlinx.android.synthetic.main.activity_fishdex2.*
@@ -44,8 +46,8 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
             finish()
         }
         imageView4.setOnClickListener{
-//            val i = Intent(this, ARActivity::class.java)
-//            startActivityForResult(i, 8)
+            val i = Intent(this, ARRealWorld::class.java)
+            startActivityForResult(i, 9)
         }
     }
 
