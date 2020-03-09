@@ -22,7 +22,7 @@
           ],
         },
         {
-          baseColorMap: 'F75_texture',
+          baseColorMap: 'F75',
         },
         {
           normalMap: null,
@@ -65,9 +65,9 @@
   },
   samplers: [
     {
-      file: 'D:\\59160141\\3D model\\remodel\\F75_texture.png',
-      name: 'F75_texture',
-      pipeline_name: 'D:\\59160141\\3D model\\remodel\\F75_texture.png',
+      file: 'D:\\59160141\\3D model edit\\model\\F75.png',
+      name: 'F75',
+      pipeline_name: 'D:\\59160141\\3D model edit\\model\\F75.png',
     },
   ],
   version: '0.54:2',

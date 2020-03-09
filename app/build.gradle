@@ -87,18 +87,6 @@ dependencies {
 }
 
 
-
-sceneform.asset('sampledata/f75/f75.fbx',
-        'default',
-        'sampledata/f75/f75.sfa',
-        'src/main/assets/f75')
-
-sceneform.asset('sampledata/f74/f74.fbx',
-        'default',
-        'sampledata/f74/f74.sfa',
-        'src/main/assets/f74')
-
-
 sceneform.asset('sampledata/f1/f1.fbx',
         'default',
         'sampledata/f1/f1.sfa',
@@ -210,3 +198,14 @@ sceneform.asset('sampledata/f149/f149.fbx',
         'default',
         'sampledata/f149/f149.sfa',
         'src/main/assets/f149')
+
+
+sceneform.asset('sampledata/f74/f74.fbx',
+        'default',
+        'sampledata/f74/f74.sfa',
+        'src/main/assets/f74')
+
+sceneform.asset('sampledata/f75/f75.fbx',
+        'default',
+        'sampledata/f75/f75.sfa',
+        'src/main/assets/f75')
