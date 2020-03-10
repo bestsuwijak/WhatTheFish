@@ -13,4 +13,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <ImageView
+        android:id="@+id/buttoncapture"
+        android:layout_width="@dimen/size60dp"
+        android:layout_height="@dimen/size60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonrefresh"
+        app:srcCompat="@drawable/rcd" />
+
+    <ImageView
+        android:id="@+id/buttonBack_ar1"
+        android:layout_width="@dimen/size50dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_marginStart="@dimen/size40dp"
+        android:src="@drawable/backbutton2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/buttonInformation_ar1"
+        android:layout_width="@dimen/size25dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_marginEnd="@dimen/size40dp"
+        app:layout_constraintEnd_toStartOf="@+id/buttonrefresh"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/i" />
+
+    <ImageView
+        android:id="@+id/buttonrefresh"
+        android:layout_width="@dimen/size25dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_marginEnd="@dimen/size40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/resfresh" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

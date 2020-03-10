@@ -1,5 +1,6 @@
 package buu.informatics.s59160141.whatthefish.ar
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -7,11 +8,13 @@ import android.util.Log
 import android.view.MotionEvent
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import buu.informatics.s59160141.whatthefish.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
 import com.google.ar.sceneform.AnchorNode
+import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.SkeletonNode
 import com.google.ar.sceneform.animation.ModelAnimator
 import com.google.ar.sceneform.math.Quaternion
@@ -33,21 +36,13 @@ class ARDetail : AppCompatActivity() {
     private var animator: ModelAnimator? = null
     var check = true
     lateinit var number: String
+    var modelNode: Node? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ar)
 
         number = intent.getStringExtra("number")
-
-        var list: ArrayList<String> = arrayListOf("f1", "f3", "f7", "f8", "f12" ,"f28" ,"f52" ,"f53" ,"f56" ,"f57"
-        ,"f58" ,"f59" ,"f60" ,"f64" ,"f65" ,"f74" ,"f75" ,"f106" ,"f117" ,"f128" ,"f131" ,"f145" ,"f148" ,"f149")
-
-        val row = list.find {it.startsWith(number)}
-        if(row != number){
-           number = "f74"
-        }
-
         arFragment = sceneform_fragment as ArFragment
         model = Uri.parse(number.plus(".sfb"))
 
@@ -59,9 +54,24 @@ class ARDetail : AppCompatActivity() {
             placeObject(arFragment, anchor, model)
         }
 
-
         countDown()
 //        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
+
+        buttonBack_ar1.setOnClickListener{
+            finish()
+        }
+
+        buttonInformation_ar1.setOnClickListener{
+            val images:ArrayList<Int> = arrayListOf(
+                R.drawable.popup_qr)
+            val i = Intent(this, MainViewPager::class.java)
+            i.putExtra("images", images)
+            startActivityForResult(i, 10)
+        }
+
+        buttonrefresh.setOnClickListener{
+            refreshModel()
+        }
     }
 
     private fun animateModel(name: String) {
@@ -114,6 +124,8 @@ class ARDetail : AppCompatActivity() {
 
         fragment.arSceneView.scene.addChild(anchorNode)
 
+        modelNode = node
+
     }
 
     fun countDown(){
@@ -127,5 +139,9 @@ class ARDetail : AppCompatActivity() {
                 countDown()
             }
         }.start()
+    }
+
+    fun refreshModel(){
+
     }
 }

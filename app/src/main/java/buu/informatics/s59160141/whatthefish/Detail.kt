@@ -30,6 +30,7 @@ class Detail : AppCompatActivity() {
         )
         setContentView(R.layout.activity_detail)
 
+        //Click button
         buttonBack_detail.setOnClickListener{
             finish()
         }
@@ -74,7 +75,6 @@ class Detail : AppCompatActivity() {
         number = intent.getStringExtra("number").toLowerCase()
 
 
-
         //ViewPager
         viewPager = findViewById<View>(R.id.viewPager_detail) as ViewPager
         val adapter = DetailViewPageAdapter(this, images)
@@ -108,6 +108,8 @@ class Detail : AppCompatActivity() {
         if (foun && form == "qr"){
             newFish(th_name[0], icon, imageshadow)
         }
+
+        checkAR()
     }
     fun newFish(nameth: String, icon: String, shadow: String) {
         detailLayout.visibility = View.GONE
@@ -152,6 +154,16 @@ class Detail : AppCompatActivity() {
             textNameFish.visibility = View.GONE
             newFindingLayout.visibility = View.GONE
             detailLayout.visibility = View.VISIBLE
+        }
+    }
+
+    fun checkAR(){
+        var list: ArrayList<String> = arrayListOf("f1", "f3", "f7", "f8", "f12" ,"f28" ,"f52" ,"f53" ,"f56" ,"f57"
+            ,"f58" ,"f59" ,"f60" ,"f64" ,"f65" ,"f74" ,"f75" ,"f106" ,"f117" ,"f128" ,"f131" ,"f145" ,"f148" ,"f149")
+
+        val row = list.find {it.startsWith(number)}
+        if(row != number){
+            ar_qr2.visibility = View.INVISIBLE
         }
     }
 }

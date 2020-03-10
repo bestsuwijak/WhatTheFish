@@ -76,7 +76,7 @@
             android:id="@+id/ar_qr2"
             android:layout_width="@dimen/size25dp"
             android:layout_height="@dimen/size25dp"
-            android:layout_marginEnd="@dimen/size40dp"
+            android:layout_marginEnd="@dimen/size30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ar" />
