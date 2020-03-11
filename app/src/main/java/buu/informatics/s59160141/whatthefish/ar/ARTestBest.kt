@@ -24,6 +24,7 @@ import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_ar2.*
+import kotlinx.android.synthetic.main.activity_artest_best.*
 
 class ARTestBest : AppCompatActivity() {
 
@@ -40,7 +41,7 @@ class ARTestBest : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_artest_best)
 
-        arFragment = sceneform_fragment_ar2 as ArFragment
+        arFragment = sceneform_fragmenttest as ArFragment
         model = Uri.parse("f74.sfb")
 
         arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->

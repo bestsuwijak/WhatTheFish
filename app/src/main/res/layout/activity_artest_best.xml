@@ -7,13 +7,13 @@
     tools:context=".ar.ARTestBest">
 
     <fragment
-        android:id="@+id/sceneform_fragment"
+        android:id="@+id/sceneform_fragmenttest"
         android:name="com.google.ar.sceneform.ux.ArFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <ImageView
-        android:id="@+id/buttoncapture"
+        android:id="@+id/buttoncapturetest"
         android:layout_width="@dimen/size60dp"
         android:layout_height="@dimen/size60dp"
         android:layout_marginEnd="10dp"
@@ -42,7 +42,7 @@
         app:srcCompat="@drawable/i" />
 
     <ImageView
-        android:id="@+id/buttonrefresh"
+        android:id="@+id/buttonrefreshtest"
         android:layout_width="@dimen/size25dp"
         android:layout_height="@dimen/size25dp"
         android:layout_marginEnd="@dimen/size40dp"
