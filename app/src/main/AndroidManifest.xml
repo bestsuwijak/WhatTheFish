@@ -20,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ar.ARTestBest"></activity>
+        <activity
+            android:name=".ar.ARTestBest"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ar.ARRealWorld"
             android:screenOrientation="landscape" />

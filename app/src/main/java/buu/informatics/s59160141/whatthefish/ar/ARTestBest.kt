@@ -34,7 +34,7 @@ class ARTestBest : AppCompatActivity() {
     private var animator: ModelAnimator? = null
     var check = true
     private var andy: Node? = null
-    lateinit var listModel: ArrayList<ModelAnimator?>
+    var listModel: ArrayList<ModelAnimator?>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +71,7 @@ class ARTestBest : AppCompatActivity() {
         renderable?.let { modelRenderable ->
             val data = modelRenderable.getAnimationData(name)
             animator = ModelAnimator(data, modelRenderable)
-            listModel.add(animator)                                                     /////////////////////////////////////
+            listModel?.add(animator)                                                     /////////////////////////////////////
             animator?.start()
         }
     }
@@ -121,9 +121,11 @@ class ARTestBest : AppCompatActivity() {
     fun countDown(){
         object : CountDownTimer(30000, 100) {
             override fun onTick(millisUntilFinished: Long) { // Tick
-                for (i in 0 until listModel.size) {
-                    if (listModel[i] == null || !listModel[i]!!.isRunning) {
-                        animateModel("Armature|ArmatureAction")
+                if(listModel != null) {
+                    for (i in 0 until listModel!!.size) {
+                        if (listModel?.get(i) == null || !listModel!![i]!!.isRunning) {
+                            animateModel("Armature|ArmatureAction")
+                        }
                     }
                 }
             }
