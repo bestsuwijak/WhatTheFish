@@ -1,14 +1,13 @@
 package buu.informatics.s59160141.whatthefish.ar
 
-import android.content.Intent
+import android.animation.ObjectAnimator
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.MotionEvent
+import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import buu.informatics.s59160141.whatthefish.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
@@ -19,63 +18,47 @@ import com.google.ar.sceneform.SkeletonNode
 import com.google.ar.sceneform.animation.ModelAnimator
 import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
+import com.google.ar.sceneform.math.Vector3Evaluator
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
-import com.google.ar.sceneform.ux.FootprintSelectionVisualizer
 import com.google.ar.sceneform.ux.TransformableNode
-import com.google.ar.sceneform.ux.TransformationSystem
-import kotlinx.android.synthetic.main.activity_ar.*
+import kotlinx.android.synthetic.main.activity_ar2.*
 
-
-class ARDetail : AppCompatActivity() {
+class ARTestBest : AppCompatActivity() {
 
     lateinit var arFragment: ArFragment
     private lateinit var model: Uri
     private var renderable: ModelRenderable? = null
     private var animator: ModelAnimator? = null
     var check = true
-    lateinit var number: String
-    var modelNode: Node? = null
+    private var andy: Node? = null
+    lateinit var listModel: ArrayList<ModelAnimator?>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ar)
+        setContentView(R.layout.activity_artest_best)
 
-        number = intent.getStringExtra("number")
-        arFragment = sceneform_fragment as ArFragment
-        model = Uri.parse(number.plus(".sfb"))
+        arFragment = sceneform_fragment_ar2 as ArFragment
+        model = Uri.parse("f74.sfb")
 
         arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
                 return@setOnTapArPlaneListener
             }
-            val anchor = hitResult.createAnchor()
-            placeObject(arFragment, anchor, model)
+//            if (check) {
+                val anchor = hitResult.createAnchor()
+                placeObject(arFragment, anchor, model)
+//            }else{
+//                Log.i("test123",andy?.worldPosition.toString())
+//                startWalking()
+//            }
         }
+
 
         countDown()
 //        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
-
-        buttonBack_ar1.setOnClickListener{
-            finish()
-        }
-
-        buttonInformation_ar1.setOnClickListener{
-            val images:ArrayList<Int> = arrayListOf(
-                R.drawable.popup_qr)
-            val i = Intent(this, MainViewPager::class.java)
-            i.putExtra("images", images)
-            startActivityForResult(i, 10)
-        }
-
-        buttonrefresh.setOnClickListener{
-            refreshModel()
-        }
-
-        buttoncapture.setOnClickListener{
-            
-        }
     }
 
     private fun animateModel(name: String) {
@@ -87,12 +70,13 @@ class ARDetail : AppCompatActivity() {
         renderable?.let { modelRenderable ->
             val data = modelRenderable.getAnimationData(name)
             animator = ModelAnimator(data, modelRenderable)
-                animator?.start()
+            listModel.add(animator)                                                     /////////////////////////////////////
+            animator?.start()
         }
     }
 
     private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
-        if(check) {
+//        if(check) {
             ModelRenderable.builder()
                 .setSource(fragment.context, model)
                 .build()
@@ -107,8 +91,8 @@ class ARDetail : AppCompatActivity() {
                     dialog.show()
                     return@exceptionally null
                 }
-            check = false
-        }
+//            check = false
+//        }
     }
 
     private fun addToScene(fragment: ArFragment, anchor: Anchor, renderable: Renderable) {
@@ -118,25 +102,28 @@ class ARDetail : AppCompatActivity() {
         skeletonNode.renderable = renderable
 
         val node = TransformableNode(fragment.transformationSystem)
-        node.localRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
+//        node.worldRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
 
         //floating
-        node.localPosition = Vector3(0f,0.17f,0f)
+        node.worldPosition = Vector3(0f,0.17f,0f)
 
         node.addChild(skeletonNode)
         node.setParent(anchorNode)
 
         fragment.arSceneView.scene.addChild(anchorNode)
 
-        modelNode = node
+        andy = Node()
+        andy = node
 
     }
 
     fun countDown(){
         object : CountDownTimer(30000, 100) {
             override fun onTick(millisUntilFinished: Long) { // Tick
-                if (animator == null || !animator!!.isRunning) {
-                    animateModel("Armature|ArmatureAction")
+                for (i in 0 until listModel.size) {
+                    if (listModel[i] == null || !listModel[i]!!.isRunning) {
+                        animateModel("Armature|ArmatureAction")
+                    }
                 }
             }
             override fun onFinish() { // Finish
@@ -145,7 +132,38 @@ class ARDetail : AppCompatActivity() {
         }.start()
     }
 
-    fun refreshModel(){
-
+    private fun startWalking() {
+        val leftLimit = 0.0f
+        val rightLimit = 1.0f
+//        val xx = (0..180).random().toFloat()
+        val x = (-99..99).random()/100f
+        val z = (10..40).random()/10f * (-1)
+        val y = (17..50).random()/100f
+        val angle = Vector3.angleBetweenVectors(andy?.worldPosition, Vector3(x, y, z))
+        if (z > andy!!.worldPosition.z && x > 0){
+            andy?.worldRotation = Quaternion(Vector3(0f, 1f, 0f), 180f + angle)
+        }else if(z > andy!!.worldPosition.z && x < 0) {
+            andy?.worldRotation = Quaternion(Vector3(0f, 1f, 0f), 180f - angle)
+        }else{
+            andy?.worldRotation = Quaternion.rotationBetweenVectors(andy?.worldPosition, Vector3(x, y, z))
+        }
+        val objectAnimation = ObjectAnimator()
+        objectAnimation.setAutoCancel(true)
+        objectAnimation.target = andy
+        // All the positions should be world positions
+// The first position is the start, and the second is the end.
+        objectAnimation.setObjectValues(andy?.worldPosition, Vector3(x, y, z))
+        //        Log.i("test123");
+// Use setWorldPosition to position andy.
+        objectAnimation.setPropertyName("worldPosition")
+        // The Vector3Evaluator is used to evaluator 2 vector3 and return the next
+// vector3.  The default is to use lerp.
+        objectAnimation.setEvaluator(Vector3Evaluator())
+        // This makes the animation linear (smooth and uniform).
+        objectAnimation.interpolator = LinearInterpolator()
+        // Duration in ms of the animation.
+        objectAnimation.duration = 2000
+        objectAnimation.start()
+        andy?.worldPosition = Vector3(x, y, z)
     }
 }
