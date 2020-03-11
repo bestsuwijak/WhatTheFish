@@ -101,10 +101,10 @@ class ARRealWorld : AppCompatActivity() {
         skeletonNode.renderable = renderable
 
         val node = TransformableNode(fragment.transformationSystem)
-        node.localRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
+//        node.worldRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
 
         //floating
-        node.localPosition = Vector3(0f,0.17f,0f)
+        node.worldPosition = Vector3(0f,0.17f,0f)
 
         node.addChild(skeletonNode)
         node.setParent(anchorNode)
@@ -130,18 +130,25 @@ class ARRealWorld : AppCompatActivity() {
     }
 
     private fun startWalking() {
+        val leftLimit = 0.0f
+        val rightLimit = 1.0f
+//        val xx = (0..180).random().toFloat()
+        val x = (-99..99).random()/100f
+        val z = (10..40).random()/10f * (-1)
+        val y = (17..50).random()/100f
+        val angle = Vector3.angleBetweenVectors(andy?.worldPosition, Vector3(x, y, z))
+        if (z > andy!!.worldPosition.z && x > 0){
+            andy?.worldRotation = Quaternion(Vector3(0f, 1f, 0f), 180f + angle)
+        }else if(z > andy!!.worldPosition.z && x < 0) {
+            andy?.worldRotation = Quaternion(Vector3(0f, 1f, 0f), 180f - angle)
+        }else{
+            andy?.worldRotation = Quaternion.rotationBetweenVectors(andy?.worldPosition, Vector3(x, y, z))
+        }
         val objectAnimation = ObjectAnimator()
         objectAnimation.setAutoCancel(true)
         objectAnimation.target = andy
-        val leftLimit = 0.0f
-        val rightLimit = 1.0f
-        val x = (0..99).random()/100f
-        val z = (0..99).random()/100f
-        val y = 0.05f + (0..17).random()/100f * (0.17f - 0.05f)
         // All the positions should be world positions
 // The first position is the start, and the second is the end.
-        Log.i("test123", " x ${x} y ${y} z ${z}")
-        Log.i("test123",andy?.worldPosition.toString())
         objectAnimation.setObjectValues(andy?.worldPosition, Vector3(x, y, z))
         //        Log.i("test123");
 // Use setWorldPosition to position andy.
@@ -154,5 +161,6 @@ class ARRealWorld : AppCompatActivity() {
         // Duration in ms of the animation.
         objectAnimation.duration = 2000
         objectAnimation.start()
+        andy?.worldPosition = Vector3(x, y, z)
     }
 }
