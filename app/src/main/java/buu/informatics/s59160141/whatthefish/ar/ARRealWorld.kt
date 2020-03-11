@@ -34,7 +34,8 @@ class ARRealWorld : AppCompatActivity() {
     private var renderable: ModelRenderable? = null
     private var animator: ModelAnimator? = null
     var check = true
-    private var andy: Node? = null
+    private var andy: F74? = null
+    private var andy2: F74? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +53,8 @@ class ARRealWorld : AppCompatActivity() {
                 placeObject(arFragment, anchor, model)
             }else{
 //                Log.i("test123",andy?.worldPosition.toString())
-                startWalking()
+                andy?.startWalking()
+                andy2?.startWalking()
             }
         }
 
@@ -111,8 +113,8 @@ class ARRealWorld : AppCompatActivity() {
 
         fragment.arSceneView.scene.addChild(anchorNode)
 
-        andy = Node()
-        andy = node
+        andy = F74(node)
+        andy2 = F74(node)
 
     }
 
@@ -129,38 +131,37 @@ class ARRealWorld : AppCompatActivity() {
         }.start()
     }
 
-    private fun startWalking() {
-        val leftLimit = 0.0f
-        val rightLimit = 1.0f
-//        val xx = (0..180).random().toFloat()
-        val x = (-99..99).random()/100f
-        val z = (10..40).random()/10f * (-1)
-        val y = (17..50).random()/100f
-        val angle = Vector3.angleBetweenVectors(andy?.worldPosition, Vector3(x, y, z))
-        if (z > andy!!.worldPosition.z && x > 0){
-            andy?.worldRotation = Quaternion(Vector3(0f, 1f, 0f), 180f + angle)
-        }else if(z > andy!!.worldPosition.z && x < 0) {
-            andy?.worldRotation = Quaternion(Vector3(0f, 1f, 0f), 180f - angle)
-        }else{
-            andy?.worldRotation = Quaternion.rotationBetweenVectors(andy?.worldPosition, Vector3(x, y, z))
-        }
-        val objectAnimation = ObjectAnimator()
-        objectAnimation.setAutoCancel(true)
-        objectAnimation.target = andy
-        // All the positions should be world positions
-// The first position is the start, and the second is the end.
-        objectAnimation.setObjectValues(andy?.worldPosition, Vector3(x, y, z))
-        //        Log.i("test123");
-// Use setWorldPosition to position andy.
-        objectAnimation.setPropertyName("worldPosition")
-        // The Vector3Evaluator is used to evaluator 2 vector3 and return the next
-// vector3.  The default is to use lerp.
-        objectAnimation.setEvaluator(Vector3Evaluator())
-        // This makes the animation linear (smooth and uniform).
-        objectAnimation.interpolator = LinearInterpolator()
-        // Duration in ms of the animation.
-        objectAnimation.duration = 2000
-        objectAnimation.start()
-        andy?.worldPosition = Vector3(x, y, z)
-    }
+//    private fun startWalking() {
+//        val leftLimit = 0.0f
+//        val rightLimit = 1.0f
+////        val xx = (0..180).random().toFloat()
+//        val x = (-99..99).random()/100f
+//        val z = (10..40).random()/10f * (-1)
+//        val y = (17..50).random()/100f
+//        val angle = Vector3.angleBetweenVectors(andy?.worldPosition, Vector3(x, y, z))
+//        if (z > andy!!.worldPosition.z && x > 0){
+//            andy?.worldRotation = Quaternion(Vector3(0f, 1f, 0f), 180f + angle)
+//        }else if(z > andy!!.worldPosition.z && x < 0) {
+//            andy?.worldRotation = Quaternion(Vector3(0f, 1f, 0f), 180f - angle)
+//        }else{
+//            andy?.worldRotation = Quaternion.rotationBetweenVectors(andy?.worldPosition, Vector3(x, y, z))
+//        }
+//        val objectAnimation = ObjectAnimator()
+//        objectAnimation.setAutoCancel(true)
+//        objectAnimation.target = andy
+//        // All the positions should be world positions
+//// The first position is the start, and the second is the end.
+//        objectAnimation.setObjectValues(andy?.worldPosition, Vector3(x, y, z))
+//        //        Log.i("test123");
+//// Use setWorldPosition to position andy.
+//        objectAnimation.setPropertyName("worldPosition")
+//        // The Vector3Evaluator is used to evaluator 2 vector3 and return the next
+//// vector3.  The default is to use lerp.
+//        objectAnimation.setEvaluator(Vector3Evaluator())
+//        // This makes the animation linear (smooth and uniform).
+//        objectAnimation.interpolator = LinearInterpolator()
+//        // Duration in ms of the animation.
+//        objectAnimation.duration = 2000
+//        objectAnimation.start()
+//    }
 }
