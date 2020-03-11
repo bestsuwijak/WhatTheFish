@@ -109,6 +109,7 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
                 i.putExtra("foundNewFish", true)
                 i.putExtra("icon", fish[position].icon.name)
                 i.putExtra("form", "fishdex")
+                i.putExtra("number", fish[position].number)
                 context.startActivity(i)
             }
         }
