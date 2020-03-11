@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.GridViewAdapter
 import buu.informatics.s59160141.whatthefish.ar.ARRealWorld
-import buu.informatics.s59160141.whatthefish.ar.ARTestBest
 import buu.informatics.s59160141.whatthefish.databinding.ActivityFishdex2Binding
 import buu.informatics.s59160141.whatthefish.models.*
 import kotlinx.android.synthetic.main.activity_fishdex2.*
@@ -51,8 +50,8 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
             startActivityForResult(i, 9)
         }
         buttonInformation_fishdex2.setOnClickListener{
-            val i = Intent(this, ARTestBest::class.java)
-            startActivityForResult(i, 10)
+//            val i = Intent(this, ARTestBest::class.java)
+//            startActivityForResult(i, 10)
         }
     }
 
