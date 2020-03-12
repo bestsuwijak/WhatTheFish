@@ -7,13 +7,16 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import buu.informatics.s59160141.whatthefish.other.Background
-import buu.informatics.s59160141.whatthefish.other.GameThread
-import buu.informatics.s59160141.whatthefish.other.YellowFish
-import buu.informatics.s59160141.whatthefish.other.YellowFishR2L
+import buu.informatics.s59160141.whatthefish.other.*
 
-class GameView (context: Context, attributes: AttributeSet) : SurfaceView(context, attributes), SurfaceHolder.Callback {
+class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context, attributes),
+    SurfaceHolder.Callback {
     private lateinit var thread: GameThread
+    private var bubble1: Bubble? = null
+    private var bubble2: Bubble? = null
+    private var bubble3: Bubble? = null
+    private var bubble4: Bubble? = null
+    private var bubble5: Bubble? = null
     private var yellowFish1: YellowFish? = null
     private var yellowFish2: YellowFish? = null
     private var yellowFish3: YellowFish? = null
@@ -31,7 +34,6 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
     private var blueFish4: YellowFishR2L? = null
     private var background: Background? = null
 
-    private var touched: Boolean = false
     private var touched_x: Int = 0
     private var touched_y: Int = 0
 
@@ -67,6 +69,13 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
                     R.drawable.bgresize
                 )
             )
+
+        bubble1 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
+        bubble2 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
+        bubble3 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
+        bubble4 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
+        bubble5 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
+
         yellowFish1 =
             YellowFish(
                 BitmapFactory.decodeResource(
@@ -217,6 +226,11 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
      * Function to update the positions of player and game objects
      */
     fun update() {
+        bubble1!!.update()
+        bubble2!!.update()
+        bubble3!!.update()
+        bubble4!!.update()
+        bubble5!!.update()
         yellowFish1!!.update()
         yellowFish2!!.update()
         yellowFish3!!.update()
@@ -232,9 +246,7 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
         blueFish2!!.update()
         blueFish3!!.update()
         blueFish4!!.update()
-//        if(touched) {
-//            player!!.update(touched_x, touched_y)
-//        }
+
     }
 
     /**
@@ -243,6 +255,11 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
         background!!.draw(canvas)
+        bubble1!!.draw(canvas)
+        bubble2!!.draw(canvas)
+        bubble3!!.draw(canvas)
+        bubble4!!.draw(canvas)
+        bubble5!!.draw(canvas)
         yellowFish1!!.draw(canvas)
         yellowFish2!!.draw(canvas)
         yellowFish3!!.draw(canvas)
@@ -286,12 +303,6 @@ class GameView (context: Context, attributes: AttributeSet) : SurfaceView(contex
                 blueFish3?.checkOnClickListener(touched_x, touched_y)
                 blueFish4?.checkOnClickListener(touched_x, touched_y)
             }
-//            MotionEvent.ACTION_DOWN -> yellowFish1?.t = 1
-//            MotionEvent.ACTION_DOWN -> touched = true
-//            MotionEvent.ACTION_MOVE -> touched = true
-//            MotionEvent.ACTION_UP -> touched = false
-//            MotionEvent.ACTION_CANCEL -> touched = false
-//            MotionEvent.ACTION_OUTSIDE -> touched = false
         }
         return true
     }
