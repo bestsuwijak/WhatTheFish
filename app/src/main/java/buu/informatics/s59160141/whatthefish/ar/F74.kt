@@ -1,6 +1,7 @@
 package buu.informatics.s59160141.whatthefish.ar
 
 import android.animation.ObjectAnimator
+import android.os.CountDownTimer
 import android.view.animation.LinearInterpolator
 import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.math.Quaternion
@@ -10,6 +11,21 @@ import com.google.ar.sceneform.math.Vector3Evaluator
 class F74 (demon: Node){
 
     var demo = demon
+    init {
+        loopTimer()
+    }
+
+    private fun loopTimer() {
+        object : CountDownTimer(240000, 8000) {
+            override fun onTick(millisUntilFinished: Long) { // Tick
+                startWalking()
+            }
+            override fun onFinish() { // Finish
+                loopTimer()
+            }
+        }.start()
+    }
+
     fun startWalking(){
         val leftLimit = 0.0f
         val rightLimit = 1.0f
