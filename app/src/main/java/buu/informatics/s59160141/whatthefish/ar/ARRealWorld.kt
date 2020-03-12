@@ -38,9 +38,7 @@ class ARRealWorld : AppCompatActivity() {
     lateinit var arFragment: ArFragment
     private lateinit var model: Uri
     private var renderable = ArrayList<ModelRenderable>()
-    private var renderable2: ModelRenderable? = null
-    private var animator: ModelAnimator? = null
-    private var animator2: ModelAnimator? = null
+    private var animator = ArrayList<ModelAnimator>()
     var check = true
     private var andy = ArrayList<F74>()
     private var countAndy = 0
@@ -59,30 +57,33 @@ class ARRealWorld : AppCompatActivity() {
             if (check) {
                 val anchor = hitResult.createAnchor()
                 placeObject(arFragment, anchor, model)
-            }else{
-                Log.i("test123","check is false")
+            } else {
+                Log.i("test123", "check is false")
 //                andy[0].startWalking()
 //                andy[1].startWalking()
             }
         }
 
-        countDown()
+//        countDown()
 
 //        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
     }
 
     private fun animateModel(name: String) {
-        animator?.let { it ->
-            if (it.isRunning) {
-                it.end()
-            }
-        }
+        if (renderable.isNotEmpty()) {
+            for (i in 0 until renderable.size) {
+                animator[i].let { it ->
+                    if (it.isRunning) {
+                        it.end()
+                    }
+                }
 
-        if (renderable.isNotEmpty())
-        renderable[0].let { modelRenderable ->
-            val data = modelRenderable.getAnimationData(name)
-            animator = ModelAnimator(data, modelRenderable)
-            animator?.start()
+                renderable[i].let { modelRenderable ->
+                    val data = modelRenderable.getAnimationData(name)
+                    animator[i] = ModelAnimator(data, modelRenderable)
+                    animator[i].start()
+                }
+            }
         }
 
 //        animator2?.let { it ->
@@ -98,21 +99,21 @@ class ARRealWorld : AppCompatActivity() {
     }
 
     private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
-        if(check) {
-                ModelRenderable.builder()
-                    .setSource(fragment.context, model)
-                    .build()
-                    .thenAccept {
-                        renderable.add(it)
-                        addToScene(fragment, anchor, it)
-                    }
-                    .exceptionally {
-                        val builder = AlertDialog.Builder(this)
-                        builder.setMessage(it.message).setTitle("Error")
-                        val dialog = builder.create()
-                        dialog.show()
-                        return@exceptionally null
-                    }
+        if (check) {
+            ModelRenderable.builder()
+                .setSource(fragment.context, model)
+                .build()
+                .thenAccept {
+                    renderable.add(it)
+                    addToScene(fragment, anchor, it)
+                }
+                .exceptionally {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setMessage(it.message).setTitle("Error")
+                    val dialog = builder.create()
+                    dialog.show()
+                    return@exceptionally null
+                }
 //                check = false                                                                             <---- deleted now
         }
     }
@@ -126,26 +127,27 @@ class ARRealWorld : AppCompatActivity() {
         val node = TransformableNode(fragment.transformationSystem)
 //        node.worldRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
 
-                node.worldPosition = Vector3(0f,0.17f,0f)
-                node.addChild(skeletonNode)
-                node.setParent(anchorNode)
-                fragment.arSceneView.scene.addChild(anchorNode)
-                andy.add(F74(node))
+        node.worldPosition = Vector3(0f, 0.17f, 0f)
+        node.addChild(skeletonNode)
+        node.setParent(anchorNode)
+        fragment.arSceneView.scene.addChild(anchorNode)
+        andy.add(F74(node, this.renderable.lastOrNull()))
 
     }
 
-    fun countDown(){
-        object : CountDownTimer(30000, 100) {
-            override fun onTick(millisUntilFinished: Long) { // Tick
-                if (animator == null || !animator!!.isRunning) {
-                    animateModel("Armature|ArmatureAction")
-                }
-            }
-            override fun onFinish() { // Finish
-                countDown()
-            }
-        }.start()
-    }
+//    fun countDown() {
+//        object : CountDownTimer(30000, 100) {
+//            override fun onTick(millisUntilFinished: Long) { // Tick
+//                if (animator == null || !animator!!.isRunning) {
+//                    animateModel("Armature|ArmatureAction")
+//                }
+//            }
+//
+//            override fun onFinish() { // Finish
+//                countDown()
+//            }
+//        }.start()
+//    }
 
 //    private fun startWalking() {
 //        val leftLimit = 0.0f
