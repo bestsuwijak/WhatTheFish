@@ -11,7 +11,7 @@
         android:layout_marginBottom="@dimen/size10dp"
         android:layout_width="@dimen/size110dp"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/f1"
+        app:srcCompat="@drawable/fish1"
         />
 
 

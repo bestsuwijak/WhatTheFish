@@ -80,7 +80,7 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
             YellowFish(
                 BitmapFactory.decodeResource(
                     resources,
-                    R.drawable.f1
+                    R.drawable.fish1
                 ),
                 1
             )
@@ -88,7 +88,7 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
             YellowFish(
                 BitmapFactory.decodeResource(
                     resources,
-                    R.drawable.f1
+                    R.drawable.fish1
                 ),
                 1
             )
@@ -96,7 +96,7 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
             YellowFish(
                 BitmapFactory.decodeResource(
                     resources,
-                    R.drawable.f1
+                    R.drawable.fish1
                 ),
                 1
             )
@@ -112,7 +112,7 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
             YellowFish(
                 BitmapFactory.decodeResource(
                     resources,
-                    R.drawable.f15
+                    R.drawable.fish15
                 ),
                 15
             )
@@ -120,7 +120,7 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
             YellowFish(
                 BitmapFactory.decodeResource(
                     resources,
-                    R.drawable.f15
+                    R.drawable.fish15
                 ),
                 15
             )
@@ -152,7 +152,7 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
             YellowFish(
                 BitmapFactory.decodeResource(
                     resources,
-                    R.drawable.f20
+                    R.drawable.fish20
                 ),
                 20
             )
@@ -168,7 +168,7 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
             YellowFish(
                 BitmapFactory.decodeResource(
                     resources,
-                    R.drawable.f5
+                    R.drawable.fish5
                 ),
                 5
             )
@@ -176,7 +176,7 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
             YellowFish(
                 BitmapFactory.decodeResource(
                     resources,
-                    R.drawable.f5
+                    R.drawable.fish5
                 ),
                 5
             )

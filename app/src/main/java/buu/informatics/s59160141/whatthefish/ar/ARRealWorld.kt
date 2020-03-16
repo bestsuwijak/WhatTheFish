@@ -35,7 +35,7 @@ class ARRealWorld : AppCompatActivity() {
 
     lateinit var arFragment: ArFragment
     lateinit var recyclerARRealWorld: RecyclerView
-    private lateinit var model: Uri
+    var model = Uri.parse("f74.sfb")
     private var renderable = ArrayList<ModelRenderable>()
     private var animator = ArrayList<ModelAnimator>()
     var check = true
@@ -45,13 +45,14 @@ class ARRealWorld : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ar2)
 
-        val testfish = listOf("test", "test", "test", "test", "test", "test", "test")
-
+        //get foundFish list
+        val number = intent.getStringArrayListExtra("number")
+        Log.i("test123", number.toString())
+        val testfish = number
 
         arFragment = sceneform_fragment_ar2 as ArFragment
         recyclerARRealWorld = listAR_RealWorld
-        recyclerARRealWorld.adapter = ArRealWorldAdapter(this, testfish)
-        model = Uri.parse("f74.sfb")
+        recyclerARRealWorld.adapter = ArRealWorldAdapter(this, testfish, model)
 
         arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
@@ -70,6 +71,10 @@ class ARRealWorld : AppCompatActivity() {
 //        countDown()
 
 //        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
+    }
+
+    fun changeModel(nameModel: String){
+        model = Uri.parse(nameModel.plus(".sfb"))
     }
 
     private fun animateModel(name: String) {

@@ -55,6 +55,7 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
                 .into(holder.imageGridRelative)
             holder.dateFoundFish.text = fish[position].stringDateFound
             holder.timeFoundFish.text = fish[position].stringTimeFound
+
         }else{
             holder.itemSmallRelative.visibility = View.GONE
             holder.itemSmallLinear.visibility = View.VISIBLE

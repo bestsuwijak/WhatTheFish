@@ -20,16 +20,18 @@ class FishDexViewModel(application: Application, private val view: fishDexView) 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    fun getFishes() {
+    fun getFishes(): ArrayList<Fish>{
+        var list = ArrayList<Fish>()
         viewModelScope.launch {
             try {
                 val fishList = fishesRepository.fishes
                 view.setAdapterDataGrid(fishList)
-
+                list.addAll(fishList)
             } catch (e: Throwable) {
                 Timber.d("getFishes fail")
             }
         }
+        return list
     }
 
 
