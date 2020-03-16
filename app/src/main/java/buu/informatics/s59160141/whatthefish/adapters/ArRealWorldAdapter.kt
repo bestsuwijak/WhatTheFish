@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.R
+import buu.informatics.s59160141.whatthefish.ar.ARRealWorld
 import kotlinx.android.synthetic.main.ar_real_world_fish_item.view.*
 
-class ArRealWorldAdapter(val context: Context, private val fishAR: ArrayList<String>, var model: Uri): RecyclerView.Adapter<ArRealWorldAdapter.ViewHolder>(){
+class ArRealWorldAdapter(val context: Context, private val fishAR: ArrayList<String>, var model: ARRealWorld): RecyclerView.Adapter<ArRealWorldAdapter.ViewHolder>(){
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
@@ -31,7 +32,8 @@ class ArRealWorldAdapter(val context: Context, private val fishAR: ArrayList<Str
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.imgARRealWorld.setImageResource(context.resources.getIdentifier(fishAR[position].toLowerCase(), "drawable", context.packageName))
         holder.imgARRealWorld.setOnClickListener{
-            model = Uri.parse(fishAR[position].plus(".sfb"))
+            model.model = Uri.parse(fishAR[position].plus(".sfb").toLowerCase())
+            model.getModel()
         }
     }
 

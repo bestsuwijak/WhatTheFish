@@ -1,34 +1,24 @@
 package buu.informatics.s59160141.whatthefish.ar
 
-import android.animation.ObjectAnimator
 import android.net.Uri
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.Log
 import android.view.MotionEvent
-import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.ArRealWorldAdapter
-import com.google.ar.core.Anchor
-import com.google.ar.core.HitResult
-import com.google.ar.core.Plane
+import com.google.ar.core.*
 import com.google.ar.sceneform.AnchorNode
-import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.SkeletonNode
 import com.google.ar.sceneform.animation.ModelAnimator
-import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
-import com.google.ar.sceneform.math.Vector3Evaluator
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_ar2.*
-import kotlinx.coroutines.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ARRealWorld : AppCompatActivity() {
@@ -48,11 +38,10 @@ class ARRealWorld : AppCompatActivity() {
         //get foundFish list
         val number = intent.getStringArrayListExtra("number")
         Log.i("test123", number.toString())
-        val testfish = number
 
         arFragment = sceneform_fragment_ar2 as ArFragment
         recyclerARRealWorld = listAR_RealWorld
-        recyclerARRealWorld.adapter = ArRealWorldAdapter(this, testfish, model)
+        recyclerARRealWorld.adapter = ArRealWorldAdapter(this, number, this)
 
         arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
@@ -60,6 +49,10 @@ class ARRealWorld : AppCompatActivity() {
             }
             if (check) {
                 val anchor = hitResult.createAnchor()
+//                val session = arFragment.arSceneView.session
+//                val position = floatArrayOf(0f, 0f, -0.75f)
+//                val rotation = floatArrayOf(0f, 0f, 0f, 1f)
+//                val anchor = session.createAnchor(Pose(position, rotation))
                 placeObject(arFragment, anchor, model)
             } else {
                 Log.i("test123", "check is false")
@@ -73,8 +66,12 @@ class ARRealWorld : AppCompatActivity() {
 //        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
     }
 
-    fun changeModel(nameModel: String){
-        model = Uri.parse(nameModel.plus(".sfb"))
+    fun getModel(){
+        val session = arFragment.arSceneView.session
+        val position = floatArrayOf(0f, 0f, -0.75f)
+        val rotation = floatArrayOf(0f, 0f, 0f, 1f)
+        val anchor = session!!.createAnchor(Pose(position, rotation))
+        placeObject(arFragment, anchor, model)
     }
 
     private fun animateModel(name: String) {
