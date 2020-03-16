@@ -9,7 +9,9 @@ import android.view.MotionEvent
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.R
+import buu.informatics.s59160141.whatthefish.adapters.ArRealWorldAdapter
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
@@ -31,23 +33,24 @@ import kotlin.collections.ArrayList
 
 class ARRealWorld : AppCompatActivity() {
 
-    private val viewModelJob = SupervisorJob()
-    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-
     lateinit var arFragment: ArFragment
+    lateinit var recyclerARRealWorld: RecyclerView
     private lateinit var model: Uri
     private var renderable = ArrayList<ModelRenderable>()
     private var animator = ArrayList<ModelAnimator>()
     var check = true
     private var andy = ArrayList<F74>()
-    private var countAndy = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ar2)
 
+        val testfish = listOf("test", "test", "test", "test", "test", "test", "test")
+
+
         arFragment = sceneform_fragment_ar2 as ArFragment
+        recyclerARRealWorld = listAR_RealWorld
+        recyclerARRealWorld.adapter = ArRealWorldAdapter(this, testfish)
         model = Uri.parse("f74.sfb")
 
         arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->

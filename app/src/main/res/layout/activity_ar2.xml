@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,4 +14,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listAR_RealWorld"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/ar_real_world_fish_item"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size70dp"
+        app:spanCount="5"
+        android:background="@color/gray_opacity90"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
+
+

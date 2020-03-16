@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_fishdex2.*
 class Fishdex2Activity : AppCompatActivity(), fishDexView {
 
     private lateinit var binding: ActivityFishdex2Binding
+    var listArVisibled = ArrayList<String>()
     private val viewModel: FishDexViewModel by lazy {
         val activity = requireNotNull(this) {
             "You can only access the viewModel after onActivityCreated()"
