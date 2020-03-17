@@ -51,15 +51,21 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
         }
         imageView4.setOnClickListener{
             var list = ArrayList<String>()
-            var listfig: ArrayList<String> = arrayListOf("f1", "f3", "f7", "f8", "f12" ,"f28" ,"f52" ,"f53" ,"f56" ,"f57"
+            var listfig = arrayListOf("f1", "f3", "f7", "f8", "f12" ,"f28" ,"f52" ,"f53" ,"f56" ,"f57"
                 ,"f58" ,"f59" ,"f60" ,"f64" ,"f65" ,"f74" ,"f75" ,"f106" ,"f117" ,"f128" ,"f131" ,"f145" ,"f148" ,"f149")
             for (i in 0 until listArVisibled.size){
-                val row = list.find {it.startsWith(listArVisibled[i].number)}
-                if (listArVisibled[i].foundFish){
-                    list.add(listArVisibled[i].number)
+                for(j in 0 until listfig.size){
+//                    Log.i("test123", "num" + listArVisibled[i].number.toLowerCase())
+//                    Log.i("test123", "fig" + listfig[j])
+//                    Log.i("test123", "foundfish" + listArVisibled[i].foundFish)
+                    if (listArVisibled[i].number.toLowerCase() == listfig[j] && listArVisibled[i].foundFish){
+                        list.add(listArVisibled[i].number)
+                    }
                 }
             }
-            Log.i("test123", "fishDex2 " + list)
+//            Log.i("test123", "fishDex2 list" + listfig)
+//            Log.i("test123", "fishDex2 1" + listArVisibled)
+//            Log.i("test123", "fishDex2 2" + list)
             val i = Intent(this, ARRealWorld::class.java)
             i.putExtra("number", list)
             startActivityForResult(i, 9)
