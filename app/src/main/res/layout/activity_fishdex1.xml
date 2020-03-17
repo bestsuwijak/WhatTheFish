@@ -33,11 +33,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/buttonFishdex"
         android:layout_width="@dimen/size350dp"
         android:layout_height="@dimen/size290dp"
         android:layout_marginStart="30dp"
+        android:animateLayoutChanges="false"
+        android:background="@color/blue"
+        android:focusedByDefault="false"
+        android:forceHasOverlappingRendering="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_fishdex1">
@@ -46,64 +50,57 @@
             android:id="@+id/img_fishdexcard"
             android:layout_width="350dp"
             android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/top_left_right_shape"
             android:scaleType="fitXY"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/aquarium" />
+            android:src="@drawable/aquarium" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/lightBlue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_fishdexcard">
 
-            <TextView
-                android:id="@+id/card_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_bold"
-                android:paddingStart="@dimen/size5dp"
-                android:text="@string/card1"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/card_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_fishdexcard"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="@dimen/size10dp"
+            android:layout_marginEnd="@dimen/size10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingStart="@dimen/size5dp"
+            android:text="@string/card1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font22sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/card_text1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/size5dp"
-                android:layout_marginBottom="@dimen/size5dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="พบ...ตัว"
-                android:textColor="@color/yellow"
-                android:textSize="@dimen/font16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/card_text2" />
+        <TextView
+            android:id="@+id/card_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/size10dp"
+            android:layout_marginBottom="@dimen/size5dp"
+            android:layout_toLeftOf="@id/card_text2"
+            android:fontFamily="@font/roboto_bold"
+            android:text="พบ...ตัว"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/font16sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/card_text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/size5dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="ทั้งหมด...ตัว"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/card_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/size10dp"
+            android:layout_marginBottom="@dimen/size5dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="ทั้งหมด...ตัว"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

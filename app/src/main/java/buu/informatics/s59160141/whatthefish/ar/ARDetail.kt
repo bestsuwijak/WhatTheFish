@@ -1,13 +1,23 @@
 package buu.informatics.s59160141.whatthefish.ar
 
+import android.Manifest
+import android.animation.ObjectAnimator
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.media.CameraProfile
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
+import android.view.animation.LinearInterpolator
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.graphics.drawable.toDrawable
 import buu.informatics.s59160141.whatthefish.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import com.google.ar.core.Anchor
@@ -19,12 +29,10 @@ import com.google.ar.sceneform.SkeletonNode
 import com.google.ar.sceneform.animation.ModelAnimator
 import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
+import com.google.ar.sceneform.math.Vector3Evaluator
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
-import com.google.ar.sceneform.ux.ArFragment
-import com.google.ar.sceneform.ux.FootprintSelectionVisualizer
-import com.google.ar.sceneform.ux.TransformableNode
-import com.google.ar.sceneform.ux.TransformationSystem
+import com.google.ar.sceneform.ux.*
 import kotlinx.android.synthetic.main.activity_ar.*
 
 
@@ -36,7 +44,11 @@ class ARDetail : AppCompatActivity() {
     private var animator: ModelAnimator? = null
     var check = true
     lateinit var number: String
-    var modelNode: Node? = null
+    var modelNode: TransformableNode? = null
+
+    //////////////////////Record screen//////////////////////
+    private var videoRecorder: VideoRecorder? = null
+    ////////////////////////////////////////////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +63,14 @@ class ARDetail : AppCompatActivity() {
                 return@setOnTapArPlaneListener
             }
             val anchor = hitResult.createAnchor()
-            placeObject(arFragment, anchor, model)
+            if(check) {
+                placeObject(arFragment, anchor, model)
+            }else{
+                arFragment.arSceneView.scene.onRemoveChild(modelNode)
+                animator?.end()
+                check = true
+                placeObject(arFragment, anchor, model)
+            }
         }
 
         countDown()
@@ -73,9 +92,33 @@ class ARDetail : AppCompatActivity() {
             refreshModel()
         }
 
-        buttoncapture.setOnClickListener{
-            
+        //////////////////////Record screen//////////////////////
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                1
+            )
         }
+
+        buttonrecord.setOnClickListener { view: View? ->
+            if (videoRecorder == null) {
+                videoRecorder = VideoRecorder()
+                videoRecorder!!.setSceneView(arFragment.arSceneView)
+                val orientation = resources.configuration.orientation
+                videoRecorder!!.setVideoQuality(CameraProfile.QUALITY_HIGH, orientation)
+            }
+            val isRecording: Boolean = videoRecorder!!.onToggleRecord()
+            if (isRecording) {
+                Toast.makeText(this, "Started", Toast.LENGTH_SHORT).show()
+                    buttonrecord.setImageResource(R.drawable.rcd2)
+            } else {
+                Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show()
+                buttonrecord.setImageResource(R.drawable.rcd)
+
+            }
+        }
+        /////////////////////////////////////////////////////////
+
     }
 
     private fun animateModel(name: String) {
@@ -116,20 +159,18 @@ class ARDetail : AppCompatActivity() {
         val anchorNode = AnchorNode(anchor)
         val skeletonNode = SkeletonNode()
         skeletonNode.renderable = renderable
-
         val node = TransformableNode(fragment.transformationSystem)
         node.localRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
 
         //floating
-        node.localPosition = Vector3(0f,0.17f,0f)
+        node.localPosition = Vector3(0f,0.1f,-0.2f)
 
         node.addChild(skeletonNode)
         node.setParent(anchorNode)
-
         fragment.arSceneView.scene.addChild(anchorNode)
-
+        animateModel("Armature|ArmatureAction")
+        node.getTranslationController().setEnabled(false);
         modelNode = node
-
     }
 
     fun countDown(){
@@ -146,6 +187,23 @@ class ARDetail : AppCompatActivity() {
     }
 
     fun refreshModel(){
-
+        if(modelNode != null) {
+            arFragment.arSceneView.scene.onRemoveChild(modelNode)
+            animator?.end()
+            check = true
+        }
     }
+
+    //////////////////////Record screen//////////////////////
+//    override fun onResume() {
+//        super.onResume()
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(
+//                this,
+//                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+//                1
+//            )
+//        }
+//    }
+    ////////////////////////////////////////////////////////
 }
