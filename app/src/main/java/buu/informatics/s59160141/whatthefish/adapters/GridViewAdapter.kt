@@ -50,7 +50,7 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.nameFishLinear.text = "${fish[position].thNames[0]}\n${fish[position].engNames[0]}"
-        if (!fish[position].foundFish) {
+        if (fish[position].foundFish) {
             holder.itemSmallLinear.visibility = View.GONE
             holder.itemSmallRelative.visibility = View.VISIBLE
             Glide.with(this.context)
