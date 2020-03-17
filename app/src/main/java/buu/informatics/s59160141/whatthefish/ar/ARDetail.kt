@@ -1,38 +1,35 @@
 package buu.informatics.s59160141.whatthefish.ar
 
 import android.Manifest
-import android.animation.ObjectAnimator
+import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.CameraProfile
+import android.media.CamcorderProfile
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.provider.MediaStore
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.view.animation.LinearInterpolator
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.graphics.drawable.toDrawable
 import buu.informatics.s59160141.whatthefish.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
 import com.google.ar.sceneform.AnchorNode
-import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.SkeletonNode
 import com.google.ar.sceneform.animation.ModelAnimator
 import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
-import com.google.ar.sceneform.math.Vector3Evaluator
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
-import com.google.ar.sceneform.ux.*
+import com.google.ar.sceneform.ux.ArFragment
+import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_ar.*
 
 
@@ -93,19 +90,12 @@ class ARDetail : AppCompatActivity() {
         }
 
         //////////////////////Record screen//////////////////////
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                1
-            )
-        }
-
         buttonrecord.setOnClickListener { view: View? ->
             if (videoRecorder == null) {
                 videoRecorder = VideoRecorder()
-                videoRecorder!!.setSceneView(arFragment.arSceneView)
                 val orientation = resources.configuration.orientation
-                videoRecorder!!.setVideoQuality(CameraProfile.QUALITY_HIGH, orientation)
+                videoRecorder!!.setVideoQuality(CamcorderProfile.QUALITY_2160P, orientation)
+                videoRecorder!!.setSceneView(arFragment.arSceneView)
             }
             val isRecording: Boolean = videoRecorder!!.onToggleRecord()
             if (isRecording) {
@@ -114,6 +104,17 @@ class ARDetail : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show()
                 buttonrecord.setImageResource(R.drawable.rcd)
+
+                val videoPath: String = videoRecorder!!.getVideoPath()!!.getAbsolutePath()
+                Toast.makeText(this, "Video saved: $videoPath", Toast.LENGTH_SHORT).show()
+
+                // Send  notification of updated content.
+                val values = ContentValues()
+                values.put(MediaStore.Video.Media.TITLE, "Sceneform Video")
+                values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
+                values.put(MediaStore.Video.Media.DATA, videoPath)
+                contentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values)
+
 
             }
         }
@@ -195,15 +196,14 @@ class ARDetail : AppCompatActivity() {
     }
 
     //////////////////////Record screen//////////////////////
-//    override fun onResume() {
-//        super.onResume()
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(
-//                this,
-//                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-//                1
-//            )
-//        }
-//    }
+    override fun onResume() {
+        super.onResume()
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                1
+            )
+        }
+    }
     ////////////////////////////////////////////////////////
 }

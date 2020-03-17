@@ -22,18 +22,20 @@ import java.io.IOException
 class VideoRecorder {
     // recordingVideoFlag is true when the media recorder is capturing video.
     var isRecording = false
-        private set
     private var mediaRecorder: MediaRecorder? = null
     private var videoSize: Size? = null
     private var sceneView: SceneView? = null
     private var videoCodec = 0
     private var videoDirectory: File? = null
     private var videoBaseName: String? = null
-    var videoPath: File? = null
-        private set
+    private var videoPath: File? = null
     private var bitRate = DEFAULT_BITRATE
     private var frameRate = DEFAULT_FRAMERATE
     private var encoderSurface: Surface? = null
+
+    fun getVideoPath(): File? {
+        return videoPath
+    }
 
     fun setBitRate(bitRate: Int) {
         this.bitRate = bitRate
@@ -76,9 +78,7 @@ class VideoRecorder {
         }
         // Set up Surface for the MediaRecorder
         encoderSurface = mediaRecorder!!.surface
-        sceneView!!.startMirroringToSurface(
-            encoderSurface, 0, 0, videoSize!!.width, videoSize!!.height
-        )
+        sceneView!!.startMirroringToSurface(encoderSurface, 0, 0, videoSize!!.width, videoSize!!.height)
         isRecording = true
     }
 
