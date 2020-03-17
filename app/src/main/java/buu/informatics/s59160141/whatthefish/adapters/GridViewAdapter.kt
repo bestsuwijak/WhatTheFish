@@ -3,6 +3,7 @@ package buu.informatics.s59160141.whatthefish.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,8 @@ import java.util.*
 class GridViewAdapter(private val context: Context, private val fish: List<Fish>) :
     RecyclerView.Adapter<GridViewAdapter.ViewHolder>() {
 
+    var listfig = arrayListOf("f1", "f3", "f7", "f8", "f12" ,"f28" ,"f52" ,"f53" ,"f56" ,"f57"
+        ,"f58" ,"f59" ,"f60" ,"f64" ,"f65" ,"f74" ,"f75" ,"f106" ,"f117" ,"f128" ,"f131" ,"f145" ,"f148" ,"f149")
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -47,7 +50,7 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.nameFishLinear.text = "${fish[position].thNames[0]}\n${fish[position].engNames[0]}"
-        if (fish[position].foundFish) {
+        if (!fish[position].foundFish) {
             holder.itemSmallLinear.visibility = View.GONE
             holder.itemSmallRelative.visibility = View.VISIBLE
             Glide.with(this.context)
@@ -55,7 +58,11 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
                 .into(holder.imageGridRelative)
             holder.dateFoundFish.text = fish[position].stringDateFound
             holder.timeFoundFish.text = fish[position].stringTimeFound
-
+            if(listfig.indexOf(fish[position].number.toLowerCase()) != -1){
+                holder.iconAr.visibility = View.VISIBLE
+            }else{
+                holder.iconAr.visibility = View.GONE
+            }
         }else{
             holder.itemSmallRelative.visibility = View.GONE
             holder.itemSmallLinear.visibility = View.VISIBLE
@@ -129,5 +136,6 @@ class GridViewAdapter(private val context: Context, private val fish: List<Fish>
         val imageGridRelative: ImageView = itemLayoutView.iconFishRelative
         val dateFoundFish: TextView = itemLayoutView.dateFoundFish
         val timeFoundFish: TextView = itemLayoutView.timeFoundFish
+        val iconAr: ImageView = itemLayoutView.ar_icon
     }
 }
