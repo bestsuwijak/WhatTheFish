@@ -32,8 +32,7 @@ class ArRealWorldAdapter(val context: Context, private val fishAR: ArrayList<Str
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.imgARRealWorld.setImageResource(context.resources.getIdentifier(fishAR[position].toLowerCase(), "drawable", context.packageName))
         holder.imgARRealWorld.setOnClickListener{
-            model.model = Uri.parse(fishAR[position].plus(".sfb").toLowerCase())
-            model.getModel()
+            model.getModel(Uri.parse(fishAR[position].plus(".sfb").toLowerCase()))
         }
     }
 

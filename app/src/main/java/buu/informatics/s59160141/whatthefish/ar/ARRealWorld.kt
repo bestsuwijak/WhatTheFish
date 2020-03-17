@@ -66,30 +66,30 @@ class ARRealWorld : AppCompatActivity() {
 //        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
     }
 
-    fun getModel(){
+    fun getModel(model: Uri){
         val session = arFragment.arSceneView.session
-        val position = floatArrayOf(0f, 0f, -0.75f)
+        val position = floatArrayOf(0f, -0.75f, -0.75f)
         val rotation = floatArrayOf(0f, 0f, 0f, 1f)
         val anchor = session!!.createAnchor(Pose(position, rotation))
         placeObject(arFragment, anchor, model)
     }
 
-    private fun animateModel(name: String) {
-        if (renderable.isNotEmpty()) {
-            for (i in 0 until renderable.size) {
-                animator[i].let { it ->
-                    if (it.isRunning) {
-                        it.end()
-                    }
-                }
-
-                renderable[i].let { modelRenderable ->
-                    val data = modelRenderable.getAnimationData(name)
-                    animator[i] = ModelAnimator(data, modelRenderable)
-                    animator[i].start()
-                }
-            }
-        }
+//    private fun animateModel(name: String) {
+//        if (renderable.isNotEmpty()) {
+//            for (i in 0 until renderable.size) {
+//                animator[i].let { it ->
+//                    if (it.isRunning) {
+//                        it.end()
+//                    }
+//                }
+//
+//                renderable[i].let { modelRenderable ->
+//                    val data = modelRenderable.getAnimationData(name)
+//                    animator[i] = ModelAnimator(data, modelRenderable)
+//                    animator[i].start()
+//                }
+//            }
+//        }
 
 //        animator2?.let { it ->
 //            if (it.isRunning) {
@@ -101,7 +101,7 @@ class ARRealWorld : AppCompatActivity() {
 //            animator2 = ModelAnimator(data, modelRenderable)
 //            animator2?.start()
 //        }
-    }
+//    }
 
     private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
         if (check) {
