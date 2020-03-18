@@ -42,7 +42,9 @@ class ARRealWorld : AppCompatActivity() {
         arFragment = sceneform_fragment_ar2 as ArFragment
         recyclerARRealWorld = listAR_RealWorld
         recyclerARRealWorld.adapter = ArRealWorldAdapter(this, number, this)
-
+        refresh.setOnClickListener {
+            refresh()
+        }
         arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
                 return@setOnTapArPlaneListener
@@ -66,7 +68,15 @@ class ARRealWorld : AppCompatActivity() {
 //        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
     }
 
-    fun getModel(model: Uri){
+    private fun refresh() {
+        renderable = ArrayList()
+        andy = ArrayList()
+//        for (i in 0 until andy.size){
+//            andy[i].stoped = true
+//        }
+    }
+
+    fun getModel(model: Uri) {
         val session = arFragment.arSceneView.session
         val position = floatArrayOf(0f, -0.75f, -0.75f)
         val rotation = floatArrayOf(0f, 0f, 0f, 1f)

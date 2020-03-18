@@ -15,6 +15,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 class F74(demo: Node, ren: ModelRenderable?) {
 
     var demo = demo
+    var stoped = false
     var animation: ModelAnimator? = null
     private var renderable = ren
 
@@ -26,13 +27,17 @@ class F74(demo: Node, ren: ModelRenderable?) {
     private fun loopTimerAnimationFish() {
         object : CountDownTimer(30000, 100) {
             override fun onTick(millisUntilFinished: Long) { // Tick
-                if (animation == null || !animation!!.isRunning) {
+                if (!stoped && animation == null || !animation!!.isRunning) {
                     animateModel("Armature|ArmatureAction")
+                } else {
+                    onFinish()
                 }
+
             }
 
             override fun onFinish() { // Finish
-                loopTimerAnimationFish()
+                if (!stoped)
+                    loopTimerAnimationFish()
             }
         }.start()
     }
@@ -40,11 +45,15 @@ class F74(demo: Node, ren: ModelRenderable?) {
     private fun loopTimerMovefish() {
         object : CountDownTimer(240000, 8000) {
             override fun onTick(millisUntilFinished: Long) { // Tick
-                startWalking()
+                if (!stoped)
+                    startWalking()
+                else
+                    onFinish()
             }
 
             override fun onFinish() { // Finish
-                loopTimerMovefish()
+                if (!stoped)
+                    loopTimerMovefish()
             }
         }.start()
     }
@@ -71,7 +80,7 @@ class F74(demo: Node, ren: ModelRenderable?) {
         val z = (10..30).random() / 10f * (-1)
         val y = (-60..60).random() / 100f
         var angle = Vector3.angleBetweenVectors(demo.worldPosition, Vector3(x, y, z))
-        Log.i("testRotate", "angle:" +angle)
+        Log.i("testRotate", "angle:" + angle)
         if (z > demo.worldPosition.z && x > 0) {
             RotateAnimate(angle, 1)
         } else if (z > demo.worldPosition.z && x < 0) {
@@ -79,7 +88,7 @@ class F74(demo: Node, ren: ModelRenderable?) {
         } else if (z < demo.worldPosition.z && x > 0) {
             RotateAnimate(angle, 3)
 //            demo.worldRotation = Quaternion.rotationBetweenVectors(demo.worldPosition, Vector3(x, y, z))
-        }else{
+        } else {
             RotateAnimate(angle, 4)
         }
         val objectAnimation = ObjectAnimator()
@@ -101,21 +110,20 @@ class F74(demo: Node, ren: ModelRenderable?) {
         objectAnimation.start()
     }
 
-    fun RotateAnimate(angle: Float, n: Int){
-        var orientation1:Quaternion
+    fun RotateAnimate(angle: Float, n: Int) {
+        var orientation1: Quaternion
 
-        if(n == 1){
-            orientation1 = Quaternion.axisAngle(Vector3(0.0f, 1.0f, 0.0f), 180f +angle)
-        }
-        else if(n == 2){
-            orientation1 = Quaternion.axisAngle(Vector3(0.0f, 1.0f, 0.0f), 180f -angle)
-        }else if(n == 3){
+        if (n == 1) {
+            orientation1 = Quaternion.axisAngle(Vector3(0.0f, 1.0f, 0.0f), 180f + angle)
+        } else if (n == 2) {
+            orientation1 = Quaternion.axisAngle(Vector3(0.0f, 1.0f, 0.0f), 180f - angle)
+        } else if (n == 3) {
             orientation1 = Quaternion.axisAngle(Vector3(0.0f, 1.0f, 0.0f), -angle)
-        }else{
+        } else {
             orientation1 = Quaternion.axisAngle(Vector3(0.0f, 1.0f, 0.0f), +angle)
         }
 
-        Log.i("testRotate", "orientation1:" +orientation1)
+        Log.i("testRotate", "orientation1:" + orientation1)
         val objectRotatation = ObjectAnimator()
         objectRotatation.setAutoCancel(true)
         objectRotatation.setObjectValues(orientation1)
@@ -127,7 +135,6 @@ class F74(demo: Node, ren: ModelRenderable?) {
         objectRotatation.start()
 
     }
-
 
 
 }
