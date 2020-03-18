@@ -27,9 +27,13 @@ class F74(demo: Node, ren: ModelRenderable?) {
     private fun loopTimerAnimationFish() {
         object : CountDownTimer(30000, 100) {
             override fun onTick(millisUntilFinished: Long) { // Tick
-                if (!stoped && animation == null || !animation!!.isRunning) {
-                    animateModel("Armature|ArmatureAction")
-                } else {
+                if (!stoped) {
+                    if (animation == null || !animation!!.isRunning) {
+                        animateModel("Armature|ArmatureAction")
+                    } else {
+
+                    }
+                }else{
                     onFinish()
                 }
 

@@ -69,11 +69,12 @@ class ARRealWorld : AppCompatActivity() {
     }
 
     private fun refresh() {
+        for (i in 0 until andy.size){
+            andy[i].stoped = true
+            arFragment.arSceneView.scene.onRemoveChild(andy[i].demo)
+        }
         renderable = ArrayList()
         andy = ArrayList()
-//        for (i in 0 until andy.size){
-//            andy[i].stoped = true
-//        }
     }
 
     fun getModel(model: Uri) {
