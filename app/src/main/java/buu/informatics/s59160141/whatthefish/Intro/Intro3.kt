@@ -1,7 +1,11 @@
 package buu.informatics.s59160141.whatthefish.Intro
 
 
+import android.app.AlertDialog
 import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -9,6 +13,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProviders
@@ -23,6 +28,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.io.IOException
+import kotlin.system.exitProcess
 
 /**
  * A simple [Fragment] subclass.
@@ -58,11 +64,26 @@ class Intro3 : Fragment() {
             }
 
             override fun onFinish() { // Finish
-                viewModel.refreshDataFromRepository()
-                findNavController().navigate(R.id.action_intro3_to_mainFragment)
+                val connectivityManager = this@Intro3.context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+                val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+                if (isConnected){
+                    viewModel.refreshDataFromRepository()
+                    findNavController().navigate(R.id.action_intro3_to_mainFragment)
+                }else{
+                    Log.i("test123", "device not conect internet")
+                    val builder = AlertDialog.Builder(this@Intro3.context)
+                    builder.setTitle("Warnning")
+                    builder.setMessage("your device not conect internet")
+                    builder.setPositiveButton("OK") { dialog, which ->
+                        exitProcess(-1)
+                    }
+                    builder.show()
+                }
             }
         }.start()
     }
 
-
 }
+
+
