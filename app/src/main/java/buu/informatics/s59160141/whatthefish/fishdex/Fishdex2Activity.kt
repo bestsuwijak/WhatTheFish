@@ -21,7 +21,7 @@ import buu.informatics.s59160141.whatthefish.databinding.ActivityFishdex2Binding
 import buu.informatics.s59160141.whatthefish.models.*
 import kotlinx.android.synthetic.main.activity_fishdex2.*
 
-class Fishdex2Activity : AppCompatActivity(), fishDexView {
+class Fishdex2Activity : AppCompatActivity(), fishDex2View {
 
     private lateinit var binding: ActivityFishdex2Binding
     private var listArVisibled = ArrayList<String>()
@@ -52,12 +52,12 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
         "f148",
         "f149"
     )
-    private val viewModel: FishDexViewModel by lazy {
+    private val viewModel: FishDex2ViewModel by lazy {
         val activity = requireNotNull(this) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        ViewModelProviders.of(this, FishDexViewModel.Factory(activity.application, this))
-            .get(FishDexViewModel::class.java)
+        ViewModelProviders.of(this, FishDex2ViewModel.Factory(activity.application, this))
+            .get(FishDex2ViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,11 +71,9 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
         binding.gridFish.itemAnimator = DefaultItemAnimator() as RecyclerView.ItemAnimator?
         //set adapter and get fish list
         viewModel.getFishes()
-        Log.i("test123", "fishDex2 " + listArVisibled)
 
         buttonBack_fishdex2.setOnClickListener {
-            Log.i("test123", "fishDex2 " + listArVisibled)
-//            finish()
+            finish()
         }
         imageView4.setOnClickListener {
             val i = Intent(this, ARRealWorld::class.java)

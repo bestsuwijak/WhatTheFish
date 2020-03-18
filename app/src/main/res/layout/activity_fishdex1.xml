@@ -74,21 +74,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/card_text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="@dimen/size10dp"
-            android:layout_marginBottom="@dimen/size5dp"
-            android:layout_toLeftOf="@id/card_text2"
-            android:fontFamily="@font/roboto_bold"
-            android:text="พบ...ตัว"
-            android:textColor="@color/yellow"
-            android:textSize="@dimen/font16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/card_text2"
+            android:id="@+id/countFoundFishTextView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
