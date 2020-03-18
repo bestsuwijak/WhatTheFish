@@ -26,6 +26,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
+@Suppress("DEPRECATION")
 class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     private val REQUES_CAMERA = 1
     private var scannerView: ZXingScannerView? = null

@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.provider.MediaStore
+import android.provider.MediaStore.*
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -33,6 +34,7 @@ import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_ar.*
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION")
 class ARDetail : AppCompatActivity() {
 
     lateinit var arFragment: ArFragment
@@ -55,7 +57,7 @@ class ARDetail : AppCompatActivity() {
         arFragment = sceneform_fragment as ArFragment
         model = Uri.parse(number.plus(".sfb"))
 
-        arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
+        arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, _: MotionEvent ->
             if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
                 return@setOnTapArPlaneListener
             }
@@ -90,7 +92,7 @@ class ARDetail : AppCompatActivity() {
         }
 
         //////////////////////Record screen//////////////////////
-        buttonrecord.setOnClickListener { view: View? ->
+        buttonrecord.setOnClickListener {
             if (videoRecorder == null) {
                 videoRecorder = VideoRecorder()
                 val orientation = resources.configuration.orientation
@@ -105,15 +107,16 @@ class ARDetail : AppCompatActivity() {
                 Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show()
                 buttonrecord.setImageResource(R.drawable.rcd)
 
-                val videoPath: String = videoRecorder!!.getVideoPath()!!.getAbsolutePath()
+                //Toast video path
+                val videoPath: String = videoRecorder!!.getVideoPath()!!.absolutePath
                 Toast.makeText(this, "Video saved: $videoPath", Toast.LENGTH_SHORT).show()
 
                 // Send  notification of updated content.
                 val values = ContentValues()
-                values.put(MediaStore.Video.Media.TITLE, "Sceneform Video")
-                values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
-                values.put(MediaStore.Video.Media.DATA, videoPath)
-                contentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values)
+                values.put(Video.Media.TITLE, "Sceneform Video")
+                values.put(Video.Media.MIME_TYPE, "video/mp4")
+                values.put(Video.Media.DATA, videoPath)
+                contentResolver.insert(Video.Media.EXTERNAL_CONTENT_URI, values)
 
 
             }

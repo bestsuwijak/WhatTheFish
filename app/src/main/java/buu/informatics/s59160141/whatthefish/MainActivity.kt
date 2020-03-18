@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import buu.informatics.s59160141.whatthefish.qrcode.QRActivity
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {

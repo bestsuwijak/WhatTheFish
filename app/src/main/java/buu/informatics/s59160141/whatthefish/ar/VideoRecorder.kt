@@ -1,3 +1,5 @@
+
+
 package buu.informatics.s59160141.whatthefish.ar
 
 import android.content.res.Configuration
@@ -19,6 +21,7 @@ import java.io.IOException
  * encode the video. The quality settings can be set explicitly or simply use the CamcorderProfile
  * class to select a predefined set of parameters.
  */
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION")
 class VideoRecorder {
     // recordingVideoFlag is true when the media recorder is capturing video.
     var isRecording = false

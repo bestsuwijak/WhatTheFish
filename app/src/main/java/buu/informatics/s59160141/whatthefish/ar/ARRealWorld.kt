@@ -133,6 +133,7 @@ class ARRealWorld : AppCompatActivity() {
 //        node.worldRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
 
         node.worldPosition = Vector3(0f, 0.17f, 0f)
+        node.worldScale = Vector3(1.5f, 1.5f, 1.5f)
         node.addChild(skeletonNode)
         node.setParent(anchorNode)
         fragment.arSceneView.scene.addChild(anchorNode)
@@ -140,7 +141,7 @@ class ARRealWorld : AppCompatActivity() {
 
     }
 
-//    fun countDown() {
+    //    fun countDown() {
 //        object : CountDownTimer(30000, 100) {
 //            override fun onTick(millisUntilFinished: Long) { // Tick
 //                if (animator == null || !animator!!.isRunning) {

@@ -72,7 +72,7 @@
             android:layout_height="25dp"
             android:layout_alignTop="@+id/iconFishRelative"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ar_icon"
+            android:src="@drawable/ar"
             app:srcCompat="@mipmap/ic_launcher"
             android:visibility="gone"
             />

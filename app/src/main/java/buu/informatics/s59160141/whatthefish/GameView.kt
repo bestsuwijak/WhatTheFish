@@ -11,7 +11,7 @@ import buu.informatics.s59160141.whatthefish.other.*
 
 class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context, attributes),
     SurfaceHolder.Callback {
-    private lateinit var thread: GameThread
+    private var thread: GameThread
     private var bubble1: Bubble? = null
     private var bubble2: Bubble? = null
     private var bubble3: Bubble? = null
@@ -70,11 +70,11 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
                 )
             )
 
-        bubble1 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
-        bubble2 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
-        bubble3 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
-        bubble4 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
-        bubble5 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble6_1))
+        bubble1 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
+        bubble2 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
+        bubble3 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
+        bubble4 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
+        bubble5 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
 
         yellowFish1 =
             YellowFish(

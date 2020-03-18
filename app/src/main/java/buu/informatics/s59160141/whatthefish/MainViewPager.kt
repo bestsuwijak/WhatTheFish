@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import buu.informatics.s59160141.whatthefish.adapters.ViewPageAdapter
 import kotlinx.android.synthetic.main.activity_main_view_pager.*
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainViewPager() : AppCompatActivity() {
 
     lateinit var viewPager: ViewPager
