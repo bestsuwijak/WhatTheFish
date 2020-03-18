@@ -24,7 +24,34 @@ import kotlinx.android.synthetic.main.activity_fishdex2.*
 class Fishdex2Activity : AppCompatActivity(), fishDexView {
 
     private lateinit var binding: ActivityFishdex2Binding
-    var listArVisibled = ArrayList<Fish>()
+    private var listArVisibled = ArrayList<String>()
+    private val listfig = arrayListOf(
+        "f1",
+        "f3",
+        "f7",
+        "f8",
+        "f12",
+        "f28",
+        "f52",
+        "f53",
+        "f56",
+        "f57"
+        ,
+        "f58",
+        "f59",
+        "f60",
+        "f64",
+        "f65",
+        "f74",
+        "f75",
+        "f106",
+        "f117",
+        "f128",
+        "f131",
+        "f145",
+        "f148",
+        "f149"
+    )
     private val viewModel: FishDexViewModel by lazy {
         val activity = requireNotNull(this) {
             "You can only access the viewModel after onActivityCreated()"
@@ -43,40 +70,31 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
         binding.gridFish.layoutManager = GridLayoutManager(this, 5)
         binding.gridFish.itemAnimator = DefaultItemAnimator() as RecyclerView.ItemAnimator?
         //set adapter and get fish list
-        listArVisibled = viewModel.getFishes()
+        viewModel.getFishes()
         Log.i("test123", "fishDex2 " + listArVisibled)
 
-        buttonBack_fishdex2.setOnClickListener{
-            finish()
+        buttonBack_fishdex2.setOnClickListener {
+            Log.i("test123", "fishDex2 " + listArVisibled)
+//            finish()
         }
-        imageView4.setOnClickListener{
-            var list = ArrayList<String>()
-            var listfig = arrayListOf("f1", "f3", "f7", "f8", "f12" ,"f28" ,"f52" ,"f53" ,"f56" ,"f57"
-                ,"f58" ,"f59" ,"f60" ,"f64" ,"f65" ,"f74" ,"f75" ,"f106" ,"f117" ,"f128" ,"f131" ,"f145" ,"f148" ,"f149")
-            for (i in 0 until listArVisibled.size){
-                for(j in 0 until listfig.size){
-//                    Log.i("test123", "num" + listArVisibled[i].number.toLowerCase())
-//                    Log.i("test123", "fig" + listfig[j])
-//                    Log.i("test123", "foundfish" + listArVisibled[i].foundFish)
-                    if (listArVisibled[i].number.toLowerCase() == listfig[j] && listArVisibled[i].foundFish){
-                        list.add(listArVisibled[i].number)
-                    }
-                }
-            }
-//            Log.i("test123", "fishDex2 list" + listfig)
-//            Log.i("test123", "fishDex2 1" + listArVisibled)
-//            Log.i("test123", "fishDex2 2" + list)
+        imageView4.setOnClickListener {
             val i = Intent(this, ARRealWorld::class.java)
-            i.putExtra("number", list)
+            i.putExtra("number", listArVisibled)
             startActivityForResult(i, 9)
         }
-        buttonInformation_fishdex2.setOnClickListener{
-//            val i = Intent(this, ARTestBest::class.java)
+        buttonInformation_fishdex2.setOnClickListener {
+            //            val i = Intent(this, ARTestBest::class.java)
 //            startActivityForResult(i, 10)
         }
     }
 
     override fun setAdapterDataGrid(items: List<Fish>) {
+        for (element in items) {
+            if (listfig.indexOf(element.number.toLowerCase()) != -1 && element.foundFish) {
+                listArVisibled.add(element.number)
+            }
+        }
+
         gridFish.adapter = GridViewAdapter(this, items)
 
         //set text count found fish
@@ -85,7 +103,8 @@ class Fishdex2Activity : AppCompatActivity(), fishDexView {
         val spannable = SpannableStringBuilder("พบ  ตัว ทั้งหมด ${sizeFish} ตัว")
         spannable.setSpan(
             ForegroundColorSpan(Color.YELLOW),
-            0, 7, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            0, 7, Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+        )
 
         spannable.insert(3, countFoundFish.toString())
         countFoundFishTextView.text = spannable
