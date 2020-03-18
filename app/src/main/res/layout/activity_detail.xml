@@ -97,7 +97,7 @@
             android:fontFamily="@font/roboto_bold"
             android:text="TextView"
             android:textColor="@color/white"
-            android:textSize="@dimen/font36sp"
+            android:textSize="@dimen/font28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/buttonInformation_detail"
             app:layout_constraintStart_toEndOf="@+id/buttonBack_detail"

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package buu.informatics.s59160141.whatthefish.Intro
 
 
@@ -22,6 +24,7 @@ import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.database.getDatabase
 import buu.informatics.s59160141.whatthefish.databinding.FragmentIntro3Binding
 import buu.informatics.s59160141.whatthefish.repository.FishesRepository
+import kotlinx.android.synthetic.main.fragment_intro3.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -53,35 +56,37 @@ class Intro3 : Fragment() {
             inflater,
             R.layout.fragment_intro3, container, false
         )
-        countDown()
+        checkInternet()
+
         return binding.root
     }
 
-    fun countDown() {
-        object : CountDownTimer(3000, 1000) {
-            override fun onTick(millisUntilFinished: Long) { // Tick
-
+    fun checkInternet(){
+        val connectivityManager = this@Intro3.context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+        if (isConnected){
+            viewModel.refreshDataFromRepository()
+            findNavController().navigate(R.id.action_intro3_to_mainFragment)
+        }else{
+//                    Log.i("test123", "device not conect internet")
+            val builder = AlertDialog.Builder(this@Intro3.context)
+            builder.setTitle("Warnning")
+            builder.setMessage("your device not conect internet")
+            builder.setOnDismissListener {
+                checkInternet()
             }
-
-            override fun onFinish() { // Finish
-                val connectivityManager = this@Intro3.context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-                val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
-                val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
-                if (isConnected){
-                    viewModel.refreshDataFromRepository()
-                    findNavController().navigate(R.id.action_intro3_to_mainFragment)
-                }else{
-                    Log.i("test123", "device not conect internet")
-                    val builder = AlertDialog.Builder(this@Intro3.context)
-                    builder.setTitle("Warnning")
-                    builder.setMessage("your device not conect internet")
-                    builder.setPositiveButton("OK") { dialog, which ->
-                        exitProcess(-1)
-                    }
-                    builder.show()
-                }
+            builder.setPositiveButton("OK") { dialog, which ->
+//                checkInternet()
             }
-        }.start()
+            builder.show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("testIntro3", "resume")
+        checkInternet()
     }
 
 }
