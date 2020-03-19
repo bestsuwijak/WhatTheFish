@@ -8,19 +8,60 @@
     android:layout_height="match_parent"
     tools:context=".ar.ARRealWorld">
 
-    <Button
-        android:id="@+id/refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:text="Refresh" />
-
     <fragment
         android:id="@+id/sceneform_fragment_ar2"
         android:name="com.google.ar.sceneform.ux.ArFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/buttonBack_ar2"
+        android:layout_width="@dimen/size50dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="@dimen/size10dp"
+        android:layout_marginTop="@dimen/size10dp"
+        android:src="@drawable/backbutton2"/>
+
+    <ImageView
+        android:id="@+id/record_button"
+        android:layout_width="@dimen/size60dp"
+        android:layout_height="@dimen/size60dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/size25dp"
+        android:src="@drawable/rcd"/>
+
+    <ImageView
+        android:id="@+id/info_button"
+        android:layout_width="@dimen/size25dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_toLeftOf="@+id/refresh_button"
+        android:layout_marginRight="@dimen/size25dp"
+        android:layout_marginTop="@dimen/size10dp"
+        android:src="@drawable/i"/>
+
+    <ImageView
+        android:id="@+id/refresh_button"
+        android:layout_width="@dimen/size25dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_toLeftOf="@+id/fullscreen_ar2_button"
+        android:layout_marginRight="@dimen/size25dp"
+        android:layout_marginTop="@dimen/size10dp"
+        android:src="@drawable/resfresh"/>
+
+    <ImageView
+        android:id="@+id/fullscreen_ar2_button"
+        android:layout_width="@dimen/size25dp"
+        android:layout_height="@dimen/size25dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/size10dp"
+        android:layout_marginRight="@dimen/size25dp"
+        android:src="@drawable/icon_fullscreen"
+        />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listAR_RealWorld"

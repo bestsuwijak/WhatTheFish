@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +29,7 @@ class ARRealWorld : AppCompatActivity() {
     var model = Uri.parse("f74.sfb")
     private var renderable = ArrayList<ModelRenderable>()
     private var animator = ArrayList<ModelAnimator>()
-    var check = true
+    var isFullscreenPublic = false
     private var andy = ArrayList<F74>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,34 +43,69 @@ class ARRealWorld : AppCompatActivity() {
         arFragment = sceneform_fragment_ar2 as ArFragment
         recyclerARRealWorld = listAR_RealWorld
         recyclerARRealWorld.adapter = ArRealWorldAdapter(this, number, this)
-        refresh.setOnClickListener {
+        refresh_button.setOnClickListener {
             refresh()
         }
-        arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
-            if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
-                return@setOnTapArPlaneListener
-            }
-            if (check) {
-                val anchor = hitResult.createAnchor()
-//                val session = arFragment.arSceneView.session
-//                val position = floatArrayOf(0f, 0f, -0.75f)
-//                val rotation = floatArrayOf(0f, 0f, 0f, 1f)
-//                val anchor = session.createAnchor(Pose(position, rotation))
-                placeObject(arFragment, anchor, model)
-            } else {
-                Log.i("test123", "check is false")
-//                andy[0].startWalking()
-//                andy[1].startWalking()
-            }
+        buttonBack_ar2.setOnClickListener {
+            refresh()
+            finish()
         }
+        fullscreen_ar2_button.setOnClickListener {
+            fullscreen(isFullscreenPublic)
+        }
+        info_button.setOnClickListener {
+
+        }
+//        arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
+//            if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
+//                return@setOnTapArPlaneListener
+//            }
+//            if (check) {
+//                val anchor = hitResult.createAnchor()
+////                val session = arFragment.arSceneView.session
+////                val position = floatArrayOf(0f, 0f, -0.75f)
+////                val rotation = floatArrayOf(0f, 0f, 0f, 1f)
+////                val anchor = session.createAnchor(Pose(position, rotation))
+//                placeObject(arFragment, anchor, model)
+//            } else {
+//                Log.i("test123", "check is false")
+////                andy[0].startWalking()
+////                andy[1].startWalking()
+//            }
+//        }
 
 //        countDown()
 
 //        animate_kick_button.setOnClickListener { animateModel("Armature|ArmatureAction") }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        refresh()
+        finish()
+    }
+
+    private fun fullscreen(isFullScreen: Boolean) {
+        isFullscreenPublic =
+            if (isFullScreen) {
+                fullscreen_ar2_button.setImageResource(R.drawable.icon_fullscreen)
+                refresh_button.visibility = View.VISIBLE
+                info_button.visibility = View.VISIBLE
+                record_button.visibility = View.VISIBLE
+                recyclerARRealWorld.visibility = View.VISIBLE
+                false
+            } else {
+                fullscreen_ar2_button.setImageResource(R.drawable.icon_exit_fullscreen)
+                refresh_button.visibility = View.INVISIBLE
+                info_button.visibility = View.INVISIBLE
+                record_button.visibility = View.INVISIBLE
+                recyclerARRealWorld.visibility = View.INVISIBLE
+                true
+            }
+    }
+
     private fun refresh() {
-        for (i in 0 until andy.size){
+        for (i in 0 until andy.size) {
             andy[i].loopTimerAnimationFishVarible.cancel()
             andy[i].loopTimerMovefishVarible.cancel()
             arFragment.arSceneView.scene.onRemoveChild(andy[i].demo)
@@ -116,23 +152,23 @@ class ARRealWorld : AppCompatActivity() {
 //    }
 
     private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
-        if (check) {
-            ModelRenderable.builder()
-                .setSource(fragment.context, model)
-                .build()
-                .thenAccept {
-                    renderable.add(it)
-                    addToScene(fragment, anchor, it)
-                }
-                .exceptionally {
-                    val builder = AlertDialog.Builder(this)
-                    builder.setMessage(it.message).setTitle("Error")
-                    val dialog = builder.create()
-                    dialog.show()
-                    return@exceptionally null
-                }
+//        if (check) {
+        ModelRenderable.builder()
+            .setSource(fragment.context, model)
+            .build()
+            .thenAccept {
+                renderable.add(it)
+                addToScene(fragment, anchor, it)
+            }
+            .exceptionally {
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage(it.message).setTitle("Error")
+                val dialog = builder.create()
+                dialog.show()
+                return@exceptionally null
+            }
 //                check = false                                                                             <---- deleted now
-        }
+//        }
     }
 
     private fun addToScene(fragment: ArFragment, anchor: Anchor, renderable: Renderable) {
