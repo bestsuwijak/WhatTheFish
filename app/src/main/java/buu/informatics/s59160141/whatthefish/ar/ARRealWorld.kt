@@ -1,10 +1,14 @@
 package buu.informatics.s59160141.whatthefish.ar
 
+import android.content.ContentValues
+import android.media.CamcorderProfile
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +23,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
+import kotlinx.android.synthetic.main.activity_ar.*
 import kotlinx.android.synthetic.main.activity_ar2.*
 import kotlin.collections.ArrayList
 
@@ -31,6 +36,10 @@ class ARRealWorld : AppCompatActivity() {
     private var animator = ArrayList<ModelAnimator>()
     var isFullscreenPublic = false
     private var andy = ArrayList<F74>()
+
+    //////////////////////Record screen//////////////////////
+    private var videoRecorder: VideoRecorder? = null
+    ////////////////////////////////////////////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +54,34 @@ class ARRealWorld : AppCompatActivity() {
         recyclerARRealWorld.adapter = ArRealWorldAdapter(this, number, this)
         refresh_button.setOnClickListener {
             refresh()
+        }
+        record_button.setOnClickListener {
+            if (videoRecorder == null) {
+                videoRecorder = VideoRecorder()
+                val orientation = resources.configuration.orientation
+                videoRecorder!!.setVideoQuality(CamcorderProfile.QUALITY_2160P, orientation)
+                videoRecorder!!.setSceneView(arFragment.arSceneView)
+            }
+            val isRecording: Boolean = videoRecorder!!.onToggleRecord()
+            if (isRecording) {
+                Toast.makeText(this, "Started", Toast.LENGTH_SHORT).show()
+                record_button.setImageResource(R.drawable.rcd2)
+            } else {
+                Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show()
+                record_button.setImageResource(R.drawable.rcd)
+
+                //Toast video path
+                val videoPath: String = videoRecorder!!.getVideoPath()!!.absolutePath
+                Toast.makeText(this, "Video saved in gallery or $videoPath", Toast.LENGTH_LONG)
+                    .show()
+
+                // Send  notification of updated content.
+                val values = ContentValues()
+                values.put(MediaStore.Video.Media.TITLE, "Sceneform Video")
+                values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
+                values.put(MediaStore.Video.Media.DATA, videoPath)
+                contentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values)
+            }
         }
         buttonBack_ar2.setOnClickListener {
             refresh()

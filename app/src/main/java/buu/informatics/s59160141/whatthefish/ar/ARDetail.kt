@@ -109,7 +109,7 @@ class ARDetail : AppCompatActivity() {
 
                 //Toast video path
                 val videoPath: String = videoRecorder!!.getVideoPath()!!.absolutePath
-                Toast.makeText(this, "Video saved: $videoPath", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Video saved in gallery or $videoPath", Toast.LENGTH_LONG).show()
 
                 // Send  notification of updated content.
                 val values = ContentValues()
