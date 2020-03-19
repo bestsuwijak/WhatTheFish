@@ -109,6 +109,7 @@ class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         scannerView?.startCamera()
 
         if (!result.isNullOrEmpty()) {
+            scannerView?.stopCamera()
             val fish = qRViewModel.searchQR(result)
 
             val thName = fish.thNames as ArrayList

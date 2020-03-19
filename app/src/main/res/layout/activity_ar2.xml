@@ -30,7 +30,7 @@
         android:scrollbars="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size70dp"
-        app:spanCount="5"
+        app:spanCount="24"
         android:background="@color/gray_opacity90"
         android:layout_alignParentBottom="true">
 
