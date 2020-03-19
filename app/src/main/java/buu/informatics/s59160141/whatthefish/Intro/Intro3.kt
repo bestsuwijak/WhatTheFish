@@ -48,8 +48,6 @@ class Intro3 : Fragment() {
             inflater,
             R.layout.fragment_intro3, container, false
         )
-        checkInternet()
-
         return binding.root
     }
 
@@ -75,11 +73,15 @@ class Intro3 : Fragment() {
 //            builder.setTitle(R.string.intro3_title)
             builder.setMessage(R.string.intro3_message)
             builder.setOnCancelListener{
-                checkInternet()
+                if (isConnected){
+                    viewModel.refreshDataFromRepository()
+                    findNavController().navigate(R.id.action_intro3_to_mainFragment)
+                }
             }
             builder.setPositiveButton(R.string.intro3_button) { dialog, which ->
                 val intent = Intent(Settings.ACTION_SETTINGS)
                 startActivity(intent)
+//                dialog.cancel()
             }
             builder.show()
         }
