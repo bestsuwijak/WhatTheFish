@@ -3,35 +3,27 @@
 package buu.informatics.s59160141.whatthefish.Intro
 
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import android.os.CountDownTimer
+import android.provider.Settings
 import android.util.Log
-import androidx.fragment.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.AndroidViewModel
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import buu.informatics.s59160141.whatthefish.R
-import buu.informatics.s59160141.whatthefish.database.getDatabase
 import buu.informatics.s59160141.whatthefish.databinding.FragmentIntro3Binding
-import buu.informatics.s59160141.whatthefish.repository.FishesRepository
-import kotlinx.android.synthetic.main.fragment_intro3.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
-import timber.log.Timber
-import java.io.IOException
-import kotlin.system.exitProcess
+
 
 /**
  * A simple [Fragment] subclass.
@@ -61,6 +53,7 @@ class Intro3 : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ResourceType")
     fun checkInternet(){
         val connectivityManager = this@Intro3.context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
@@ -71,13 +64,22 @@ class Intro3 : Fragment() {
         }else{
 //                    Log.i("test123", "device not conect internet")
             val builder = AlertDialog.Builder(this@Intro3.context)
-            builder.setTitle("Warnning")
-            builder.setMessage("your device not conect internet")
-            builder.setOnDismissListener {
+
+            val title: TextView = TextView(context)
+            title.setText(R.string.intro3_title)
+            title.setPadding(30, 30, 0, 10)
+            title.setTextSize(20F)
+            title.setTextColor(resources.getColor(R.color.Titleblack))
+            builder.setCustomTitle(title)
+
+//            builder.setTitle(R.string.intro3_title)
+            builder.setMessage(R.string.intro3_message)
+            builder.setOnCancelListener{
                 checkInternet()
             }
-            builder.setPositiveButton("OK") { dialog, which ->
-//                checkInternet()
+            builder.setPositiveButton(R.string.intro3_button) { dialog, which ->
+                val intent = Intent(Settings.ACTION_SETTINGS)
+                startActivity(intent)
             }
             builder.show()
         }
