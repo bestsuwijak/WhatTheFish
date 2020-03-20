@@ -39,8 +39,8 @@ class MainFragment : Fragment() {
         binding.buttonInformation.setOnClickListener{
 //            showPopup()
             val images:ArrayList<Int> = arrayListOf(
-                R.drawable.popupmain1, R.drawable.popupmain2,
-                R.drawable.popupmain3, R.drawable.popupmain4)
+                R.drawable.i_main_1, R.drawable.i_main_2,
+                R.drawable.i_main_3, R.drawable.i_main_4)
             val i = Intent(context, MainViewPager::class.java)
             i.putExtra("images", images)
             startActivityForResult(i, 2)

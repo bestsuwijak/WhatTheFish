@@ -36,6 +36,7 @@
             android:id="@+id/viewPager"
             android:layout_width="442dp"
             android:layout_height="239dp"
+            android:layout_marginBottom="@dimen/size20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

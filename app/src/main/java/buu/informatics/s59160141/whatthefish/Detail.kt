@@ -40,7 +40,7 @@ class Detail : AppCompatActivity() {
 
         buttonInformation_detail.setOnClickListener{
             val images:ArrayList<Int> = arrayListOf(
-                R.drawable.popup_qr)
+                R.drawable.i_detail_1, R.drawable.i_detail_2, R.drawable.i_detail_3)
             val i = Intent(this, MainViewPager::class.java)
             i.putExtra("images", images)
             startActivityForResult(i, 5)

@@ -1,17 +1,18 @@
 package buu.informatics.s59160141.whatthefish.ar
 
 import android.content.ContentValues
+import android.content.Intent
 import android.media.CamcorderProfile
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import buu.informatics.s59160141.whatthefish.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.ArRealWorldAdapter
 import com.google.ar.core.*
@@ -23,7 +24,6 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
-import kotlinx.android.synthetic.main.activity_ar.*
 import kotlinx.android.synthetic.main.activity_ar2.*
 import kotlin.collections.ArrayList
 
@@ -90,8 +90,13 @@ class ARRealWorld : AppCompatActivity() {
         fullscreen_ar2_button.setOnClickListener {
             fullscreen(isFullscreenPublic)
         }
-        info_button.setOnClickListener {
-
+        buttoninformation_ar2.setOnClickListener {
+            val images:ArrayList<Int> = arrayListOf(
+                R.drawable.i_ar2_1, R.drawable.i_ar2_2,
+                R.drawable.i_ar2_3, R.drawable.i_ar2_4)
+            val i = Intent(this, MainViewPager::class.java)
+            i.putExtra("images", images)
+            startActivityForResult(i, 22)
         }
 //        arFragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
 //            if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
@@ -127,14 +132,14 @@ class ARRealWorld : AppCompatActivity() {
             if (isFullScreen) {
                 fullscreen_ar2_button.setImageResource(R.drawable.icon_fullscreen)
                 refresh_button.visibility = View.VISIBLE
-                info_button.visibility = View.VISIBLE
+                buttoninformation_ar2.visibility = View.VISIBLE
                 record_button.visibility = View.VISIBLE
                 recyclerARRealWorld.visibility = View.VISIBLE
                 false
             } else {
                 fullscreen_ar2_button.setImageResource(R.drawable.icon_exit_fullscreen)
                 refresh_button.visibility = View.INVISIBLE
-                info_button.visibility = View.INVISIBLE
+                buttoninformation_ar2.visibility = View.INVISIBLE
                 record_button.visibility = View.INVISIBLE
                 recyclerARRealWorld.visibility = View.INVISIBLE
                 true
@@ -218,7 +223,7 @@ class ARRealWorld : AppCompatActivity() {
 //        node.worldRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 180f)
 
         node.worldPosition = Vector3(0f, 0.17f, 0f)
-        node.worldScale = Vector3(1.5f, 1.5f, 1.5f)
+        node.worldScale = Vector3(1f, 1f, 1f)
         node.addChild(skeletonNode)
         node.setParent(anchorNode)
         fragment.arSceneView.scene.addChild(anchorNode)

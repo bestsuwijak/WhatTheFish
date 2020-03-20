@@ -52,9 +52,7 @@ class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             finish()
         }
         buttonInformation_qr.setOnClickListener {
-            val images: ArrayList<Int> = arrayListOf(
-                R.drawable.popup_qr
-            )
+            val images: ArrayList<Int> = arrayListOf(R.drawable.i_qr)
             val i = Intent(this, MainViewPager::class.java)
             i.putExtra("images", images)
             startActivityForResult(i, 3)

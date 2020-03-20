@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import buu.informatics.s59160141.whatthefish.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.GridViewAdapter
 import buu.informatics.s59160141.whatthefish.ar.ARRealWorld
@@ -81,8 +82,12 @@ class Fishdex2Activity : AppCompatActivity(), fishDex2View {
             startActivityForResult(i, 9)
         }
         buttonInformation_fishdex2.setOnClickListener {
-            //            val i = Intent(this, ARTestBest::class.java)
-//            startActivityForResult(i, 10)
+            val images:ArrayList<Int> = arrayListOf(
+                R.drawable.i_fish_dex_1, R.drawable.i_fish_dex_2,
+                R.drawable.i_fish_dex_3, R.drawable.i_fish_dex_4)
+            val i = Intent(this, MainViewPager::class.java)
+            i.putExtra("images", images)
+            startActivityForResult(i, 21)
         }
     }
 

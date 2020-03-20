@@ -26,7 +26,6 @@ class MainViewPager() : AppCompatActivity() {
 
         Log.i("popup", "inMainViewPager")
 
-//        val v = layoutInflater.inflate(R.layout.activity_main_view_pager, null)
         viewPager = findViewById<View>(R.id.viewPager) as ViewPager
         val adapter =
             ViewPageAdapter(
