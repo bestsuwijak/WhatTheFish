@@ -1,13 +1,12 @@
-package buu.informatics.s59160141.whatthefish.other
+package buu.informatics.s59160141.whatthefish.gameview
 
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import kotlin.math.abs
 import android.graphics.RectF
 
 
-class YellowFish (var image: Bitmap, val fishType: Int) {
+class YellowFishR2L (var image: Bitmap, val fishType: Int) {
     var speed = 0f
     var x = 0f
     var y = 0f
@@ -16,7 +15,6 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
     var t: Int = 0
     var pw: Int = 0
     var ph: Int = 0
-
 
 //    val left = 100f
 //    val top = 300f
@@ -33,8 +31,11 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
 
         speed = ranSpeed()
 
-        x = (200..1000).random().toFloat() * (-1)
+        x = screenWidth + (200..1000).random().toFloat()
         y = randomBorn().toFloat()
+
+        pw = screenWidth / 7
+        ph = screenHeight / 6
 
         when (fishType) {
             1 -> {
@@ -54,7 +55,6 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
                 ph = screenHeight / 3
             }
         }
-
     }
 
     private fun randomBorn(): Int {
@@ -82,17 +82,17 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
 //        if (y > screenHeight - image.height || y < image.height) {
 //            yVelocity = yVelocity * -1
 //        }
-        if(x - screenWidth > 400){
-            x = (200..5000).random().toFloat() * (-1)
+        if(x < -400f){
+            x = screenWidth + (200..1000).random().toFloat()
             t = 0
             y = randomBorn().toFloat()
             speed = ranSpeed()
         }
 
         if (t == 1){
-            x += (7..10).random()
+            x -= (7..10).random()
         }else{
-            x += speed
+            x -= speed
         }
 //        x += 1
 //        y += 0
@@ -108,7 +108,7 @@ class YellowFish (var image: Bitmap, val fishType: Int) {
     }
 
     fun ranSpeed(): Float{
-        val s = listOf(0.39,0.52,0.74,0.3,0.5,0.7,1.13,1.18,1.14,1.2,1.35,1.38,1.4,1.52,1.57,2.05,2.03,2.09,3.07,3.1,5.0)
+        val s = listOf(0.32,0.55,0.73,0.3,0.5,0.7,1.13,1.18,1.14,1.2,1.35,1.38,1.4,1.52,1.57,2.05,2.03,2.09,3.07,3.1,5.0)
         return s.random().toFloat()
     }
 }

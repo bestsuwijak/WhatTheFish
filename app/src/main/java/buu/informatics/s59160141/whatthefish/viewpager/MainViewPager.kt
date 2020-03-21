@@ -1,4 +1,4 @@
-package buu.informatics.s59160141.whatthefish
+package buu.informatics.s59160141.whatthefish.viewpager
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.viewpager.widget.ViewPager
+import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.ViewPageAdapter
 import kotlinx.android.synthetic.main.activity_main_view_pager.*
 

@@ -3,7 +3,6 @@ package buu.informatics.s59160141.whatthefish.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +12,12 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import buu.informatics.s59160141.whatthefish.Detail
+import buu.informatics.s59160141.whatthefish.detail.Detail
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.models.Fish
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.grid_view_item.view.*
 import kotlinx.coroutines.*
-import org.w3c.dom.Text
 import java.util.*
 
 class GridViewAdapter(private val context: Context, private val fish: List<Fish>) :

@@ -19,15 +19,7 @@ class MainActivity : AppCompatActivity(){
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_main)
-
     }
-
-    fun startScan(){
-//        val i = Intent(this@MainActivity, QRActivity::class.java)
-//        this@MainActivity.startActivityForResult(i, 1)
-    }
-
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

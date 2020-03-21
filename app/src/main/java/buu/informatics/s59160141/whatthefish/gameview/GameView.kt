@@ -1,4 +1,4 @@
-package buu.informatics.s59160141.whatthefish
+package buu.informatics.s59160141.whatthefish.gameview
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import buu.informatics.s59160141.whatthefish.other.*
+import buu.informatics.s59160141.whatthefish.R
 
 class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context, attributes),
     SurfaceHolder.Callback {
@@ -66,15 +66,25 @@ class GameView(context: Context, attributes: AttributeSet) : SurfaceView(context
             Background(
                 BitmapFactory.decodeResource(
                     resources,
-                    R.drawable.bgresize
+                    R.drawable.background
                 )
             )
 
-        bubble1 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
-        bubble2 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
-        bubble3 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
-        bubble4 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
-        bubble5 = Bubble(BitmapFactory.decodeResource(resources, R.drawable.bubble))
+        bubble1 = Bubble(BitmapFactory.decodeResource(resources,
+            R.drawable.bubble
+        ))
+        bubble2 = Bubble(BitmapFactory.decodeResource(resources,
+            R.drawable.bubble
+        ))
+        bubble3 = Bubble(BitmapFactory.decodeResource(resources,
+            R.drawable.bubble
+        ))
+        bubble4 = Bubble(BitmapFactory.decodeResource(resources,
+            R.drawable.bubble
+        ))
+        bubble5 = Bubble(BitmapFactory.decodeResource(resources,
+            R.drawable.bubble
+        ))
 
         yellowFish1 =
             YellowFish(

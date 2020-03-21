@@ -1,21 +1,15 @@
 package buu.informatics.s59160141.whatthefish.qrcode
 
 import android.app.Application
-import android.content.Context
-import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import buu.informatics.s59160141.whatthefish.Detail
 import buu.informatics.s59160141.whatthefish.database.getDatabase
 import buu.informatics.s59160141.whatthefish.models.Fish
 import buu.informatics.s59160141.whatthefish.repository.FishesRepository
-import buu.informatics.s59160141.whatthefish.search.MainView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
-import timber.log.Timber
 import java.lang.IllegalArgumentException
 
 class QRViewModel(application: Application) : AndroidViewModel(application) {

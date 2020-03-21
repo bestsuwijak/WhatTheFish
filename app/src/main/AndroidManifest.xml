@@ -35,10 +35,10 @@
             android:name=".fishdex.FishDex1Activity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Detail"
+            android:name=".detail.Detail"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainViewPager"
+            android:name=".viewpager.MainViewPager"
             android:screenOrientation="landscape" />
         <activity
             android:name=".qrcode.QRActivity"

@@ -70,7 +70,7 @@ class F74(demo: Node, ren: ModelRenderable?) {
 //        val xx = (0..180).random().toFloat()
         val x = (-99..99).random() / 100f
         val z = (10..30).random() / 10f * (-1)
-        val y = (-60..60).random() / 100f
+        val y = (-60..50).random() / 100f
         var angle = Vector3.angleBetweenVectors(demo.worldPosition, Vector3(x, y, z))
         Log.i("testRotate", "angle:" + angle)
         if (z > demo.worldPosition.z && x > 0) {

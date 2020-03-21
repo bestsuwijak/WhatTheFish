@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/searchbackground"
-        tools:context=".Detail">
+        tools:context=".detail.Detail">
 
         <ImageView
             android:id="@+id/buttonInformation_detail"

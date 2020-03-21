@@ -20,9 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:background="@drawable/shap_white"
-        android:textColor="@color/black"
         android:padding="@dimen/size10dp"
-        android:text="TextView" />
+        android:text="00:00"
+        android:textColor="@color/black"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/buttonBack_ar2"

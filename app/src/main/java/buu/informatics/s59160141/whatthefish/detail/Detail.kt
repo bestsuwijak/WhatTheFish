@@ -1,4 +1,4 @@
-package buu.informatics.s59160141.whatthefish
+package buu.informatics.s59160141.whatthefish.detail
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,8 +8,10 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
+import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.DetailViewPageAdapter
 import buu.informatics.s59160141.whatthefish.ar.ARDetail
+import buu.informatics.s59160141.whatthefish.viewpager.MainViewPager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.coroutines.*
@@ -40,7 +42,10 @@ class Detail : AppCompatActivity() {
 
         buttonInformation_detail.setOnClickListener{
             val images:ArrayList<Int> = arrayListOf(
-                R.drawable.i_detail_1, R.drawable.i_detail_2, R.drawable.i_detail_3)
+                R.drawable.i_detail_1,
+                R.drawable.i_detail_2,
+                R.drawable.i_detail_3
+            )
             val i = Intent(this, MainViewPager::class.java)
             i.putExtra("images", images)
             startActivityForResult(i, 5)
@@ -117,11 +122,21 @@ class Detail : AppCompatActivity() {
     fun newFish(nameth: String, icon: String, shadow: String) {
         detailLayout.visibility = View.GONE
         newFindingLayout.visibility = View.VISIBLE
-        val fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
-        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        val slide = AnimationUtils.loadAnimation(this, R.anim.slide_bot_to_top)
-        val landingFish = AnimationUtils.loadAnimation(this, R.anim.zoom_out_and_fade_in)
-        val zoomIn = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
+        val fadeOut = AnimationUtils.loadAnimation(this,
+            R.anim.fade_out
+        )
+        val fadeIn = AnimationUtils.loadAnimation(this,
+            R.anim.fade_in
+        )
+        val slide = AnimationUtils.loadAnimation(this,
+            R.anim.slide_bot_to_top
+        )
+        val landingFish = AnimationUtils.loadAnimation(this,
+            R.anim.zoom_out_and_fade_in
+        )
+        val zoomIn = AnimationUtils.loadAnimation(this,
+            R.anim.zoom_in
+        )
         imageBackground.visibility = View.GONE
         fadeIn.duration = 1000L
         fadeOut.duration = 250L

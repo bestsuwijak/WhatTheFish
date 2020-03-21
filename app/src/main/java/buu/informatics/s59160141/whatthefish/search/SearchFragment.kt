@@ -42,8 +42,6 @@ class SearchFragment : Fragment(), MainView {
             .get(SearchFragmentViewModel::class.java)
     }
 
-    val presenter: MainPresenter = MainPresenter(this)
-
     lateinit var binding: FragmentSearchBinding
 
     override fun onCreateView(

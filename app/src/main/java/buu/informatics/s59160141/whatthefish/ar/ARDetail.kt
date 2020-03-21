@@ -9,15 +9,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.provider.MediaStore
-import android.provider.MediaStore.*
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import buu.informatics.s59160141.whatthefish.MainViewPager
+import buu.informatics.s59160141.whatthefish.viewpager.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
@@ -47,6 +45,10 @@ class ARDetail : AppCompatActivity() {
 
     //////////////////////Record screen//////////////////////
     private var videoRecorder: VideoRecorder? = null
+    lateinit var timerObject:CountDownTimer
+    var timer = 0
+    var minute = ""
+    var second = ""
     ////////////////////////////////////////////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,24 +103,9 @@ class ARDetail : AppCompatActivity() {
             }
             val isRecording: Boolean = videoRecorder!!.onToggleRecord()
             if (isRecording) {
-                Toast.makeText(this, "Started", Toast.LENGTH_SHORT).show()
-                    buttonrecord.setImageResource(R.drawable.rcd2)
+                startRecord()
             } else {
-                Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show()
-                buttonrecord.setImageResource(R.drawable.rcd)
-
-                //Toast video path
-                val videoPath: String = videoRecorder!!.getVideoPath()!!.absolutePath
-                Toast.makeText(this, "Video saved in gallery or $videoPath", Toast.LENGTH_LONG).show()
-
-                // Send  notification of updated content.
-                val values = ContentValues()
-                values.put(Video.Media.TITLE, "Sceneform Video")
-                values.put(Video.Media.MIME_TYPE, "video/mp4")
-                values.put(Video.Media.DATA, videoPath)
-                contentResolver.insert(Video.Media.EXTERNAL_CONTENT_URI, values)
-
-
+                stopRecord()
             }
         }
         /////////////////////////////////////////////////////////
@@ -198,9 +185,26 @@ class ARDetail : AppCompatActivity() {
         }
     }
 
-    //////////////////////Record screen//////////////////////
+    override fun onPause() {
+        super.onPause()
+        if(arFragment.isResumed){
+            arFragment.onPause()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val isRecording: Boolean = videoRecorder!!.onToggleRecord()
+        if (!isRecording) {
+            stopRecord()
+        }
+    }
+
     override fun onResume() {
         super.onResume()
+        if(!arFragment.isResumed){
+            arFragment.onResume()
+        }
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
@@ -208,5 +212,63 @@ class ARDetail : AppCompatActivity() {
             )
         }
     }
+
+    //////////////////////Record screen//////////////////////
+
+    fun timer() {
+        timerObject = object : CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) { // Tick
+                timer++
+                updateTextRecord()
+            }
+
+            override fun onFinish() { // Finish
+                timerObject.start()
+            }
+        }
+    }
+
+    fun updateTextRecord(){
+        if(timer/60 in 0..9){ minute = "0${timer/60}"
+        }
+        else{ minute = "${timer/60}"
+        }
+        if(timer%60 in 0..9){ second = "0${timer%60}"
+        }
+        else{ second = "${timer%60}"
+        }
+
+        timeRecord_ar1.text = ("${minute} : ${second}")
+    }
+
+    fun startRecord(){
+//        Toast.makeText(this, "Started", Toast.LENGTH_SHORT).show()
+        buttonrecord.setImageResource(R.drawable.rcd2)
+        timeRecord_ar1.visibility = View.VISIBLE
+        timer()
+        timerObject.start()
+    }
+
+    fun stopRecord(){
+//        Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show()
+        buttonrecord.setImageResource(R.drawable.rcd)
+        timerObject.cancel()
+        timeRecord_ar1.visibility = View.INVISIBLE
+        timer = 0
+
+
+        //Toast video path
+        val videoPath: String = videoRecorder!!.getVideoPath()!!.absolutePath
+        Toast.makeText(this, "Video saved in gallery or $videoPath", Toast.LENGTH_LONG).show()
+
+        // Send  notification of updated content.
+        val values = ContentValues()
+        values.put(MediaStore.Video.Media.TITLE, "Sceneform Video")
+        values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
+        values.put(MediaStore.Video.Media.DATA, videoPath)
+        contentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values)
+    }
     ////////////////////////////////////////////////////////
+
+
 }

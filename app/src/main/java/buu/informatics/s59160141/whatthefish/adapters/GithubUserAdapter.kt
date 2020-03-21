@@ -2,7 +2,6 @@ package buu.informatics.s59160141.whatthefish.adapters
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import buu.informatics.s59160141.whatthefish.Detail
+import buu.informatics.s59160141.whatthefish.detail.Detail
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.models.Fish
 import buu.informatics.s59160141.whatthefish.search.SearchFragment

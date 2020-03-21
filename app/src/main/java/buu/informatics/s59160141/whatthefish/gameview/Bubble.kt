@@ -1,4 +1,4 @@
-package buu.informatics.s59160141.whatthefish.other
+package buu.informatics.s59160141.whatthefish.gameview
 
 import android.content.res.Resources
 import android.graphics.Bitmap

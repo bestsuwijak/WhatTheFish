@@ -1,8 +1,7 @@
-package buu.informatics.s59160141.whatthefish.other
+package buu.informatics.s59160141.whatthefish.gameview
 
 import android.view.SurfaceHolder
 import android.graphics.Canvas
-import buu.informatics.s59160141.whatthefish.GameView
 
 class GameThread (private val surfaceHolder: SurfaceHolder, private val gameView: GameView) : Thread(){
     private var running: Boolean = false

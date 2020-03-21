@@ -7,14 +7,13 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import buu.informatics.s59160141.whatthefish.MainViewPager
+import buu.informatics.s59160141.whatthefish.viewpager.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.adapters.GridViewAdapter
 import buu.informatics.s59160141.whatthefish.ar.ARRealWorld

@@ -2,18 +2,15 @@ package buu.informatics.s59160141.whatthefish.main
 
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
-import buu.informatics.s59160141.whatthefish.Detail
-import buu.informatics.s59160141.whatthefish.MainViewPager
+import buu.informatics.s59160141.whatthefish.viewpager.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.databinding.FragmentMainBinding
 import buu.informatics.s59160141.whatthefish.fishdex.FishDex1Activity
