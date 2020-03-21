@@ -19,7 +19,11 @@
     <string name="fishdex_label">พิพิธภัณฑ์สัตว์น้ำ</string>
     <string name="fishdex2_head">สถาบันวิทยาศาสตร์ทางทะเล มหาวิทยาลัยบูรพา</string>
     <string name="card1">สถาบันวิทยาศาสตร์ทางทะเลมหาวิทยาลัยบูรพา</string>
-    <string name="intro3_title">ไม่มีการเชื่อมต่อเครือข่ายอินเทอร์เน็ต</string>
+    <string name="intro3_title">ไม่มีการเชื่อมต่อเครือข่ายอินเทอร์เน็ต !</string>
     <string name="intro3_message">กรุณาเชื่อมต่อเครือข่ายอินเทอร์เน็ต</string>
     <string name="intro3_button">ไปที่ตั้งค่า</string>
+    <string name="alert_click_detec_title">ขออภัย !</string>
+    <string name="alert_click_detec_messagw">Feature นี้ไม่พร้อมใช้งานในขณะนี้</string>
+    <string name="intro3_loadText">กำลังโหลดข้อมูลหลัก</string>
+    <string name="alert_qrcode">QR-CODE ไม่ถูกต้อง</string>
 </resources>

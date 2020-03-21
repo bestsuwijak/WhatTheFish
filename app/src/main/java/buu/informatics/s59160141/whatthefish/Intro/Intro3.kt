@@ -10,6 +10,7 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.provider.Settings
 import android.util.Log
 import android.view.Gravity
@@ -23,6 +24,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import buu.informatics.s59160141.whatthefish.R
 import buu.informatics.s59160141.whatthefish.databinding.FragmentIntro3Binding
+import kotlinx.android.synthetic.main.fragment_intro3.*
 
 
 /**
@@ -48,6 +50,7 @@ class Intro3 : Fragment() {
             inflater,
             R.layout.fragment_intro3, container, false
         )
+
         return binding.root
     }
 
@@ -56,11 +59,11 @@ class Intro3 : Fragment() {
         val connectivityManager = this@Intro3.context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
         val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+
         if (isConnected){
-            viewModel.refreshDataFromRepository()
-            findNavController().navigate(R.id.action_intro3_to_mainFragment)
+            goToMain()
         }else{
-//                    Log.i("test123", "device not conect internet")
+//            Log.i("test123", "device not conect internet")
             val builder = AlertDialog.Builder(this@Intro3.context)
 
             val title: TextView = TextView(context)
@@ -70,12 +73,10 @@ class Intro3 : Fragment() {
             title.setTextColor(resources.getColor(R.color.Titleblack))
             builder.setCustomTitle(title)
 
-//            builder.setTitle(R.string.intro3_title)
             builder.setMessage(R.string.intro3_message)
             builder.setOnCancelListener{
                 if (isConnected){
-                    viewModel.refreshDataFromRepository()
-                    findNavController().navigate(R.id.action_intro3_to_mainFragment)
+                    goToMain()
                 }
             }
             builder.setPositiveButton(R.string.intro3_button) { dialog, which ->
@@ -92,6 +93,20 @@ class Intro3 : Fragment() {
         Log.i("testIntro3", "resume")
         checkInternet()
     }
+
+    fun goToMain(){
+        object : CountDownTimer(2000,1000){
+            override fun onTick(millisUntilFinished: Long) { // Tick
+                loadText.visibility = View.VISIBLE
+            }
+
+            override fun onFinish() { // Finish
+                viewModel.refreshDataFromRepository()
+                findNavController().navigate(R.id.action_intro3_to_mainFragment)
+            }
+        }.start()
+    }
+
 
 }
 

@@ -39,9 +39,6 @@
         <action
             android:id="@+id/action_mainFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_detecFragment"
-            app:destination="@id/detecFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -50,15 +47,6 @@
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detecFragment"
-        android:name="buu.informatics.s59160141.whatthefish.detec.DetecFragment"
-        android:label="fragment_detec"
-        tools:layout="@layout/fragment_detec" >
-        <action
-            android:id="@+id/action_detecFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

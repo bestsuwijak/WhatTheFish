@@ -1,12 +1,14 @@
 package buu.informatics.s59160141.whatthefish.main
 
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
@@ -48,7 +50,20 @@ class MainFragment : Fragment() {
         }
 
         binding.buttonDetect.setOnClickListener{
-            findNavController().navigate(R.id.action_mainFragment_to_detecFragment)
+            val builder = AlertDialog.Builder(context)
+
+            val title: TextView = TextView(context)
+            title.setText(R.string.alert_click_detec_title)
+            title.setPadding(30, 30, 0, 10)
+            title.setTextSize(20F)
+            title.setTextColor(resources.getColor(R.color.Titleblack))
+            builder.setCustomTitle(title)
+
+            builder.setMessage(R.string.alert_click_detec_messagw)
+            builder.setPositiveButton("OK") { dialog, which ->
+
+            }
+            builder.show()
         }
 
         binding.buttonQrcode.setOnClickListener{

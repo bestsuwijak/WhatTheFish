@@ -8,5 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/loadingbackground"
-        tools:context=".Intro.Intro3"/>
+        tools:context=".Intro.Intro3">
+
+        <TextView
+            android:id="@+id/loadText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="@string/intro3_loadText"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.58000004" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
