@@ -113,9 +113,9 @@ class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
                 , "f101", "f102", "f103", "f104", "f105", "f106", "f107", "f108", "f109", "f110", "f111", "f112", "f113", "f114", "f115", "f116", "f117", "f118", "f119", "f120"
                 , "f121", "f122", "f123", "f124", "f125", "f126", "f127", "f128", "f129", "f130", "f131", "f132", "f133", "f134", "f135", "f136", "f137", "f138", "f139", "f140"
                 , "f141", "f142", "f143", "f144", "f145", "f146", "f147", "f148", "f149", "f150")
-            val row = list.find {it.startsWith(result)}
+            val row = list.find {it.startsWith(result.toLowerCase())}
 
-            if (row == result) {
+            if (row == result.toLowerCase()) {
                 val fish = qRViewModel.searchQR(result)
 
                 val thName = fish.thNames as ArrayList
