@@ -19,36 +19,44 @@ class F74(demo: Node, ren: ModelRenderable?) {
     lateinit var loopTimerAnimationFishVarible: CountDownTimer
     lateinit var loopTimerMovefishVarible: CountDownTimer
     private var renderable = ren
+    var timerCheck = 0
 
     init {
         loopTimerAnimationFish()
-        loopTimerMovefish()
+        startWalking()
+//        loopTimerMovefish()
     }
 
     private fun loopTimerAnimationFish() {
-        loopTimerAnimationFishVarible = object : CountDownTimer(30000, 100) {
+        loopTimerAnimationFishVarible = object : CountDownTimer(32000, 400) {
             override fun onTick(millisUntilFinished: Long) { // Tick
-                    if (animation == null || !animation!!.isRunning) {
-                        animateModel("Armature|ArmatureAction")
-                    }
-            }
-            override fun onFinish() { // Finish
-                    loopTimerAnimationFish()
-            }
-        }.start()
-    }
-
-    private fun loopTimerMovefish() {
-        loopTimerMovefishVarible = object : CountDownTimer(240000, 8000) {
-            override fun onTick(millisUntilFinished: Long) { // Tick
+                timerCheck += 400
+                if (animation == null || !animation!!.isRunning) {
+                    animateModel("Armature|ArmatureAction")
+                }
+                if(timerCheck%8000 == 0){
                     startWalking()
+                }
+//                Log.i("testF74", timerCheck.toString())
             }
-
             override fun onFinish() { // Finish
-                    loopTimerMovefish()
+                loopTimerAnimationFish()
+                timerCheck = 0
             }
         }.start()
     }
+
+//    private fun loopTimerMovefish() {
+//        loopTimerMovefishVarible = object : CountDownTimer(240000, 8000) {
+//            override fun onTick(millisUntilFinished: Long) { // Tick
+//                    startWalking()
+//            }
+//
+//            override fun onFinish() { // Finish
+//                    loopTimerMovefish()
+//            }
+//        }.start()
+//    }
 
     private fun animateModel(name: String) {
         animation?.let { it ->

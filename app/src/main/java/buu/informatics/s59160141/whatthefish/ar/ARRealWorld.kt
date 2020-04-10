@@ -1,7 +1,9 @@
 package buu.informatics.s59160141.whatthefish.ar
 
+import android.Manifest
 import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.CamcorderProfile
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +14,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import buu.informatics.s59160141.whatthefish.viewpager.MainViewPager
 import buu.informatics.s59160141.whatthefish.R
@@ -222,6 +225,16 @@ class ARRealWorld : AppCompatActivity() {
         values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
         values.put(MediaStore.Video.Media.DATA, videoPath)
         contentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                1
+            )
+        }
     }
 
 //
