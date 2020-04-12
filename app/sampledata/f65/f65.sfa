@@ -65,9 +65,9 @@
   },
   samplers: [
     {
-      file: 'D:\\59160141\\3D model edit\\model\\F65.png',
+      file: 'sampledata/f65/F65.png',
       name: 'F65',
-      pipeline_name: 'D:\\59160141\\3D model edit\\model\\F65.png',
+      pipeline_name: 'sampledata/f65/F65.png',
     },
   ],
   version: '0.54:2',

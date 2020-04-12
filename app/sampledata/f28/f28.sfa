@@ -65,9 +65,9 @@
   },
   samplers: [
     {
-      file: 'D:\\59160141\\3D model edit\\model\\F28.png',
+      file: 'sampledata/f28/F28.png',
       name: 'F28',
-      pipeline_name: 'D:\\59160141\\3D model edit\\model\\F28.png',
+      pipeline_name: 'sampledata/f28/F28.png',
     },
   ],
   version: '0.54:2',

@@ -65,9 +65,9 @@
   },
   samplers: [
     {
-      file: 'D:\\59160141\\3D model edit\\model\\F117.png',
+      file: 'sampledata/f117/F117.png',
       name: 'F117',
-      pipeline_name: 'D:\\59160141\\3D model edit\\model\\F117.png',
+      pipeline_name: 'sampledata/f117/F117.png',
     },
   ],
   version: '0.54:2',

@@ -65,9 +65,9 @@
   },
   samplers: [
     {
-      file: 'D:\\59160141\\3D model edit\\model\\F145.png',
+      file: 'sampledata/f145/F145.png',
       name: 'F145',
-      pipeline_name: 'D:\\59160141\\3D model edit\\model\\F145.png',
+      pipeline_name: 'sampledata/f145/F145.png',
     },
   ],
   version: '0.54:2',
