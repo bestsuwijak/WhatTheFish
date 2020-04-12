@@ -123,7 +123,6 @@ class ARRealWorld : AppCompatActivity() {
     private fun refresh() {
         for (i in 0 until andy.size) {
             andy[i].loopTimerAnimationFishVarible.cancel()
-            andy[i].loopTimerMovefishVarible.cancel()
             arFragment.arSceneView.scene.onRemoveChild(andy[i].demo)
         }
         renderable = ArrayList()

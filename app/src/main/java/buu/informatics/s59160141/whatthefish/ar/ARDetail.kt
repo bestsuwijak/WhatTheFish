@@ -192,13 +192,13 @@ class ARDetail : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        val isRecording: Boolean = videoRecorder!!.onToggleRecord()
-        if (!isRecording) {
-            stopRecord()
-        }
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        val isRecording: Boolean = videoRecorder!!.onToggleRecord()
+//        if (!isRecording) {
+//            stopRecord()
+//        }
+//    }
 
     override fun onResume() {
         super.onResume()

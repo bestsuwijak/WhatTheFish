@@ -17,7 +17,6 @@ class F74(demo: Node, ren: ModelRenderable?) {
     var demo = demo
     var animation: ModelAnimator? = null
     lateinit var loopTimerAnimationFishVarible: CountDownTimer
-    lateinit var loopTimerMovefishVarible: CountDownTimer
     private var renderable = ren
     var timerCheck = 0
 
