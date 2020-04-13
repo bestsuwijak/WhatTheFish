@@ -18,8 +18,12 @@ class QRViewModel(application: Application) : AndroidViewModel(application) {
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    fun searchQR(query: String): Fish {
-        return fishesRepository.searchNumber(query)
+    fun searchQR(query: String): Fish? {
+        val result = fishesRepository.searchNumber(query)
+        if (result != null){
+            return result
+        }
+        return null
     }
 
     fun updateFoundFish(query: String, dateFound: String, timeFound: String){

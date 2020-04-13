@@ -12,7 +12,7 @@ interface FishDao {
     fun getFishes(): List<DatabaseAll>
 
     @Transaction
-    @Query("select * from database_fishes WHERE number LIKE :search")
+    @Query("select * from database_fishes WHERE number = :search")
     fun numberFind(search: String): List<DatabaseAll>
 
     @Transaction
