@@ -249,7 +249,7 @@ class ARDetail : AppCompatActivity() {
     fun stopRecord(){
 //        Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show()
         buttonrecord.setImageResource(R.drawable.rcd)
-//        timerObject.cancel()
+        timerObject.cancel()
         timeRecord_ar1.visibility = View.INVISIBLE
         timer = 0
 
