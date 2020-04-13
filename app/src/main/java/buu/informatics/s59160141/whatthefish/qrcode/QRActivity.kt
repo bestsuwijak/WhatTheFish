@@ -95,7 +95,7 @@ class QRActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(p0: Result?) {
-        val result = p0?.textq
+        val result = p0?.text
         scannerView?.setResultHandler(this)
         scannerView?.startCamera()
 
