@@ -43,6 +43,7 @@
         android:layout_width="@dimen/size50dp"
         android:layout_height="@dimen/size25dp"
         android:layout_marginStart="@dimen/size40dp"
+        android:layout_marginTop="@dimen/size10dp"
         android:src="@drawable/backbutton2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,6 +52,7 @@
         android:id="@+id/buttonInformation_ar1"
         android:layout_width="@dimen/size25dp"
         android:layout_height="@dimen/size25dp"
+        android:layout_marginTop="@dimen/size10dp"
         android:layout_marginEnd="@dimen/size40dp"
         app:layout_constraintEnd_toStartOf="@+id/buttonrefresh"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,6 +62,7 @@
         android:id="@+id/buttonrefresh"
         android:layout_width="@dimen/size25dp"
         android:layout_height="@dimen/size25dp"
+        android:layout_marginTop="@dimen/size10dp"
         android:layout_marginEnd="@dimen/size40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

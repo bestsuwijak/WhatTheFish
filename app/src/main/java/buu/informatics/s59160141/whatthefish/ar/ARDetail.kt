@@ -64,7 +64,7 @@ class ARDetail : AppCompatActivity() {
                 return@setOnTapArPlaneListener
             }
             val anchor = hitResult.createAnchor()
-            if(check) {
+            if(check) { //no model
                 placeObject(arFragment, anchor, model)
             }else{
                 arFragment.arSceneView.scene.onRemoveChild(modelNode)
@@ -127,7 +127,7 @@ class ARDetail : AppCompatActivity() {
 
     private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
         if(check) {
-            ModelRenderable.builder()
+            ModelRenderable.builder() //สร้าง model ที่แสดงผลได้
                 .setSource(fragment.context, model)
                 .build()
                 .thenAccept {
@@ -145,7 +145,7 @@ class ARDetail : AppCompatActivity() {
         }
     }
 
-    private fun addToScene(fragment: ArFragment, anchor: Anchor, renderable: Renderable) {
+    private fun addToScene(fragment: ArFragment, anchor: Anchor, renderable: Renderable) { //เพิ่มลงฉาก
 
         val anchorNode = AnchorNode(anchor)
         val skeletonNode = SkeletonNode()
@@ -206,10 +206,7 @@ class ARDetail : AppCompatActivity() {
             arFragment.onResume()
         }
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                1
-            )
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         }
     }
 
@@ -252,7 +249,7 @@ class ARDetail : AppCompatActivity() {
     fun stopRecord(){
 //        Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show()
         buttonrecord.setImageResource(R.drawable.rcd)
-        timerObject.cancel()
+//        timerObject.cancel()
         timeRecord_ar1.visibility = View.INVISIBLE
         timer = 0
 
