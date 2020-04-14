@@ -94,14 +94,14 @@ class Detail : AppCompatActivity() {
             if (i == (th_name.size - 1)){
                 thname += th_name[i]
             }else{
-                thname += "${th_name[i]}\n "
+                thname += "${th_name[i]}\n"
             }
         }
         for (i in 0 until eng_name.size){
             if (i == (eng_name.size - 1)){
                 engname += eng_name[i]
             }else{
-                engname += "${eng_name[i]}\n "
+                engname += "${eng_name[i]}\n"
             }
         }
 

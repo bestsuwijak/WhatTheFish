@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/size10dp"
             android:layout_marginEnd="@dimen/size10dp"
-            android:fontFamily="@font/sukhumvit_text"
+            android:fontFamily="@font/kanit"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:fontFamily="@font/sukhumvit_text"
+            android:fontFamily="@font/kanit"
             android:text="17 กุทภาพันธ์ 2563"
             android:textColor="@color/white"
             android:textSize="@dimen/font13sp" />
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/dateFoundFish"
             android:layout_alignRight="@+id/dateFoundFish"
-            android:fontFamily="@font/sukhumvit_text"
+            android:fontFamily="@font/kanit"
             android:text="21.00"
             android:textColor="@color/white"
             android:textSize="@dimen/font13sp" />

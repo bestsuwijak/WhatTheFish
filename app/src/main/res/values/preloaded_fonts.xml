@@ -3,6 +3,9 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/allerta</item>
         <item>@font/arbutus</item>
+        <item>@font/kanit</item>
+        <item>@font/kanit_extralight_italic</item>
+        <item>@font/kanit_light_italic</item>
         <item>@font/roboto</item>
         <item>@font/roboto_bold</item>
     </array>
