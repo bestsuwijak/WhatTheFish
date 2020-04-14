@@ -75,7 +75,7 @@ class Fishdex2Activity : AppCompatActivity(), fishDex2View {
         buttonBack_fishdex2.setOnClickListener {
             finish()
         }
-        imageView4.setOnClickListener {
+        ar2button.setOnClickListener {
             val i = Intent(this, ARRealWorld::class.java)
             i.putExtra("number", listArVisibled)
             startActivityForResult(i, 9)
