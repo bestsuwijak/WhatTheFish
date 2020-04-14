@@ -44,7 +44,7 @@
             android:layout_marginTop="@dimen/size30dp"
             android:fontFamily="@font/kanit"
             android:textColor="@color/white"
-            android:textSize="@dimen/font38sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <ImageView
