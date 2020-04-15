@@ -23,7 +23,7 @@
             android:singleLine="true"
             android:text="@string/id"
             android:textColor="@color/yellow"
-            android:textSize="@dimen/font20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textEngNames"
@@ -35,7 +35,7 @@
             android:singleLine="true"
             android:text="@string/username"
             android:textColor="@color/white"
-            android:textSize="@dimen/font20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textScienceName"
